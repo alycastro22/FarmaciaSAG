@@ -6,6 +6,8 @@
 package Formularios_SAG;
 
 import Conexion.Conexion;
+import com.sun.corba.se.impl.orbutil.CorbaResourceUtil;
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,17 +16,17 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
+import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Allisson Castro
  */
-
-
-
-
 public class Sucursales extends javax.swing.JFrame {
 
     /**
@@ -37,7 +39,6 @@ public class Sucursales extends javax.swing.JFrame {
         BotonActivoS.setVisible(Boolean.FALSE);
         BotonInactivoS.setVisible(Boolean.FALSE);
         txtEstadoS.setVisible(Boolean.FALSE);
-        
     }
 
     /**
@@ -49,6 +50,7 @@ public class Sucursales extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        grupoBotonSucursal = new javax.swing.ButtonGroup();
         BotonInactivoS = new javax.swing.JRadioButton();
         BotonActivoS = new javax.swing.JRadioButton();
         botonBuscarS = new javax.swing.JLabel();
@@ -73,6 +75,8 @@ public class Sucursales extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        grupoBotonSucursal.add(BotonInactivoS);
+        BotonInactivoS.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         BotonInactivoS.setText("Inactivo");
         BotonInactivoS.setOpaque(false);
         BotonInactivoS.addActionListener(new java.awt.event.ActionListener() {
@@ -82,6 +86,8 @@ public class Sucursales extends javax.swing.JFrame {
         });
         getContentPane().add(BotonInactivoS, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 290, -1, -1));
 
+        grupoBotonSucursal.add(BotonActivoS);
+        BotonActivoS.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         BotonActivoS.setText("Activo");
         BotonActivoS.setOpaque(false);
         BotonActivoS.addActionListener(new java.awt.event.ActionListener() {
@@ -89,9 +95,10 @@ public class Sucursales extends javax.swing.JFrame {
                 BotonActivoSActionPerformed(evt);
             }
         });
-        getContentPane().add(BotonActivoS, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 290, -1, -1));
+        getContentPane().add(BotonActivoS, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 290, -1, -1));
         getContentPane().add(botonBuscarS, new org.netbeans.lib.awtextra.AbsoluteConstraints(1270, 280, 40, 40));
 
+        botonAgregarS.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonAgregarS.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botonAgregarSMouseClicked(evt);
@@ -99,6 +106,8 @@ public class Sucursales extends javax.swing.JFrame {
         });
         getContentPane().add(botonAgregarS, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 170, 170, 50));
 
+        botonEditarS.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonEditarS.setEnabled(false);
         botonEditarS.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botonEditarSMouseClicked(evt);
@@ -106,6 +115,7 @@ public class Sucursales extends javax.swing.JFrame {
         });
         getContentPane().add(botonEditarS, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 170, 170, 50));
 
+        botonGerenciaS.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonGerenciaS.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botonGerenciaSMouseClicked(evt);
@@ -113,8 +123,19 @@ public class Sucursales extends javax.swing.JFrame {
         });
         getContentPane().add(botonGerenciaS, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 160, 190, 60));
 
+        txtBuscarS.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        txtBuscarS.setForeground(new java.awt.Color(153, 153, 153));
+        txtBuscarS.setText("Buscar por ID o Nombre");
         txtBuscarS.setBorder(null);
         txtBuscarS.setOpaque(false);
+        txtBuscarS.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtBuscarSFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtBuscarSFocusLost(evt);
+            }
+        });
         txtBuscarS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtBuscarSActionPerformed(evt);
@@ -130,6 +151,7 @@ public class Sucursales extends javax.swing.JFrame {
         });
         getContentPane().add(txtBuscarS, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 285, 330, 40));
 
+        botonGuardarS.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonGuardarS.setEnabled(false);
         botonGuardarS.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -138,6 +160,7 @@ public class Sucursales extends javax.swing.JFrame {
         });
         getContentPane().add(botonGuardarS, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 820, 120, 50));
 
+        botonCancelarS.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonCancelarS.setEnabled(false);
         botonCancelarS.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -146,10 +169,21 @@ public class Sucursales extends javax.swing.JFrame {
         });
         getContentPane().add(botonCancelarS, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 820, 120, 50));
 
+        txtNombreS.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        txtNombreS.setForeground(new java.awt.Color(153, 153, 153));
+        txtNombreS.setText("Ingrese Nombre Sucursal");
         txtNombreS.setBorder(null);
         txtNombreS.setEnabled(false);
         txtNombreS.setOpaque(false);
         txtNombreS.setVerifyInputWhenFocusTarget(false);
+        txtNombreS.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtNombreSFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtNombreSFocusLost(evt);
+            }
+        });
         txtNombreS.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 txtNombreSMousePressed(evt);
@@ -160,11 +194,30 @@ public class Sucursales extends javax.swing.JFrame {
                 txtNombreSActionPerformed(evt);
             }
         });
+        txtNombreS.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNombreSKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreSKeyTyped(evt);
+            }
+        });
         getContentPane().add(txtNombreS, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 450, 262, 40));
 
+        txtDireccionS.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        txtDireccionS.setForeground(new java.awt.Color(153, 153, 153));
+        txtDireccionS.setText("Ingrese Dirección");
         txtDireccionS.setBorder(null);
         txtDireccionS.setEnabled(false);
         txtDireccionS.setOpaque(false);
+        txtDireccionS.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtDireccionSFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtDireccionSFocusLost(evt);
+            }
+        });
         txtDireccionS.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 txtDireccionSMousePressed(evt);
@@ -175,8 +228,17 @@ public class Sucursales extends javax.swing.JFrame {
                 txtDireccionSActionPerformed(evt);
             }
         });
+        txtDireccionS.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtDireccionSKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDireccionSKeyTyped(evt);
+            }
+        });
         getContentPane().add(txtDireccionS, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 630, 263, 40));
 
+        botonCiudadS.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
         botonCiudadS.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ciudad", "Tegucigalpa", "San Pedro Sula" }));
         botonCiudadS.setBorder(null);
         botonCiudadS.setEnabled(false);
@@ -189,9 +251,20 @@ public class Sucursales extends javax.swing.JFrame {
         getContentPane().add(botonCiudadS, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 540, 262, 40));
         botonCiudadS.getAccessibleContext().setAccessibleName("");
 
+        txtTelefonoS.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        txtTelefonoS.setForeground(new java.awt.Color(153, 153, 153));
+        txtTelefonoS.setText("Ingrese Teléfono");
         txtTelefonoS.setBorder(null);
         txtTelefonoS.setEnabled(false);
         txtTelefonoS.setOpaque(false);
+        txtTelefonoS.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtTelefonoSFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtTelefonoSFocusLost(evt);
+            }
+        });
         txtTelefonoS.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 txtTelefonoSMousePressed(evt);
@@ -202,12 +275,18 @@ public class Sucursales extends javax.swing.JFrame {
                 txtTelefonoSActionPerformed(evt);
             }
         });
+        txtTelefonoS.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTelefonoSKeyTyped(evt);
+            }
+        });
         getContentPane().add(txtTelefonoS, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 720, 265, 40));
         getContentPane().add(botonSalirS, new org.netbeans.lib.awtextra.AbsoluteConstraints(1290, 530, 90, 40));
 
         txtIdS.setEnabled(false);
         getContentPane().add(txtIdS, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, 90, 20));
 
+        botonRegresarS.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonRegresarS.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botonRegresarSMouseClicked(evt);
@@ -215,9 +294,11 @@ public class Sucursales extends javax.swing.JFrame {
         });
         getContentPane().add(botonRegresarS, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 180, 50));
 
+        txtEstadoS.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         txtEstadoS.setText("Estado");
-        getContentPane().add(txtEstadoS, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 290, 70, 20));
+        getContentPane().add(txtEstadoS, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 290, 70, 30));
 
+        tablasucursal.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
         tablasucursal.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
@@ -227,7 +308,7 @@ public class Sucursales extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Nombre", "Cuidad", "Direccion", "Telefono", "Estado"
+                "ID", "Nombre", "Ciudad", "Dirección", "Teléfono", "Estado"
             }
         ) {
             Class[] types = new Class [] {
@@ -245,6 +326,7 @@ public class Sucursales extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tablasucursal.setRowHeight(30);
         tablasucursal.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tablasucursalMouseClicked(evt);
@@ -255,14 +337,15 @@ public class Sucursales extends javax.swing.JFrame {
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 350, 880, 510));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/componentes/Pantalla Sucursales.png"))); // NOI18N
+        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 910));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    
-    
+    public boolean aprobado = false;
+
     private void txtBuscarSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarSActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtBuscarSActionPerformed
@@ -280,57 +363,59 @@ public class Sucursales extends javax.swing.JFrame {
     }//GEN-LAST:event_txtTelefonoSActionPerformed
 
     private void botonRegresarSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonRegresarSMouseClicked
-    java.awt.EventQueue.invokeLater(new Runnable() {
+        java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MenuPrincipal().setVisible(true);
             }
         });
-        this.dispose();                
-       
+        this.dispose();
+
 
     }//GEN-LAST:event_botonRegresarSMouseClicked
 
     private void botonAgregarSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAgregarSMouseClicked
-       Habillitar();
-        
+        Habillitar();
+        botonGuardarS.isEnabled();
+        botonCancelarS.isEnabled();
+
     }//GEN-LAST:event_botonAgregarSMouseClicked
 
     private void botonEditarSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEditarSMouseClicked
-        int Id = Integer.parseInt(txtIdS.getText());
-        String Nombre= txtNombreS.getText();
-        String Ciudad= botonCiudadS.getSelectedItem().toString();
-        String Direccion= txtDireccionS.getText();
-        String Telefono= txtTelefonoS.getText();
-         String Estado= "";
-         
-          if (BotonActivoS.isSelected()== true){
-                  Estado = "Activo";
-               }    
-              else if(BotonInactivoS.isSelected()== true){
-                  Estado = "Inactivo";
-              }
 
-            try{
-               Connection con = Conexion.getConexion();
-               PreparedStatement ps = con.prepareStatement("Update Sucursal set Nombre=?, Ciudad=?, Direccion=?, Telefono=?, estado=? where Id_Sucursal =?");
-               ps.setString(1, Nombre);
-               ps.setString (2, Ciudad);
-               ps.setString(3, Direccion);
-               ps.setInt(4, Integer.valueOf(Telefono));
-               ps.setString(5, Estado);
-               ps.setInt(6, Id);
-               ps.executeUpdate();
-               JOptionPane.showMessageDialog(null, "Registro Actualizado");
-               cargartabla();
-               BotonActivoS.setVisible(Boolean.TRUE);
-               BotonInactivoS.setVisible(Boolean.TRUE);
-               txtEstadoS.setVisible(Boolean.TRUE);
+        if (txtNombreS.getText().equals("Ingrese Nombre Sucursal") || txtTelefonoS.getText().equals("Ingrese Teléfono") || txtDireccionS.getText().equals("Ingrese Dirección")) {
+            JOptionPane.showMessageDialog(null, "No se puede Actualizar datos vacios");
+        } else {
+            int Id = Integer.parseInt(txtIdS.getText());
+            String Nombre = txtNombreS.getText();
+            String Ciudad = botonCiudadS.getSelectedItem().toString();
+            String Direccion = txtDireccionS.getText();
+            String Telefono = txtTelefonoS.getText();
+            String Estado = "";
 
+            if (BotonActivoS.isSelected() == true) {
+                Estado = "Activo";
+            } else if (BotonInactivoS.isSelected() == true) {
+                Estado = "Inactivo";
+            }
+            try {
+                Connection con = Conexion.getConexion();
+                PreparedStatement ps = con.prepareStatement("Update Sucursal set Nombre=?, Ciudad=?, Direccion=?, Telefono=?, estado=? where Id_Sucursal =?");
+                ps.setString(1, Nombre);
+                ps.setString(2, Ciudad);
+                ps.setString(3, Direccion);
+                ps.setInt(4, Integer.valueOf(Telefono));
+                ps.setString(5, Estado);
+                ps.setInt(6, Id);
+                ps.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Registro Actualizado");
+                cargartabla();
+                Limpiar();
+                Inhabillitar();
 
-           }catch (SQLException ex){
-               JOptionPane.showMessageDialog(null, ex.toString());
-           }
-            
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex.toString());
+            }
+        }
     }//GEN-LAST:event_botonEditarSMouseClicked
 
     private void botonGerenciaSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGerenciaSMouseClicked
@@ -347,147 +432,298 @@ public class Sucursales extends javax.swing.JFrame {
 
     private void botonGuardarSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGuardarSMouseClicked
         // TODO add your handling code here:
-        
-        String Nombre= txtNombreS.getText();
-        String Ciudad= botonCiudadS.getSelectedItem().toString();
-        String Direccion= txtDireccionS.getText();
-        String Telefono= txtTelefonoS.getText();
-         
-       
-            try{
-               Connection con = Conexion.getConexion();
-               PreparedStatement ps = con.prepareStatement("Insert into Sucursal (Nombre, Ciudad, Direccion, Telefono, estado) VALUES(?,?,?,?,?)");
-               ps.setString(1, Nombre);
-               ps.setString (2, Ciudad);
-               ps.setString(3, Direccion);
-               ps.setInt(4, Integer.valueOf(Telefono));
-               ps.setString(5, "Activo");
-               ps.executeUpdate();
-               JOptionPane.showMessageDialog(null, "Registro guardado");
-               cargartabla();
 
-           }catch (SQLException ex){
-               JOptionPane.showMessageDialog(null, ex.toString());
-           }
+        String Nombre = txtNombreS.getText();
+        String Ciudad = botonCiudadS.getSelectedItem().toString();
+        String Direccion = txtDireccionS.getText();
+        String Telefono = txtTelefonoS.getText();
+        if (txtNombreS.getText().equals("") || txtTelefonoS.getText().equals("") || txtDireccionS.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "No se puede Guardar datos vacios");
+        } else {
+            try {
+                Connection con = Conexion.getConexion();
+                PreparedStatement ps = con.prepareStatement("Insert into Sucursal (Nombre, Ciudad, Direccion, Telefono, estado) VALUES(?,?,?,?,?)");
+                ps.setString(1, Nombre);
+                ps.setString(2, Ciudad);
+                ps.setString(3, Direccion);
+                ps.setInt(4, Integer.valueOf(Telefono));
+                ps.setString(5, "Activo");
+                ps.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Registro guardado");
+                cargartabla();
+                Limpiar();
+                Inhabillitar();
+                botonGuardarS.setEnabled(Boolean.FALSE);
+                botonCancelarS.setEnabled(Boolean.FALSE);
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex.toString());
+            }
 
- 
-               
-       
+        }
+
+
     }//GEN-LAST:event_botonGuardarSMouseClicked
 
     private void tablasucursalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablasucursalMouseClicked
         // TODO add your handling code here:
-           try{
-         int fila=tablasucursal.getSelectedRow();
-         int id= Integer.parseInt(tablasucursal.getValueAt(fila, 0).toString());
-         PreparedStatement ps;
-         ResultSet rs;
-         Connection con = Conexion.getConexion();
-         ps = con.prepareStatement("SELECT  Nombre, Ciudad, Direccion, Telefono, estado FROM Sucursal WHERE Id_Sucursal=?");
-         ps.setInt(1, id);
-         rs = ps.executeQuery();
-         
-           
-          while (rs.next()){
-              txtIdS.setText(String.valueOf(id));
-             txtNombreS.setText(rs.getString("Nombre"));
-             botonCiudadS.setSelectedItem(rs.getString("Ciudad"));
-             txtDireccionS.setText(rs.getString("Direccion"));
-             txtTelefonoS.setText(rs.getString("Telefono"));
-          if (rs.getString("estado").equals("Activo")){
-              BotonActivoS.setSelected(true);
-           }    
-          else if(rs.getString("estado").equals("Inactivo")){
-              BotonInactivoS.setSelected(true);
-          }
-          }
-          
-               System.out.println(txtIdS.getText());
-           Habillitar();
-       }catch (SQLException ex){
-           JOptionPane.showMessageDialog(null, ex.toString());
-       }
-           
+        try {
+            int fila = tablasucursal.getSelectedRow();
+            int id = Integer.parseInt(tablasucursal.getValueAt(fila, 0).toString());
+            PreparedStatement ps;
+            ResultSet rs;
+            Connection con = Conexion.getConexion();
+            ps = con.prepareStatement("SELECT  Nombre, Ciudad, Direccion, Telefono, estado FROM Sucursal WHERE Id_Sucursal=?");
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                txtIdS.setText(String.valueOf(id));
+                txtNombreS.setText(rs.getString("Nombre"));
+                botonCiudadS.setSelectedItem(rs.getString("Ciudad"));
+                txtDireccionS.setText(rs.getString("Direccion"));
+                txtTelefonoS.setText(rs.getString("Telefono"));
+                if (rs.getString("estado").equals("Activo")) {
+                    BotonActivoS.setSelected(true);
+                } else if (rs.getString("estado").equals("Inactivo")) {
+                    BotonInactivoS.setSelected(true);
+                }
+            }
+
+            BotonActivoS.setVisible(Boolean.TRUE);
+            BotonInactivoS.setVisible(Boolean.TRUE);
+            botonEditarS.isEnabled();
+            botonCancelarS.isEnabled();
+            botonGuardarS.enable(Boolean.FALSE);
+            Habillitar();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.toString());
+        }
+
     }//GEN-LAST:event_tablasucursalMouseClicked
 
     private void botonCancelarSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonCancelarSMouseClicked
-       
-        Limpiar ();
-      
-       
+
+        Limpiar();
+        Inhabillitar();
+        botonEditarS.setEnabled(Boolean.FALSE);
+        botonGuardarS.setEnabled(Boolean.FALSE);
+
+
     }//GEN-LAST:event_botonCancelarSMouseClicked
 
     private void txtNombreSMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNombreSMousePressed
-        if (txtNombreS.isEnabled()== false){
-       
+        if (txtNombreS.isEnabled() == false) {
+
             JOptionPane.showMessageDialog(null, "Dar Click en Agregar o Editar para utilizar el campo", "Advertencia", JOptionPane.WARNING_MESSAGE);
-            
+
         }
     }//GEN-LAST:event_txtNombreSMousePressed
 
     private void botonCiudadSMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonCiudadSMousePressed
-          if (botonCiudadS.isEnabled()== false){
-       
+        if (botonCiudadS.isEnabled() == false) {
+
             JOptionPane.showMessageDialog(null, "Dar Click en Agregar o Editar para utilizar el campo", "Advertencia", JOptionPane.WARNING_MESSAGE);
-            
+
         }
     }//GEN-LAST:event_botonCiudadSMousePressed
 
     private void txtDireccionSMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDireccionSMousePressed
-          if (txtDireccionS.isEnabled()== false){
-       
+        if (txtDireccionS.isEnabled() == false) {
+
             JOptionPane.showMessageDialog(null, "Dar Click en Agregar o Editar para utilizar el campo", "Advertencia", JOptionPane.WARNING_MESSAGE);
-            
+
         }
     }//GEN-LAST:event_txtDireccionSMousePressed
 
     private void txtTelefonoSMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTelefonoSMousePressed
-          if (txtTelefonoS.isEnabled()== false){
-       
+        if (txtTelefonoS.isEnabled() == false) {
+
             JOptionPane.showMessageDialog(null, "Dar Click en Agregar o Editar para utilizar el campo", "Advertencia", JOptionPane.WARNING_MESSAGE);
-            
+
         }
     }//GEN-LAST:event_txtTelefonoSMousePressed
 
     private void txtBuscarSKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarSKeyPressed
-      
-       
+
+
     }//GEN-LAST:event_txtBuscarSKeyPressed
+
+    public void validarNumerosLetras(java.awt.event.KeyEvent e) {
+        if (e.getKeyChar() >= 33 && e.getKeyChar() <= 47
+                || e.getKeyChar() >= 58 && e.getKeyChar() <= 64
+                || e.getKeyChar() >= 91 && e.getKeyChar() <= 96
+                || e.getKeyChar() >= 123 && e.getKeyChar() <= 129
+                || e.getKeyChar() >= 145 && e.getKeyChar() <= 159
+                || e.getKeyChar() >= 164 && e.getKeyChar() <= 238) {
+
+            e.consume();
+            JOptionPane.showMessageDialog(null, "Este campo no acepta caracteres especiales", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
+    }
 
     private void txtBuscarSKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarSKeyTyped
         buscarData(txtBuscarS.getText());
+        validarNumerosLetras(evt);
+        if (txtBuscarS.getText().length() > 15) {
+            JOptionPane.showMessageDialog(null, "Alcanzaste el máximo de caracteres para este campo", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            evt.consume();
+        } else if (txtBuscarS.getText().length() > 0) {
+            if (!txtBuscarS.getText().matches("^(?!.*([A-Za-zñÑáéíóúÁÉÍÓÚ\\s])\\1{2})[A-Za-zñÑáéíóúÁÉÍÓÚ\\s0-9]+$")) {
+                evt.consume();
+            }
+        }
     }//GEN-LAST:event_txtBuscarSKeyTyped
-private void cargartabla(){
-       DefaultTableModel modeloTabla= (DefaultTableModel) tablasucursal.getModel();
-       modeloTabla.setRowCount(0);
-       
+
+    private void txtNombreSFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreSFocusGained
+        if (txtNombreS.getText().equals("Ingrese Nombre Sucursal")) {
+            txtNombreS.setText("");
+            txtNombreS.setForeground(new Color(0, 0, 0));
+        }
+    }//GEN-LAST:event_txtNombreSFocusGained
+
+    private void txtNombreSFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreSFocusLost
+        if (txtNombreS.getText().equals("")) {
+            txtNombreS.setText("Ingrese Nombre Sucursal");
+            txtNombreS.setForeground(new Color(153, 153, 153));
+        } else if (txtNombreS.getText().length() < 6){
+            JOptionPane.showMessageDialog(null, "El nombre debe tener al menos 6 caracteres", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_txtNombreSFocusLost
+
+    private void txtDireccionSFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDireccionSFocusGained
+        if (txtDireccionS.getText().equals("Ingrese Dirección")) {
+            txtDireccionS.setText("");
+            txtDireccionS.setForeground(new Color(0, 0, 0));
+        }
+    }//GEN-LAST:event_txtDireccionSFocusGained
+
+    private void txtDireccionSFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDireccionSFocusLost
+        if (txtDireccionS.getText().equals("")) {
+            txtDireccionS.setText("Ingrese Dirección");
+            txtDireccionS.setForeground(new Color(153, 153, 153));
+        }else  if (txtDireccionS.getText().length() < 10){
+            JOptionPane.showMessageDialog(null, "La dirección debe contener al menos 10 caracteres", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_txtDireccionSFocusLost
+
+    private void txtTelefonoSFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTelefonoSFocusGained
+        if (txtTelefonoS.getText().equals("Ingrese Teléfono")) {
+            txtTelefonoS.setText("");
+            txtTelefonoS.setForeground(new Color(0, 0, 0));
+        }
+    }//GEN-LAST:event_txtTelefonoSFocusGained
+
+    private void txtTelefonoSFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTelefonoSFocusLost
+        if (txtTelefonoS.getText().equals("")) {
+            txtTelefonoS.setText("Ingrese Teléfono");
+            txtTelefonoS.setForeground(new Color(153, 153, 153));
+        } else if (txtTelefonoS.getText().length() < 8) {
+            JOptionPane.showMessageDialog(null, "El número de teléfono debe contener 8 dígitos", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_txtTelefonoSFocusLost
+
+    private void txtBuscarSFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBuscarSFocusGained
+        if (txtBuscarS.getText().equals("Buscar por ID o Nombre")) {
+            txtBuscarS.setText("");
+            txtBuscarS.setForeground(new Color(0, 0, 0));
+        }
+    }//GEN-LAST:event_txtBuscarSFocusGained
+
+    private void txtBuscarSFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBuscarSFocusLost
+        if (txtBuscarS.getText().equals("")) {
+            txtBuscarS.setText("Buscar por ID o Nombre");
+            txtBuscarS.setForeground(new Color(153, 153, 153));
+        }
+    }//GEN-LAST:event_txtBuscarSFocusLost
+
+    public void validarNumeros(java.awt.event.KeyEvent e) {
+        if (e.getKeyChar() >= 33 && e.getKeyChar() <= 47
+                || e.getKeyChar() >= 58 && e.getKeyChar() <= 238) {
+            e.consume();
+            JOptionPane.showMessageDialog(null, "Este campo solo admite números", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void txtTelefonoSKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoSKeyTyped
+        validarNumeros(evt);
+        if (txtTelefonoS.getText().length() > 7) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtTelefonoSKeyTyped
+
+    public void verificarCaracteresRepetidos(String cadena) {
+        String patron = "^(\\d|(([A-Za-zñÑáéíóúÁÉÍÓÚ\\s])\\3?(?!\\3)))+$";
+        Pattern patt = Pattern.compile(patron);
+        Matcher comparador = patt.matcher(cadena);
+        if (!comparador.matches()) {
+            JOptionPane.showMessageDialog(null, "Tienes caracteres repetidos de forma incorrecta", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            aprobado = false;
+        } else {
+            aprobado = true;
+        }
+    }
+
+    private void txtNombreSKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreSKeyTyped
+        validarNumerosLetras(evt);
+        if (txtNombreS.getText().length() > 25) {
+            JOptionPane.showMessageDialog(null, "Alcanzaste el máximo de caracteres para este campo", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            evt.consume();
+        } else if (txtNombreS.getText().length() > 0) {
+            if (!txtNombreS.getText().matches("^(?!.*([A-Za-zñÑáéíóúÁÉÍÓÚ\\s])\\1{2})[A-Za-zñÑáéíóúÁÉÍÓÚ\\s0-9]+$")) {
+                JOptionPane.showMessageDialog(null, "No repitas caracteres de forma incorrecta", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                evt.consume();
+            }
+        }
+    }//GEN-LAST:event_txtNombreSKeyTyped
+
+    private void txtNombreSKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreSKeyReleased
+
+    }//GEN-LAST:event_txtNombreSKeyReleased
+
+    private void txtDireccionSKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionSKeyTyped
+        if (txtDireccionS.getText().length() > 25) {
+            JOptionPane.showMessageDialog(null, "Alcanzaste el máximo de caracteres para este campo", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            evt.consume();
+        } else if (txtDireccionS.getText().length() > 0) {
+            if (!txtDireccionS.getText().matches("^(?!.*([A-Za-zñÑáéíóúÁÉÍÓÚ\\s])\\1{2})[A-Za-zñÑáéíóúÁÉÍÓÚ\\s0-9]+$")) {
+                evt.consume();
+            }
+        }
+    }//GEN-LAST:event_txtDireccionSKeyTyped
+
+    private void txtDireccionSKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionSKeyReleased
+
+    }//GEN-LAST:event_txtDireccionSKeyReleased
+
+    private void cargartabla() {
+        DefaultTableModel modeloTabla = (DefaultTableModel) tablasucursal.getModel();
+        modeloTabla.setRowCount(0);
+
         PreparedStatement ps;
         ResultSet rs;
         ResultSetMetaData rsmd;
         int columnas;
-       
-         try{
-           Connection con = Conexion.getConexion();
-           ps = con.prepareStatement("SELECT Id_Sucursal, Nombre, Ciudad, Direccion, Telefono, estado FROM Sucursal");
-          rs = ps.executeQuery();
-          rsmd= rs.getMetaData();
-          columnas = rsmd.getColumnCount();
-           
-          while (rs.next()){
-              Object[] fila= new Object[columnas];
-              for (int indice=0; indice<columnas; indice++){
-                  fila[indice] = rs.getObject(indice + 1);
-              }
-              modeloTabla.addRow(fila);
-          }
-          
-         // JOptionPane.showMessageDialog(null, "Registro guardado");
-           
-       }catch (SQLException ex){
-           JOptionPane.showMessageDialog(null, ex.toString());
-       }
-}
 
+        try {
+            Connection con = Conexion.getConexion();
+            ps = con.prepareStatement("SELECT Id_Sucursal, Nombre, Ciudad, Direccion, Telefono, estado FROM Sucursal");
+            rs = ps.executeQuery();
+            rsmd = rs.getMetaData();
+            columnas = rsmd.getColumnCount();
+
+            while (rs.next()) {
+                Object[] fila = new Object[columnas];
+                for (int indice = 0; indice < columnas; indice++) {
+                    fila[indice] = rs.getObject(indice + 1);
+                }
+                modeloTabla.addRow(fila);
+            }
+
+            // JOptionPane.showMessageDialog(null, "Registro guardado");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.toString());
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -536,6 +772,7 @@ private void cargartabla(){
     private javax.swing.JLabel botonGuardarS;
     private javax.swing.JLabel botonRegresarS;
     private javax.swing.JLabel botonSalirS;
+    private javax.swing.ButtonGroup grupoBotonSucursal;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablasucursal;
@@ -550,28 +787,44 @@ private void cargartabla(){
     private void Limpiar() {
         //row new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         txtIdS.setText("");
+
         txtNombreS.setText("");
-        botonCiudadS.setSelectedIndex(-1);
+        if (txtNombreS.getText().equals("")) {
+            txtNombreS.setText("Ingrese Nombre Sucursal");
+            txtNombreS.setForeground(new Color(153, 153, 153));
+        }
+        botonCiudadS.setSelectedIndex(0);
+
         txtDireccionS.setText("");
+        if (txtDireccionS.getText().equals("")) {
+            txtDireccionS.setText("Ingrese Dirección");
+            txtDireccionS.setForeground(new Color(153, 153, 153));
+        }
+
         txtTelefonoS.setText("");
+        if (txtTelefonoS.getText().equals("")) {
+            txtTelefonoS.setText("Ingrese Teléfono");
+            txtTelefonoS.setForeground(new Color(153, 153, 153));
+        }
+
         BotonActivoS.setVisible(Boolean.FALSE);
         BotonInactivoS.setVisible(Boolean.FALSE);
         txtEstadoS.setVisible(Boolean.FALSE);
     }
-    
+
     void buscarData(String valor) {
-        String[] titulos = {"ID", "Nombre", "Ciudad", "Direccion", "Telefono",  "Estado"};
+        String[] titulos = {"ID", "Nombre", "Ciudad", "Direccion", "Telefono", "Estado"};
         String[] registros = new String[13];
         String sql = "SELECT Id_Sucursal,Nombre,Ciudad,Direccion, Telefono,estado\n"
                 + "FROM Sucursal \n"
                 + "WHERE CONCAT (Id_Sucursal, ' ', Nombre) LIKE '%" + valor + "%'\n"
                 + "ORDER BY Id_Sucursal";
 
-         DefaultTableModel model = new DefaultTableModel(null, titulos);
-         Connection con = Conexion.getConexion();
+        DefaultTableModel model = new DefaultTableModel(null, titulos);
+        Connection con = Conexion.getConexion();
 
         try {
-            
+
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
 
@@ -582,26 +835,30 @@ private void cargartabla(){
                 registros[3] = rs.getString("Direccion");
                 registros[4] = rs.getString("Telefono");
                 registros[5] = rs.getString("estado");
-                
+
                 model.addRow(registros);
             }
 
             tablasucursal.setModel(model);
-           // anchoColumnas();
+            // anchoColumnas();
         } catch (SQLException ex) {
             Logger.getLogger(Sucursales.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    
+
     private void Habillitar() {
-        //row new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-       
         txtNombreS.enable(Boolean.TRUE);
         botonCiudadS.enable(Boolean.TRUE);
         txtDireccionS.enable(Boolean.TRUE);
         txtTelefonoS.enable(Boolean.TRUE);
-     
     }
-    
+
+    private void Inhabillitar() {
+        txtNombreS.enable(Boolean.FALSE);
+        botonCiudadS.enable(Boolean.FALSE);
+        txtDireccionS.enable(Boolean.FALSE);
+        txtTelefonoS.enable(Boolean.FALSE);
+
+    }
+
 }

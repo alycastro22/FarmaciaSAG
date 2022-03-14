@@ -5,8 +5,20 @@
  */
 package Formularios_SAG;
 
+import Conexion.Conexion;
+import java.awt.Color;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import sun.security.util.Password;
 
 /**
@@ -15,12 +27,12 @@ import sun.security.util.Password;
  */
 public class Login extends javax.swing.JFrame {
 
- /**
+    /**
      * Creates new form Login2
      */
     public Login() {
         initComponents();
-        
+
     }
 
     /**
@@ -50,8 +62,17 @@ public class Login extends javax.swing.JFrame {
         getContentPane().add(botonInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(845, 490, 265, 65));
 
         txtUsuario.setFont(new java.awt.Font("Georgia", 0, 20)); // NOI18N
+        txtUsuario.setForeground(new java.awt.Color(153, 153, 153));
         txtUsuario.setBorder(null);
         txtUsuario.setOpaque(false);
+        txtUsuario.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtUsuarioFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtUsuarioFocusLost(evt);
+            }
+        });
         txtUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtUsuarioActionPerformed(evt);
@@ -65,6 +86,11 @@ public class Login extends javax.swing.JFrame {
         txtContrasena.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtContrasenaActionPerformed(evt);
+            }
+        });
+        txtContrasena.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtContrasenaKeyTyped(evt);
             }
         });
         getContentPane().add(txtContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 325, 330, 70));
@@ -87,57 +113,82 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_txtContrasenaActionPerformed
 
     private void botonInicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonInicioMouseClicked
-       String  Usuario = "";
-       String  Contraseña = "";
-       
-       String Pass  =  new  String(txtContrasena.getPassword());{
-        
-        
-        if (txtUsuario.getText().equals(Usuario) && Pass.equals(Contraseña)) {
-                   MenuPrincipal  MP = new MenuPrincipal ();
-                   MP.setVisible(true);
-                   dispose ();
-         
-                  } 
-                   else{
-                   {
-            
-                 JOptionPane.showMessageDialog(this, "Usuario/contraseña es incorrecto");
-                     
-                     } 
-                   
-                   
-                   
-   
-          
-          
-          
-          
-       }
-         
-     
-           
-       }
-              
+        String Usuario = txtUsuario.getText();
+        String Contrasena = String.valueOf(txtContrasena.getPassword());
+        int resultado = 0;
+        int intento;
+        Connection con = Conexion.getConexion();
+
+        String Pass = new String(txtContrasena.getPassword());
+        try {
+            PreparedStatement ps;
+            ResultSet rs;
+            ps = con.prepareStatement("Select NombreU, ContrasenaU, Intentos from UsuarioN where  NombreU='" + Usuario + "'");
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                intento = Integer.parseInt(rs.getString("Intentos"));
+                System.out.println(intento);
+
+                if (rs.getString("ContrasenaU").equals(Contrasena)) {
+                    MenuPrincipal MP = new MenuPrincipal();
+                    MP.setVisible(true);
+                    dispose();
+                } else {
+                    intento--;
+                    ps = con.prepareStatement("Update UsuarioN set Intentos ='" + intento + "' where NombreU ='" + Usuario + "' ");
+                    rs = ps.executeQuery();
+                    System.out.println(intento);
+                    JOptionPane.showMessageDialog(this, "Usuario/contraseña es incorrecto");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Este usuario no existe");
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
     }//GEN-LAST:event_botonInicioMouseClicked
 
-    
+    public boolean validarContrasena(String cadena) {
+        String patron = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$";
+        Pattern patt = Pattern.compile(patron);
+        Matcher comparador = patt.matcher(cadena);
+        if (comparador.matches()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    private void txtUsuarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsuarioFocusGained
+
+    }//GEN-LAST:event_txtUsuarioFocusGained
+
+    private void txtUsuarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsuarioFocusLost
+
+    }//GEN-LAST:event_txtUsuarioFocusLost
+
+    private void txtContrasenaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContrasenaKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtContrasenaKeyTyped
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
- 
-    
-        
-        
-        
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Login().setVisible(true);
             }
         });
+
     }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel botonInicio;

@@ -6,14 +6,19 @@
 package Formularios_SAG;
 
 import Conexion.Conexion;
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -32,7 +37,9 @@ public class Clientes extends javax.swing.JFrame {
         Cargarg ch = new Cargarg();
         comboGenero.setModel(ch.getvalues());
         cargartabla();
-        //cargartexto();
+        txtIdC.setVisible(Boolean.FALSE);
+        BotonActivoC.setVisible(Boolean.FALSE);
+        BotonInactivoC.setVisible(Boolean.FALSE);
     }
 
     /**
@@ -47,11 +54,11 @@ public class Clientes extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
+        grupoBotonClientes = new javax.swing.ButtonGroup();
         txtRTN = new javax.swing.JTextField();
         txtNombreC = new javax.swing.JTextField();
         txtApellidoC = new javax.swing.JTextField();
         comboGenero = new javax.swing.JComboBox<>();
-        txtFechaNac = new javax.swing.JFormattedTextField();
         txtDireccionC = new javax.swing.JTextField();
         txtTelefonoC = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
@@ -66,6 +73,7 @@ public class Clientes extends javax.swing.JFrame {
         tablaClientes = new javax.swing.JScrollPane();
         tablaCliente = new javax.swing.JTable();
         BotonInactivoC = new javax.swing.JRadioButton();
+        txtFechaNac = new com.toedter.calendar.JDateChooser();
         BotonActivoC = new javax.swing.JRadioButton();
         txtEstadoC = new javax.swing.JLabel();
         txtGeneroC = new javax.swing.JLabel();
@@ -81,19 +89,48 @@ public class Clientes extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        txtRTN.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        txtRTN.setForeground(new java.awt.Color(153, 153, 153));
+        txtRTN.setText("Ingrese RTN");
         txtRTN.setBorder(null);
+        txtRTN.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         txtRTN.setEnabled(false);
         txtRTN.setOpaque(false);
+        txtRTN.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtRTNFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtRTNFocusLost(evt);
+            }
+        });
         txtRTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtRTNActionPerformed(evt);
             }
         });
+        txtRTN.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtRTNKeyTyped(evt);
+            }
+        });
         getContentPane().add(txtRTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 340, 260, 40));
 
+        txtNombreC.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        txtNombreC.setForeground(new java.awt.Color(153, 153, 153));
+        txtNombreC.setText("Ingrese Nombre");
         txtNombreC.setBorder(null);
+        txtNombreC.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         txtNombreC.setEnabled(false);
         txtNombreC.setOpaque(false);
+        txtNombreC.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtNombreCFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtNombreCFocusLost(evt);
+            }
+        });
         txtNombreC.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 txtNombreCMousePressed(evt);
@@ -104,20 +141,45 @@ public class Clientes extends javax.swing.JFrame {
                 txtNombreCActionPerformed(evt);
             }
         });
+        txtNombreC.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreCKeyTyped(evt);
+            }
+        });
         getContentPane().add(txtNombreC, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 405, 260, 40));
 
+        txtApellidoC.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        txtApellidoC.setForeground(new java.awt.Color(153, 153, 153));
+        txtApellidoC.setText("Ingrese Apellido");
         txtApellidoC.setBorder(null);
+        txtApellidoC.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         txtApellidoC.setEnabled(false);
         txtApellidoC.setOpaque(false);
+        txtApellidoC.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtApellidoCFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtApellidoCFocusLost(evt);
+            }
+        });
         txtApellidoC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtApellidoCActionPerformed(evt);
             }
         });
+        txtApellidoC.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtApellidoCKeyTyped(evt);
+            }
+        });
         getContentPane().add(txtApellidoC, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 470, 260, 40));
 
-        comboGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Femenino" }));
+        comboGenero.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        comboGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione género..." }));
+        comboGenero.setToolTipText("");
         comboGenero.setBorder(null);
+        comboGenero.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         comboGenero.setEnabled(false);
         comboGenero.setOpaque(false);
         comboGenero.addActionListener(new java.awt.event.ActionListener() {
@@ -127,43 +189,102 @@ public class Clientes extends javax.swing.JFrame {
         });
         getContentPane().add(comboGenero, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 540, 260, 40));
 
-        txtFechaNac.setBorder(null);
-        txtFechaNac.setEnabled(false);
-        txtFechaNac.setOpaque(false);
-        txtFechaNac.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFechaNacActionPerformed(evt);
-            }
-        });
-        getContentPane().add(txtFechaNac, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 606, 260, 40));
-
-        txtDireccionC.setBorder(null);
+        txtDireccionC.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        txtDireccionC.setForeground(new java.awt.Color(153, 153, 153));
+        txtDireccionC.setText("Ingrese Dirección");
+        txtDireccionC.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         txtDireccionC.setEnabled(false);
         txtDireccionC.setOpaque(false);
-        getContentPane().add(txtDireccionC, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 675, 260, 40));
+        txtDireccionC.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtDireccionCFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtDireccionCFocusLost(evt);
+            }
+        });
+        txtDireccionC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDireccionCActionPerformed(evt);
+            }
+        });
+        txtDireccionC.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDireccionCKeyTyped(evt);
+            }
+        });
+        getContentPane().add(txtDireccionC, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 672, 260, 40));
 
-        txtTelefonoC.setBorder(null);
+        txtTelefonoC.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        txtTelefonoC.setForeground(new java.awt.Color(153, 153, 153));
+        txtTelefonoC.setText("Ingrese Teléfono");
+        txtTelefonoC.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         txtTelefonoC.setEnabled(false);
         txtTelefonoC.setOpaque(false);
+        txtTelefonoC.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtTelefonoCFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtTelefonoCFocusLost(evt);
+            }
+        });
         txtTelefonoC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTelefonoCActionPerformed(evt);
             }
         });
+        txtTelefonoC.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTelefonoCKeyTyped(evt);
+            }
+        });
         getContentPane().add(txtTelefonoC, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 734, 260, 40));
 
-        txtEmail.setBorder(null);
+        txtEmail.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        txtEmail.setForeground(new java.awt.Color(153, 153, 153));
+        txtEmail.setText("Ingrese E-mail");
+        txtEmail.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         txtEmail.setEnabled(false);
         txtEmail.setOpaque(false);
+        txtEmail.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtEmailFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtEmailFocusLost(evt);
+            }
+        });
+        txtEmail.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtEmailKeyTyped(evt);
+            }
+        });
         getContentPane().add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 794, 260, 40));
 
-        txtFechaRegistro.setBorder(null);
         txtFechaRegistro.setEnabled(false);
         txtFechaRegistro.setOpaque(false);
+        txtFechaRegistro.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtFechaRegistroFocusLost(evt);
+            }
+        });
         getContentPane().add(txtFechaRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 854, 260, 40));
 
+        txtBuscarC.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        txtBuscarC.setForeground(new java.awt.Color(153, 153, 153));
+        txtBuscarC.setText("Buscar ID , Nombre o RTN");
         txtBuscarC.setBorder(null);
+        txtBuscarC.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         txtBuscarC.setOpaque(false);
+        txtBuscarC.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtBuscarCFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtBuscarCFocusLost(evt);
+            }
+        });
         txtBuscarC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtBuscarCActionPerformed(evt);
@@ -173,9 +294,13 @@ public class Clientes extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtBuscarCKeyPressed(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtBuscarCKeyTyped(evt);
+            }
         });
         getContentPane().add(txtBuscarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(935, 282, 340, 40));
 
+        botonAgregarC.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonAgregarC.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botonAgregarCMouseClicked(evt);
@@ -183,6 +308,7 @@ public class Clientes extends javax.swing.JFrame {
         });
         getContentPane().add(botonAgregarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 160, 170, 50));
 
+        botonEditarC.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonEditarC.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botonEditarCMouseClicked(evt);
@@ -190,6 +316,7 @@ public class Clientes extends javax.swing.JFrame {
         });
         getContentPane().add(botonEditarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 160, 170, 50));
 
+        botonGuardarC.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonGuardarC.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botonGuardarCMouseClicked(evt);
@@ -197,6 +324,7 @@ public class Clientes extends javax.swing.JFrame {
         });
         getContentPane().add(botonGuardarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 160, 170, 50));
 
+        botonCancelarC.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonCancelarC.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botonCancelarCMouseClicked(evt);
@@ -211,13 +339,15 @@ public class Clientes extends javax.swing.JFrame {
         });
         getContentPane().add(botonBuscarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(1280, 280, 30, 40));
 
+        botonRegresarC.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonRegresarC.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botonRegresarCMouseClicked(evt);
             }
         });
-        getContentPane().add(botonRegresarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, 170, 40));
+        getContentPane().add(botonRegresarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 170, 40));
 
+        tablaCliente.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
         tablaCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null},
@@ -227,7 +357,7 @@ public class Clientes extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Nombre", "Apellido", "RTN", "Telefono", "Genero", "Fecha Nacimiento", "Direccion", "Email", "Fecha Registro"
+                "ID", "Nombre", "Apellido", "RTN", "Teléfono", "Género", "Fecha Nacimiento", "Dirección", "E-mail", "Fecha Registro"
             }
         ) {
             Class[] types = new Class [] {
@@ -245,6 +375,8 @@ public class Clientes extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tablaCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        tablaCliente.setRowHeight(30);
         tablaCliente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tablaClienteMouseClicked(evt);
@@ -252,8 +384,10 @@ public class Clientes extends javax.swing.JFrame {
         });
         tablaClientes.setViewportView(tablaCliente);
 
-        getContentPane().add(tablaClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 350, 900, 510));
+        getContentPane().add(tablaClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 350, 940, 510));
 
+        grupoBotonClientes.add(BotonInactivoC);
+        BotonInactivoC.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         BotonInactivoC.setText("Inactivo");
         BotonInactivoC.setOpaque(false);
         BotonInactivoC.addActionListener(new java.awt.event.ActionListener() {
@@ -263,6 +397,11 @@ public class Clientes extends javax.swing.JFrame {
         });
         getContentPane().add(BotonInactivoC, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 290, -1, -1));
 
+        txtFechaNac.setOpaque(false);
+        getContentPane().add(txtFechaNac, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 606, 260, 40));
+
+        grupoBotonClientes.add(BotonActivoC);
+        BotonActivoC.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         BotonActivoC.setText("Activo");
         BotonActivoC.setOpaque(false);
         BotonActivoC.addActionListener(new java.awt.event.ActionListener() {
@@ -270,16 +409,18 @@ public class Clientes extends javax.swing.JFrame {
                 BotonActivoCActionPerformed(evt);
             }
         });
-        getContentPane().add(BotonActivoC, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 290, -1, -1));
+        getContentPane().add(BotonActivoC, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 290, -1, -1));
 
+        txtEstadoC.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         txtEstadoC.setText("Estado");
-        getContentPane().add(txtEstadoC, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 290, 70, 20));
+        getContentPane().add(txtEstadoC, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 295, 70, 20));
         getContentPane().add(txtGeneroC, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 544, 120, 30));
 
         txtIdC.setEnabled(false);
         getContentPane().add(txtIdC, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 300, 100, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/componentes/Pantalla Clientes.png"))); // NOI18N
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 1380, 890));
 
         pack();
@@ -289,10 +430,6 @@ public class Clientes extends javax.swing.JFrame {
     private void txtApellidoCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoCActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtApellidoCActionPerformed
-
-    private void txtFechaNacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaNacActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtFechaNacActionPerformed
 
     private void txtTelefonoCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoCActionPerformed
         // TODO add your handling code here:
@@ -323,8 +460,9 @@ public class Clientes extends javax.swing.JFrame {
         String RTN = txtRTN.getText();
         String Nombre = txtNombreC.getText();
         String Apellido = txtApellidoC.getText();
-        int Genero = comboGenero.getSelectedIndex();
-        String FechaNac = txtFechaNac.getText();
+        int Genero = comboGenero.getSelectedIndex() + 1;
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        String FechaNac = sdf.format(txtFechaNac.getDate());
         String Direccion = txtDireccionC.getText();
         String Telefono = txtTelefonoC.getText();
         String Email = txtEmail.getText();
@@ -339,7 +477,7 @@ public class Clientes extends javax.swing.JFrame {
 
         try {
             Connection con = Conexion.getConexion();
-            PreparedStatement ps = con.prepareStatement("Update Cliente set Nombre_Cliente=?,Apellido_Cliente=?,RTN=?,Telefono=?,Id_Genero=?,Direccion=?,Fecha_Nacimiento=?,[E-mail]=?,Fecha_Registro=?,estado=? Where Id_Cliente=?");
+            PreparedStatement ps = con.prepareStatement("Update Cliente set Nombre_Cliente=?,Apellido_Cliente=?,RTN=?,Telefono=?, Id_Genero=?,Direccion=?,Fecha_Nacimiento=?,[E-mail]=?,Fecha_Registro=?,estado=? Where Id_Cliente=?");
             ps.setInt(3, Integer.parseInt(RTN));
             ps.setString(1, Nombre);
             ps.setString(2, Apellido);
@@ -354,9 +492,9 @@ public class Clientes extends javax.swing.JFrame {
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "Registro Actualizado");
             cargartabla();
-            BotonActivoC.setVisible(Boolean.TRUE);
-            BotonInactivoC.setVisible(Boolean.TRUE);
-            txtEstadoC.setVisible(Boolean.TRUE);
+            Limpiar();
+            Inhabillitar();
+            txtEstadoC.setVisible(Boolean.FALSE);
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex.toString());
@@ -364,41 +502,49 @@ public class Clientes extends javax.swing.JFrame {
 
     }//GEN-LAST:event_botonEditarCMouseClicked
        private void botonGuardarCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGuardarCMouseClicked
-           String RTN = txtRTN.getText();
-           String Nombre = txtNombreC.getText();
-           String Apellido = txtApellidoC.getText();
-           int Genero = comboGenero.getSelectedIndex();
-           String FechaNac = txtFechaNac.getText();
-           String Direccion = txtDireccionC.getText();
-           String Telefono = txtTelefonoC.getText();
-           String Email = txtEmail.getText();
-           String FechaRegistro = txtFechaRegistro.getText();
 
-           try {
-               Connection con = Conexion.getConexion();
-               PreparedStatement ps = con.prepareStatement("Insert into Cliente(Nombre_Cliente,Apellido_Cliente,RTN,Telefono,Id_Genero,Direccion,Fecha_Nacimiento,[E-mail],Fecha_Registro,estado) VALUES(?,?,?,?,?,?,?,?,?,?)");
-               ps.setInt(3, Integer.parseInt(RTN));
-               ps.setString(1, Nombre);
-               ps.setString(2, Apellido);
-               ps.setInt(5, Genero);
-               ps.setString(7, FechaNac);
-               ps.setString(6, Direccion);
-               ps.setInt(4, Integer.valueOf(Telefono));
-               ps.setString(8, Email);
-               ps.setString(9, FechaRegistro);
-               ps.setString(10, "Activo");
-               ps.executeUpdate();
-               JOptionPane.showMessageDialog(null, "Registro guardado");
-               cargartabla();
+           if (txtNombreC.getText().equals("Ingrese Nombre") || txtTelefonoC.getText().equals("Ingrese Teléfono") || txtDireccionC.getText().equals("Ingrese Dirección") || txtEmail.getText().equals("Ingrese E-mail")
+                   || txtFechaRegistro.getText().equals("") || txtApellidoC.getText().equals("Ingrese Apellido") || txtRTN.getText().equals("Ingrese RTN")) {
+               JOptionPane.showMessageDialog(null, "No se puede Guardar datos vacios");
+           } else {
+               String RTN = txtRTN.getText();
+               String Nombre = txtNombreC.getText();
+               String Apellido = txtApellidoC.getText();
+               int Genero = comboGenero.getSelectedIndex();
+               SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+               String FechaNac = sdf.format(txtFechaNac.getDate());
+               String Direccion = txtDireccionC.getText();
+               String Telefono = txtTelefonoC.getText();
+               String Email = txtEmail.getText();
+               String FechaRegistro = txtFechaRegistro.getText();
+               try {
+                   Connection con = Conexion.getConexion();
+                   PreparedStatement ps = con.prepareStatement("Insert into Cliente(Nombre_Cliente,Apellido_Cliente,RTN,Telefono,Id_Genero,Direccion,Fecha_Nacimiento,[E-mail],Fecha_Registro,estado) VALUES(?,?,?,?,?,?,?,?,?,?)");
+                   ps.setInt(3, Integer.parseInt(RTN));
+                   ps.setString(1, Nombre);
+                   ps.setString(2, Apellido);
+                   ps.setInt(5, Genero);
+                   ps.setString(7, FechaNac);
+                   ps.setString(6, Direccion);
+                   ps.setInt(4, Integer.valueOf(Telefono));
+                   ps.setString(8, Email);
+                   ps.setString(9, FechaRegistro);
+                   ps.setString(10, "Activo");
+                   ps.executeUpdate();
+                   JOptionPane.showMessageDialog(null, "Registro guardado");
+                   cargartabla();
+                   Limpiar();
+                   Inhabillitar();
 
-           } catch (SQLException ex) {
-               JOptionPane.showMessageDialog(null, ex.toString());
+               } catch (SQLException ex) {
+                   JOptionPane.showMessageDialog(null, ex.toString());
+               }
            }
-
     }//GEN-LAST:event_botonGuardarCMouseClicked
 
     private void botonCancelarCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonCancelarCMouseClicked
         Limpiar();
+        Inhabillitar();
     }//GEN-LAST:event_botonCancelarCMouseClicked
 
     private void botonBuscarCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonBuscarCMouseClicked
@@ -423,7 +569,11 @@ public class Clientes extends javax.swing.JFrame {
             PreparedStatement ps;
             ResultSet rs;
             Connection con = Conexion.getConexion();
-            ps = con.prepareStatement("SELECT  Nombre_Cliente,Apellido_Cliente,RTN,Telefono,Id_Genero,Fecha_Nacimiento, Direccion, [E-mail],Fecha_Registro, estado FROM Cliente WHERE Id_Cliente=?");
+            ps = con.prepareStatement("SELECT C.Nombre_Cliente,C.Apellido_Cliente,C.RTN,C.Telefono,G.Genero,C.Fecha_Nacimiento,C.Direccion,C.[E-mail],C.Fecha_Registro,C.estado \n"
+                    + "FROM Cliente AS C\n"
+                    + "INNER JOIN Genero AS G ON C.Id_Genero = G.Id_Genero\n"
+                    + "Where C.Id_Cliente=?\n"
+                    + "ORDER BY C.Id_Cliente");
             ps.setInt(1, id);
             rs = ps.executeQuery();
 
@@ -433,8 +583,8 @@ public class Clientes extends javax.swing.JFrame {
                 txtApellidoC.setText(rs.getString("Apellido_Cliente"));
                 txtRTN.setText(rs.getString("RTN"));
                 txtTelefonoC.setText(rs.getString("Telefono"));
-                comboGenero.setSelectedItem(rs.getString("Id_Genero"));
-                txtFechaNac.setText(rs.getString("Fecha_Nacimiento"));
+                comboGenero.setSelectedItem(rs.getString("Genero"));
+                txtFechaNac.setDate(rs.getDate("Fecha_Nacimiento"));
                 txtDireccionC.setText(rs.getString("Direccion"));
                 txtEmail.setText(rs.getString("E-mail"));
                 txtFechaRegistro.setText(rs.getString("Fecha_Registro"));
@@ -445,8 +595,8 @@ public class Clientes extends javax.swing.JFrame {
                     BotonInactivoC.setSelected(true);
                 }
             }
-
-            System.out.println(txtIdC.getText());
+            BotonInactivoC.setVisible(Boolean.TRUE);
+            BotonActivoC.setVisible(Boolean.TRUE);
             Habillitar();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex.toString());
@@ -472,14 +622,241 @@ public class Clientes extends javax.swing.JFrame {
 
             JOptionPane.showMessageDialog(null, "Dar Click en Agregar o Editar para utilizar el campo", "Advertencia", JOptionPane.WARNING_MESSAGE);
 
-
+        }
     }//GEN-LAST:event_txtNombreCMousePressed
-    
-    
+
+    public void validarNumerosLetras(java.awt.event.KeyEvent e) {
+        if (e.getKeyChar() >= 33 && e.getKeyChar() <= 47
+                || e.getKeyChar() >= 58 && e.getKeyChar() <= 64
+                || e.getKeyChar() >= 91 && e.getKeyChar() <= 96
+                || e.getKeyChar() >= 123 && e.getKeyChar() <= 129
+                || e.getKeyChar() >= 145 && e.getKeyChar() <= 159
+                || e.getKeyChar() >= 164 && e.getKeyChar() <= 238) {
+
+            e.consume();
+            JOptionPane.showMessageDialog(null, "Este campo no acepta caracteres especiales", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
+    }
+
+    private void txtBuscarCKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarCKeyTyped
+        buscarData(txtBuscarC.getText());
+        validarNumerosLetras(evt);
+        if (txtBuscarC.getText().length() > 15) {
+            JOptionPane.showMessageDialog(null, "Alcanzaste el máximo de caracteres para este campo", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            evt.consume();
+        } else if (txtBuscarC.getText().length() > 0) {
+            if (!txtBuscarC.getText().matches("^(?!.*([A-Za-zñÑáéíóúÁÉÍÓÚ\\s])\\1{2})[A-Za-zñÑáéíóúÁÉÍÓÚ\\s0-9]+$")) {
+                JOptionPane.showMessageDialog(null, "No repitas caracteres de forma incorrecta", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                evt.consume();
+            }
+        }
+    }//GEN-LAST:event_txtBuscarCKeyTyped
+
+    private void txtRTNFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRTNFocusGained
+        if (txtRTN.getText().equals("Ingrese RTN")) {
+            txtRTN.setText("");
+            txtRTN.setForeground(new Color(0, 0, 0));
+        }
+    }//GEN-LAST:event_txtRTNFocusGained
+
+    private void txtRTNFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRTNFocusLost
+        if (txtRTN.getText().equals("")) {
+            txtRTN.setText("Ingrese RTN");
+            txtRTN.setForeground(new Color(153, 153, 153));
+        } else if (txtRTN.getText().length() < 14) {
+            JOptionPane.showMessageDialog(null, "El documento RTN debe contener 14 dígitos", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_txtRTNFocusLost
+
+    private void txtNombreCFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreCFocusGained
+        if (txtNombreC.getText().equals("Ingrese Nombre")) {
+            txtNombreC.setText("");
+            txtNombreC.setForeground(new Color(0, 0, 0));
+        }
+    }//GEN-LAST:event_txtNombreCFocusGained
+
+    private void txtNombreCFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreCFocusLost
+        if (txtNombreC.getText().equals("")) {
+            txtNombreC.setText("Ingrese Nombre");
+            txtNombreC.setForeground(new Color(153, 153, 153));
+        } else if (!txtNombreC.getText().isEmpty()) {
+            if (!txtNombreC.getText().matches("^[A-Z-ÁÉÍÓÚÑ]{1}[a-z-áéíóúñ]+$")) {
+                JOptionPane.showMessageDialog(null, "Debes escribir un nombre comenzando en mayúscula. No utilice espacios", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_txtNombreCFocusLost
+
+    private void txtApellidoCFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtApellidoCFocusGained
+        if (txtApellidoC.getText().equals("Ingrese Apellido")) {
+            txtApellidoC.setText("");
+            txtApellidoC.setForeground(new Color(0, 0, 0));
+        }
+    }//GEN-LAST:event_txtApellidoCFocusGained
+
+    private void txtApellidoCFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtApellidoCFocusLost
+        if (txtApellidoC.getText().equals("")) {
+            txtApellidoC.setText("Ingrese Apellido");
+            txtApellidoC.setForeground(new Color(153, 153, 153));
+        } else if (!txtApellidoC.getText().isEmpty()) {
+            if (!txtApellidoC.getText().matches("^[A-Z-ÁÉÍÓÚÑ]{1}[a-z-áéíóúñ]+$")) {
+                JOptionPane.showMessageDialog(null, "Debe escribir el apellido comenzando en mayúscula. No utilice espacios", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_txtApellidoCFocusLost
+
+    private void txtDireccionCFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDireccionCFocusGained
+        if (txtDireccionC.getText().equals("Ingrese Dirección")) {
+            txtDireccionC.setText("");
+            txtDireccionC.setForeground(new Color(0, 0, 0));
+        }
+    }//GEN-LAST:event_txtDireccionCFocusGained
+
+    private void txtDireccionCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDireccionCActionPerformed
+
+    }//GEN-LAST:event_txtDireccionCActionPerformed
+
+    private void txtTelefonoCFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTelefonoCFocusGained
+        if (txtTelefonoC.getText().equals("Ingrese Teléfono")) {
+            txtTelefonoC.setText("");
+            txtTelefonoC.setForeground(new Color(0, 0, 0));
+        }
+    }//GEN-LAST:event_txtTelefonoCFocusGained
+
+    private void txtTelefonoCFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTelefonoCFocusLost
+        if (txtTelefonoC.getText().equals("")) {
+            txtTelefonoC.setText("Ingrese Teléfono");
+            txtTelefonoC.setForeground(new Color(153, 153, 153));
+        } else if (txtTelefonoC.getText().length() < 8) {
+            JOptionPane.showMessageDialog(null, "El número de teléfono debe contener 8 dígitos", "Error", JOptionPane.ERROR_MESSAGE);
+        } else if (!txtTelefonoC.getText().matches("(^[9]{1}[0-9]{7}$)|(^[3]{1}[0-9]{7}$)|(^[7]{1}[0-9]{7}$)")) {
+            JOptionPane.showMessageDialog(null, "El número de celular debe comenzar en 9, 3 o 7", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_txtTelefonoCFocusLost
+
+    private void txtDireccionCFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDireccionCFocusLost
+        if (txtDireccionC.getText().equals("")) {
+            txtDireccionC.setText("Ingrese Dirección");
+            txtDireccionC.setForeground(new Color(153, 153, 153));
+        } if (txtDireccionC.getText().length() < 10){
+            JOptionPane.showMessageDialog(null, "La dirección debe contener al menos 10 caracteres", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_txtDireccionCFocusLost
+
+    private void txtEmailFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmailFocusGained
+        if (txtEmail.getText().equals("Ingrese E-mail")) {
+            txtEmail.setText("");
+            txtEmail.setForeground(new Color(0, 0, 0));
+        }
+
+    }//GEN-LAST:event_txtEmailFocusGained
+
+    private void txtEmailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmailFocusLost
+        if (txtEmail.getText().equals("")) {
+            txtEmail.setText("Ingrese E-mail");
+            txtEmail.setForeground(new Color(153, 153, 153));
+        } else if (!txtEmail.getText().matches("^(.+[@]{1}[a-z]+[.]{1}[a-z]+)$|^(.+[@]{1}[a-z]+[.]{1}[a-z]+[.]{1}[a-z]+)$")) {
+            JOptionPane.showMessageDialog(null, "Debe escribir un correo válido ´\nEjemplo: farmaciasag@gmail.com", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_txtEmailFocusLost
+
+    private void txtBuscarCFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBuscarCFocusGained
+        if (txtBuscarC.getText().equals("Buscar ID , Nombre o RTN")) {
+            txtBuscarC.setText("");
+            txtBuscarC.setForeground(new Color(0, 0, 0));
+        }
+    }//GEN-LAST:event_txtBuscarCFocusGained
+
+    private void txtBuscarCFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBuscarCFocusLost
+        if (txtBuscarC.getText().equals("")) {
+            txtBuscarC.setText("Buscar ID , Nombre o RTN");
+            txtBuscarC.setForeground(new Color(153, 153, 153));
+        }
+    }//GEN-LAST:event_txtBuscarCFocusLost
+    public boolean validarNumCelular(String cadena) {
+        String patron = "^[23789]\\d{7}$";
+        Pattern patt = Pattern.compile(patron);
+        Matcher comparador = patt.matcher(cadena);
+        if (comparador.matches()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private void txtTelefonoCKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoCKeyTyped
+        validarNumeros(evt);
+        if (txtTelefonoC.getText().length() > 7) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtTelefonoCKeyTyped
+
+    public void validarNumeros(java.awt.event.KeyEvent e) {
+        if (e.getKeyChar() >= 33 && e.getKeyChar() <= 47
+                || e.getKeyChar() >= 58 && e.getKeyChar() <= 238) {
+            e.consume();
+            JOptionPane.showMessageDialog(null, "Este campo solo admite números", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void txtRTNKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRTNKeyTyped
+        validarNumeros(evt);
+        if (txtRTN.getText().length() > 13) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtRTNKeyTyped
+
+    private void txtNombreCKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreCKeyTyped
+        if (txtNombreC.getText().length() > 12) {
+            JOptionPane.showMessageDialog(null, "Alcanzaste el máximo de caracteres para este campo", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            evt.consume();
+        } else if (txtNombreC.getText().length() > 0) {
+            if (!txtNombreC.getText().matches("^(?!.*([A-Za-zñÑáéíóúÁÉÍÓÚ\\s])\\1{2})[A-Za-zñÑáéíóúÁÉÍÓÚ\\s0-9]+$")) {
+                JOptionPane.showMessageDialog(null, "No repitas caracteres de forma incorrecta", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                evt.consume();
+            }
+        }
+    }//GEN-LAST:event_txtNombreCKeyTyped
+
+    private void txtApellidoCKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoCKeyTyped
+        if (txtNombreC.getText().length() > 12) {
+            JOptionPane.showMessageDialog(null, "Alcanzaste el máximo de caracteres para este campo", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            evt.consume();
+        } else if (txtNombreC.getText().length() > 0) {
+            if (!txtNombreC.getText().matches("^(?!.*([A-Za-zñÑáéíóúÁÉÍÓÚ\\s])\\1{2})[A-Za-zñÑáéíóúÁÉÍÓÚ\\s0-9]+$")) {
+                JOptionPane.showMessageDialog(null, "No repitas caracteres de forma incorrecta", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                evt.consume();
+            }
+        }
+    }//GEN-LAST:event_txtApellidoCKeyTyped
+
+    private void txtDireccionCKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionCKeyTyped
+        if (txtDireccionC.getText().length() > 25) {
+            JOptionPane.showMessageDialog(null, "Alcanzaste el máximo de caracteres para este campo", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            evt.consume();
+        } else if (txtDireccionC.getText().length() > 0) {
+            if (!txtDireccionC.getText().matches("^(?!.*([A-Za-zñÑáéíóúÁÉÍÓÚ\\s])\\1{2})[A-Za-zñÑáéíóúÁÉÍÓÚ\\s0-9]+$")) {
+                JOptionPane.showMessageDialog(null, "No repitas caracteres de forma incorrecta", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                evt.consume();
+            }
+        }
+    }//GEN-LAST:event_txtDireccionCKeyTyped
+
+    private void txtEmailKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailKeyTyped
+        if (txtDireccionC.getText().length() > 30) {
+            JOptionPane.showMessageDialog(null, "Alcanzaste el máximo de caracteres para este campo", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtEmailKeyTyped
+
+    private void txtFechaRegistroFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFechaRegistroFocusLost
+        if (!txtFechaRegistro.getText().matches("^[2]{1}[0-9]{3}[-]{1}[0-9]{2}[-]{1}[0-9]{2}$")) {
+            JOptionPane.showMessageDialog(null, "Debe escribir formato de fecha válido  ´\nEjemplo: YYYY-MM-DD", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_txtFechaRegistroFocusLost
+
     /**
-         * @param args the command line arguments
-         */
-        
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -523,6 +900,7 @@ public class Clientes extends javax.swing.JFrame {
     private javax.swing.JLabel botonGuardarC;
     private javax.swing.JLabel botonRegresarC;
     private javax.swing.JComboBox<String> comboGenero;
+    private javax.swing.ButtonGroup grupoBotonClientes;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -534,7 +912,7 @@ public class Clientes extends javax.swing.JFrame {
     private javax.swing.JTextField txtDireccionC;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JLabel txtEstadoC;
-    private javax.swing.JFormattedTextField txtFechaNac;
+    private com.toedter.calendar.JDateChooser txtFechaNac;
     private javax.swing.JFormattedTextField txtFechaRegistro;
     private javax.swing.JLabel txtGeneroC;
     private javax.swing.JLabel txtIdC;
@@ -575,25 +953,6 @@ public class Clientes extends javax.swing.JFrame {
         }
     }
 
-    private void cargartexto() {
-        int Id = Integer.parseInt(comboGenero.getSelectedItem().toString());
-        PreparedStatement ps;
-        ResultSet rs;
-        String texto;
-
-        try {
-            Connection con = Conexion.getConexion();
-            ps = con.prepareStatement("SELECT Genero FROM Genero where Id_Genero=?");
-            rs = ps.executeQuery();
-
-            texto = rs.getString("Genero");
-            txtGeneroC.setText(texto);
-
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex.toString());
-        }
-    }
-
     private void Habillitar() {
 
         txtRTN.enable(Boolean.TRUE);
@@ -607,19 +966,61 @@ public class Clientes extends javax.swing.JFrame {
         comboGenero.enable(Boolean.TRUE);
     }
 
+    private void Inhabillitar() {
+
+        txtRTN.enable(Boolean.FALSE);
+        txtNombreC.enable(Boolean.FALSE);
+        txtApellidoC.enable(Boolean.FALSE);
+        txtDireccionC.enable(Boolean.FALSE);
+        txtEmail.enable(Boolean.FALSE);
+        txtFechaNac.enable(Boolean.FALSE);
+        txtTelefonoC.enable(Boolean.FALSE);
+        txtFechaRegistro.enable(Boolean.FALSE);
+        comboGenero.enable(Boolean.FALSE);
+    }
+
     private void Limpiar() {
 
         txtIdC.setText("");
         txtRTN.setText("");
-        txtNombreC.setText("");
-        txtApellidoC.setText("");
-        comboGenero.setSelectedIndex(-1);
-        txtFechaNac.setText("");
-        txtDireccionC.setText("");
-        txtTelefonoC.setText("");
-        txtEmail.setText("");
-        txtFechaRegistro.setText("");
+        if (txtRTN.getText().equals("")) {
+            txtRTN.setText("Ingrese RTN");
+            txtRTN.setForeground(new Color(153, 153, 153));
+        }
 
+        txtNombreC.setText("");
+        if (txtNombreC.getText().equals("")) {
+            txtNombreC.setText("Ingrese Nombre");
+            txtNombreC.setForeground(new Color(153, 153, 153));
+        }
+
+        txtApellidoC.setText("");
+        if (txtApellidoC.getText().equals("")) {
+            txtApellidoC.setText("Ingrese Apellido");
+            txtApellidoC.setForeground(new Color(153, 153, 153));
+        }
+
+        comboGenero.setSelectedIndex(0);
+
+        txtDireccionC.setText("");
+        if (txtDireccionC.getText().equals("")) {
+            txtDireccionC.setText("Ingrese Dirección");
+            txtDireccionC.setForeground(new Color(153, 153, 153));
+        }
+
+        txtTelefonoC.setText("");
+        if (txtTelefonoC.getText().equals("")) {
+            txtTelefonoC.setText("Ingrese Telefono");
+            txtTelefonoC.setForeground(new Color(153, 153, 153));
+        }
+
+        txtEmail.setText("");
+        if (txtEmail.getText().equals("")) {
+            txtEmail.setText("Ingrese E-mail");
+            txtEmail.setForeground(new Color(153, 153, 153));
+        }
+
+        txtFechaRegistro.setText("");
         BotonActivoC.setVisible(Boolean.FALSE);
         BotonInactivoC.setVisible(Boolean.FALSE);
         txtEstadoC.setVisible(Boolean.FALSE);

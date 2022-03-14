@@ -42,6 +42,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        BotonSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BotonSalir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 BotonSalirMouseClicked(evt);
@@ -79,7 +80,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 BotonAlmacenMouseClicked(evt);
             }
         });
-        getContentPane().add(BotonAlmacen, new org.netbeans.lib.awtextra.AbsoluteConstraints(741, 350, 160, 90));
+        getContentPane().add(BotonAlmacen, new org.netbeans.lib.awtextra.AbsoluteConstraints(741, 350, 160, 100));
 
         BotonSucursal.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BotonSucursal.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -87,7 +88,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 BotonSucursalMouseClicked(evt);
             }
         });
-        getContentPane().add(BotonSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 350, 160, 90));
+        getContentPane().add(BotonSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 350, 160, 100));
 
         BotonMedicamentos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BotonMedicamentos.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -103,7 +104,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 BotonProveedoresMouseClicked(evt);
             }
         });
-        getContentPane().add(BotonProveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(751, 176, 150, 90));
+        getContentPane().add(BotonProveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(751, 176, 150, 100));
 
         BotonEmpleado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BotonEmpleado.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -119,7 +120,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 BotonClienteMouseClicked(evt);
             }
         });
-        getContentPane().add(BotonCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 150, 90));
+        getContentPane().add(BotonCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 150, 100));
 
         Menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/componentes/Menu.png"))); // NOI18N
         Menu.setText("jLabel2");
