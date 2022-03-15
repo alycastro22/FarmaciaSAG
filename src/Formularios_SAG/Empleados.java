@@ -76,9 +76,6 @@ public class Empleados extends javax.swing.JFrame {
         barraEmpleado = new javax.swing.JScrollPane();
         TablaEmpleado = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -321,14 +318,6 @@ public class Empleados extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 1350, 970));
-
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
-
-        setJMenuBar(jMenuBar1);
 
         pack();
         setLocationRelativeTo(null);
@@ -708,9 +697,6 @@ public class Empleados extends javax.swing.JFrame {
     private javax.swing.JLabel errorNumDocumento;
     private javax.swing.ButtonGroup grupoBotonesEmpleados;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JTextField txtBuscarE;
     private javax.swing.JTextField txtDocumentoE;
     private javax.swing.JLabel txtIdE;
