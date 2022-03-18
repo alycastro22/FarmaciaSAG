@@ -62,7 +62,6 @@ public class Clientes extends javax.swing.JFrame {
         txtDireccionC = new javax.swing.JTextField();
         txtTelefonoC = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
-        txtFechaRegistro = new javax.swing.JFormattedTextField();
         txtBuscarC = new javax.swing.JTextField();
         botonAgregarC = new javax.swing.JLabel();
         botonEditarC = new javax.swing.JLabel();
@@ -77,6 +76,7 @@ public class Clientes extends javax.swing.JFrame {
         BotonActivoC = new javax.swing.JRadioButton();
         txtEstadoC = new javax.swing.JLabel();
         txtGeneroC = new javax.swing.JLabel();
+        txtFechaRegistro = new com.toedter.calendar.JDateChooser();
         txtIdC = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -87,6 +87,7 @@ public class Clientes extends javax.swing.JFrame {
         jMenuBar1.add(jMenu2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtRTN.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
@@ -114,7 +115,7 @@ public class Clientes extends javax.swing.JFrame {
                 txtRTNKeyTyped(evt);
             }
         });
-        getContentPane().add(txtRTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 340, 260, 40));
+        getContentPane().add(txtRTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 282, 190, 30));
 
         txtNombreC.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
         txtNombreC.setForeground(new java.awt.Color(153, 153, 153));
@@ -146,7 +147,7 @@ public class Clientes extends javax.swing.JFrame {
                 txtNombreCKeyTyped(evt);
             }
         });
-        getContentPane().add(txtNombreC, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 405, 260, 40));
+        getContentPane().add(txtNombreC, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 330, 190, 30));
 
         txtApellidoC.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
         txtApellidoC.setForeground(new java.awt.Color(153, 153, 153));
@@ -173,7 +174,7 @@ public class Clientes extends javax.swing.JFrame {
                 txtApellidoCKeyTyped(evt);
             }
         });
-        getContentPane().add(txtApellidoC, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 470, 260, 40));
+        getContentPane().add(txtApellidoC, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, 190, 30));
 
         comboGenero.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
         comboGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione género..." }));
@@ -187,7 +188,7 @@ public class Clientes extends javax.swing.JFrame {
                 comboGeneroActionPerformed(evt);
             }
         });
-        getContentPane().add(comboGenero, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 540, 260, 40));
+        getContentPane().add(comboGenero, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 430, 190, 30));
 
         txtDireccionC.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
         txtDireccionC.setForeground(new java.awt.Color(153, 153, 153));
@@ -213,7 +214,7 @@ public class Clientes extends javax.swing.JFrame {
                 txtDireccionCKeyTyped(evt);
             }
         });
-        getContentPane().add(txtDireccionC, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 672, 260, 40));
+        getContentPane().add(txtDireccionC, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 530, 190, 30));
 
         txtTelefonoC.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
         txtTelefonoC.setForeground(new java.awt.Color(153, 153, 153));
@@ -239,7 +240,7 @@ public class Clientes extends javax.swing.JFrame {
                 txtTelefonoCKeyTyped(evt);
             }
         });
-        getContentPane().add(txtTelefonoC, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 734, 260, 40));
+        getContentPane().add(txtTelefonoC, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 575, 190, 30));
 
         txtEmail.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
         txtEmail.setForeground(new java.awt.Color(153, 153, 153));
@@ -260,16 +261,7 @@ public class Clientes extends javax.swing.JFrame {
                 txtEmailKeyTyped(evt);
             }
         });
-        getContentPane().add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 794, 260, 40));
-
-        txtFechaRegistro.setEnabled(false);
-        txtFechaRegistro.setOpaque(false);
-        txtFechaRegistro.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtFechaRegistroFocusLost(evt);
-            }
-        });
-        getContentPane().add(txtFechaRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 854, 260, 40));
+        getContentPane().add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 620, 190, 30));
 
         txtBuscarC.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
         txtBuscarC.setForeground(new java.awt.Color(153, 153, 153));
@@ -298,7 +290,7 @@ public class Clientes extends javax.swing.JFrame {
                 txtBuscarCKeyTyped(evt);
             }
         });
-        getContentPane().add(txtBuscarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(935, 282, 340, 40));
+        getContentPane().add(txtBuscarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 240, 250, 30));
 
         botonAgregarC.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonAgregarC.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -306,7 +298,7 @@ public class Clientes extends javax.swing.JFrame {
                 botonAgregarCMouseClicked(evt);
             }
         });
-        getContentPane().add(botonAgregarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 160, 170, 50));
+        getContentPane().add(botonAgregarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 150, 130, 40));
 
         botonEditarC.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonEditarC.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -314,7 +306,7 @@ public class Clientes extends javax.swing.JFrame {
                 botonEditarCMouseClicked(evt);
             }
         });
-        getContentPane().add(botonEditarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 160, 170, 50));
+        getContentPane().add(botonEditarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 150, 120, 40));
 
         botonGuardarC.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonGuardarC.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -322,7 +314,7 @@ public class Clientes extends javax.swing.JFrame {
                 botonGuardarCMouseClicked(evt);
             }
         });
-        getContentPane().add(botonGuardarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 160, 170, 50));
+        getContentPane().add(botonGuardarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 150, 130, 40));
 
         botonCancelarC.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonCancelarC.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -330,7 +322,7 @@ public class Clientes extends javax.swing.JFrame {
                 botonCancelarCMouseClicked(evt);
             }
         });
-        getContentPane().add(botonCancelarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(1110, 160, 180, 50));
+        getContentPane().add(botonCancelarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 150, 130, 40));
 
         botonBuscarC.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -345,26 +337,26 @@ public class Clientes extends javax.swing.JFrame {
                 botonRegresarCMouseClicked(evt);
             }
         });
-        getContentPane().add(botonRegresarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 170, 40));
+        getContentPane().add(botonRegresarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 130, 40));
 
         tablaCliente.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
         tablaCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Nombre", "Apellido", "RTN", "Teléfono", "Género", "Fecha Nacimiento", "Dirección", "E-mail", "Fecha Registro"
+                "ID", "Nombre", "Apellido", "RTN", "Teléfono", "Género", "Fecha Nacimiento", "Dirección", "E-mail", "Fecha Registro", "Estado"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -384,7 +376,7 @@ public class Clientes extends javax.swing.JFrame {
         });
         tablaClientes.setViewportView(tablaCliente);
 
-        getContentPane().add(tablaClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 350, 940, 510));
+        getContentPane().add(tablaClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 300, 710, 400));
 
         grupoBotonClientes.add(BotonInactivoC);
         BotonInactivoC.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
@@ -395,10 +387,10 @@ public class Clientes extends javax.swing.JFrame {
                 BotonInactivoCActionPerformed(evt);
             }
         });
-        getContentPane().add(BotonInactivoC, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 290, -1, -1));
+        getContentPane().add(BotonInactivoC, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 250, -1, -1));
 
         txtFechaNac.setOpaque(false);
-        getContentPane().add(txtFechaNac, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 606, 260, 40));
+        getContentPane().add(txtFechaNac, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 480, 190, 30));
 
         grupoBotonClientes.add(BotonActivoC);
         BotonActivoC.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
@@ -409,19 +401,22 @@ public class Clientes extends javax.swing.JFrame {
                 BotonActivoCActionPerformed(evt);
             }
         });
-        getContentPane().add(BotonActivoC, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 290, -1, -1));
+        getContentPane().add(BotonActivoC, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 250, -1, -1));
 
         txtEstadoC.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         txtEstadoC.setText("Estado");
-        getContentPane().add(txtEstadoC, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 295, 70, 20));
-        getContentPane().add(txtGeneroC, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 544, 120, 30));
+        getContentPane().add(txtEstadoC, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 250, 70, 20));
+        getContentPane().add(txtGeneroC, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 290, 120, 30));
+
+        txtFechaRegistro.setOpaque(false);
+        getContentPane().add(txtFechaRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 665, 190, 30));
 
         txtIdC.setEnabled(false);
         getContentPane().add(txtIdC, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 300, 100, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/componentes/Pantalla Clientes.png"))); // NOI18N
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 1380, 890));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 730));
 
         pack();
         setLocationRelativeTo(null);
@@ -466,7 +461,7 @@ public class Clientes extends javax.swing.JFrame {
         String Direccion = txtDireccionC.getText();
         String Telefono = txtTelefonoC.getText();
         String Email = txtEmail.getText();
-        String FechaRegistro = txtFechaRegistro.getText();
+        String FechaRegistro = sdf.format(txtFechaRegistro.getDate());
         String Estado = "";
 
         if (BotonActivoC.isSelected() == true) {
@@ -478,7 +473,7 @@ public class Clientes extends javax.swing.JFrame {
         try {
             Connection con = Conexion.getConexion();
             PreparedStatement ps = con.prepareStatement("Update Cliente set Nombre_Cliente=?,Apellido_Cliente=?,RTN=?,Telefono=?, Id_Genero=?,Direccion=?,Fecha_Nacimiento=?,[E-mail]=?,Fecha_Registro=?,estado=? Where Id_Cliente=?");
-            ps.setInt(3, Integer.parseInt(RTN));
+            ps.setString(3, RTN);
             ps.setString(1, Nombre);
             ps.setString(2, Apellido);
             ps.setInt(5, Genero);
@@ -504,25 +499,43 @@ public class Clientes extends javax.swing.JFrame {
        private void botonGuardarCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGuardarCMouseClicked
 
            if (txtNombreC.getText().equals("Ingrese Nombre") || txtTelefonoC.getText().equals("Ingrese Teléfono") || txtDireccionC.getText().equals("Ingrese Dirección") || txtEmail.getText().equals("Ingrese E-mail")
-                   || txtFechaRegistro.getText().equals("") || txtApellidoC.getText().equals("Ingrese Apellido") || txtRTN.getText().equals("Ingrese RTN")) {
-               JOptionPane.showMessageDialog(null, "No se puede Guardar datos vacios");
+                   || txtApellidoC.getText().equals("Ingrese Apellido") || txtRTN.getText().equals("Ingrese RTN") || comboGenero.getSelectedItem().equals("Seleccione Género...")){
+               if (txtRTN.getText().equals("Ingrese RTN")) {
+                   JOptionPane.showMessageDialog(null, "Debe ingresar un RTN");
+               }else if (txtNombreC.getText().equals("Ingrese Nombre")) { 
+                   JOptionPane.showMessageDialog(null, "Debe ingresar un Nombre");
+               } else if (txtApellidoC.getText().equals("Ingrese Apellido")) {
+                   JOptionPane.showMessageDialog(null, "Debe ingresar Apellido");
+               } else if (comboGenero.getSelectedItem().equals("Seleccione Género...")) {
+                   JOptionPane.showMessageDialog(null, "Seleccione Femenino o Masculino");
+               } else if (txtFechaNac.getDateFormatString().equals("")) {
+                   JOptionPane.showMessageDialog(null, "Debe ingresar Fecha Nacimiento");
+               } else if (txtDireccionC.getText().equals("Ingrese Dirección")) {
+                   JOptionPane.showMessageDialog(null, "Debe ingresar una Dirección");      
+               } else if (txtTelefonoC.getText().equals("Ingrese Teléfono")) {
+                   JOptionPane.showMessageDialog(null, "Debe ingresar un Teléfono");
+               } else if (txtEmail.getText().equals("Ingrese E-mail")) {
+                   JOptionPane.showMessageDialog(null, "Debe ingresar E-mail");
+               } else if (txtFechaRegistro.getDateFormatString().equals("")) {
+                   JOptionPane.showMessageDialog(null, "Debe ingresar Fecha Registro");
+               }
            } else {
                String RTN = txtRTN.getText();
                String Nombre = txtNombreC.getText();
                String Apellido = txtApellidoC.getText();
-               int Genero = comboGenero.getSelectedIndex();
+               int Genero = comboGenero.getSelectedIndex() + 1;
                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                String FechaNac = sdf.format(txtFechaNac.getDate());
                String Direccion = txtDireccionC.getText();
                String Telefono = txtTelefonoC.getText();
                String Email = txtEmail.getText();
-               String FechaRegistro = txtFechaRegistro.getText();
+               String FechaRegistro = sdf.format(txtFechaRegistro.getDate());
                try {
                    Connection con = Conexion.getConexion();
-                   PreparedStatement ps = con.prepareStatement("Insert into Cliente(Nombre_Cliente,Apellido_Cliente,RTN,Telefono,Id_Genero,Direccion,Fecha_Nacimiento,[E-mail],Fecha_Registro,estado) VALUES(?,?,?,?,?,?,?,?,?,?)");
-                   ps.setInt(3, Integer.parseInt(RTN));
+                   PreparedStatement ps = con.prepareStatement("Insert into Cliente(Nombre_Cliente, Apellido_Cliente, RTN,Telefono,Id_Genero,Direccion,Fecha_Nacimiento,[E-mail],Fecha_Registro,estado) VALUES(?,?,?,?,?,?,?,?,?,?)");
                    ps.setString(1, Nombre);
                    ps.setString(2, Apellido);
+                   ps.setString(3, RTN);
                    ps.setInt(5, Genero);
                    ps.setString(7, FechaNac);
                    ps.setString(6, Direccion);
@@ -587,7 +600,7 @@ public class Clientes extends javax.swing.JFrame {
                 txtFechaNac.setDate(rs.getDate("Fecha_Nacimiento"));
                 txtDireccionC.setText(rs.getString("Direccion"));
                 txtEmail.setText(rs.getString("E-mail"));
-                txtFechaRegistro.setText(rs.getString("Fecha_Registro"));
+                txtFechaRegistro.setDate(rs.getDate("Fecha_Registro"));
 
                 if (rs.getString("estado").equals("Activo")) {
                     BotonActivoC.setSelected(true);
@@ -606,11 +619,52 @@ public class Clientes extends javax.swing.JFrame {
     }//GEN-LAST:event_tablaClienteMouseClicked
 
     private void BotonActivoCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonActivoCActionPerformed
-        // TODO add your handling code here:
+        int Id = Integer.parseInt(txtIdC.getText());
+
+        String Estado = "Activo";
+
+        try {
+            Connection con = Conexion.getConexion();
+            PreparedStatement ps = con.prepareStatement("Update Cliente set estado=? Where Id_Cliente=?");
+            ps.setString(1, Estado);
+            ps.setInt(2, Id);
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Registro Habilitado");
+            cargartabla();
+            Limpiar();
+            Inhabillitar();
+            txtEstadoC.setVisible(Boolean.FALSE);
+            BotonActivoC.setVisible(Boolean.FALSE);
+            BotonInactivoC.setVisible(Boolean.FALSE);
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.toString());
+        }
     }//GEN-LAST:event_BotonActivoCActionPerformed
 
     private void BotonInactivoCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonInactivoCActionPerformed
-        // TODO add your handling code here:
+        int Id = Integer.parseInt(txtIdC.getText());
+
+        String Estado = "Inactivo";
+
+        try {
+            Connection con = Conexion.getConexion();
+            PreparedStatement ps = con.prepareStatement("Update Cliente set estado=? Where Id_Cliente=?");
+            ps.setString(1, Estado);
+            ps.setInt(2, Id);
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Registro Inhabilitado");
+            cargartabla();
+            Limpiar();
+            Inhabillitar();
+            txtEstadoC.setVisible(Boolean.FALSE);
+            BotonActivoC.setVisible(Boolean.FALSE);
+            BotonInactivoC.setVisible(Boolean.FALSE);
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.toString());
+        }
+
     }//GEN-LAST:event_BotonInactivoCActionPerformed
 
     private void txtBuscarCKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarCKeyPressed
@@ -737,7 +791,8 @@ public class Clientes extends javax.swing.JFrame {
         if (txtDireccionC.getText().equals("")) {
             txtDireccionC.setText("Ingrese Dirección");
             txtDireccionC.setForeground(new Color(153, 153, 153));
-        } if (txtDireccionC.getText().length() < 10){
+        }
+        if (txtDireccionC.getText().length() < 10) {
             JOptionPane.showMessageDialog(null, "La dirección debe contener al menos 10 caracteres", "Advertencia", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_txtDireccionCFocusLost
@@ -848,12 +903,6 @@ public class Clientes extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtEmailKeyTyped
 
-    private void txtFechaRegistroFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFechaRegistroFocusLost
-        if (!txtFechaRegistro.getText().matches("^[2]{1}[0-9]{3}[-]{1}[0-9]{2}[-]{1}[0-9]{2}$")) {
-            JOptionPane.showMessageDialog(null, "Debe escribir formato de fecha válido  ´\nEjemplo: YYYY-MM-DD", "Advertencia", JOptionPane.WARNING_MESSAGE);
-        }
-    }//GEN-LAST:event_txtFechaRegistroFocusLost
-
     /**
      * @param args the command line arguments
      */
@@ -913,7 +962,7 @@ public class Clientes extends javax.swing.JFrame {
     private javax.swing.JTextField txtEmail;
     private javax.swing.JLabel txtEstadoC;
     private com.toedter.calendar.JDateChooser txtFechaNac;
-    private javax.swing.JFormattedTextField txtFechaRegistro;
+    private com.toedter.calendar.JDateChooser txtFechaRegistro;
     private javax.swing.JLabel txtGeneroC;
     private javax.swing.JLabel txtIdC;
     private javax.swing.JTextField txtNombreC;
@@ -944,6 +993,7 @@ public class Clientes extends javax.swing.JFrame {
                 Object[] fila = new Object[columnas];
                 for (int indice = 0; indice < columnas; indice++) {
                     fila[indice] = rs.getObject(indice + 1);
+                    System.out.println(fila[indice]);
                 }
                 modeloTabla.addRow(fila);
             }
@@ -1020,7 +1070,7 @@ public class Clientes extends javax.swing.JFrame {
             txtEmail.setForeground(new Color(153, 153, 153));
         }
 
-        txtFechaRegistro.setText("");
+        //txtFechaRegistro.setText("");
         BotonActivoC.setVisible(Boolean.FALSE);
         BotonInactivoC.setVisible(Boolean.FALSE);
         txtEstadoC.setVisible(Boolean.FALSE);
@@ -1036,6 +1086,7 @@ public class Clientes extends javax.swing.JFrame {
                 String sql = "select Genero from Genero";
                 Statement st = con.createStatement();
                 ResultSet rs = st.executeQuery(sql);
+                modelo.addElement("Seleccione Género...");
                 while (rs.next()) {
                     modelo.addElement(rs.getString(1));
                 }

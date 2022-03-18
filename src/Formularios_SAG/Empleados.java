@@ -28,6 +28,8 @@ public class Empleados extends javax.swing.JFrame {
     /**
      * Creates new form Empleados
      */
+    public static String Id_emp="0";
+    
     public Empleados() {
         initComponents();
 
@@ -78,6 +80,7 @@ public class Empleados extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         ComboSucursalE.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
@@ -90,7 +93,7 @@ public class Empleados extends javax.swing.JFrame {
                 ComboSucursalEActionPerformed(evt);
             }
         });
-        getContentPane().add(ComboSucursalE, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 795, 264, 40));
+        getContentPane().add(ComboSucursalE, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 600, 180, 30));
         ComboSucursalE.getAccessibleContext().setAccessibleDescription("");
 
         ComboDocumento.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
@@ -104,13 +107,23 @@ public class Empleados extends javax.swing.JFrame {
                 ComboDocumentoActionPerformed(evt);
             }
         });
-        getContentPane().add(ComboDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 525, 264, 38));
+        getContentPane().add(ComboDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 400, 180, 30));
 
         BotonCargoHistoricoE.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        getContentPane().add(BotonCargoHistoricoE, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 200, 170, 40));
+        BotonCargoHistoricoE.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BotonCargoHistoricoEMouseClicked(evt);
+            }
+        });
+        getContentPane().add(BotonCargoHistoricoE, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 150, 140, 40));
 
         BotonSueldoHistoricoE.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        getContentPane().add(BotonSueldoHistoricoE, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 200, 170, 40));
+        BotonSueldoHistoricoE.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BotonSueldoHistoricoEMouseClicked(evt);
+            }
+        });
+        getContentPane().add(BotonSueldoHistoricoE, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 150, 140, 40));
 
         BotonEditarE.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BotonEditarE.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -118,7 +131,7 @@ public class Empleados extends javax.swing.JFrame {
                 BotonEditarEMouseClicked(evt);
             }
         });
-        getContentPane().add(BotonEditarE, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 200, 170, 50));
+        getContentPane().add(BotonEditarE, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 150, 130, 40));
 
         BotonAgregarE.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BotonAgregarE.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -126,14 +139,14 @@ public class Empleados extends javax.swing.JFrame {
                 BotonAgregarEMouseClicked(evt);
             }
         });
-        getContentPane().add(BotonAgregarE, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 200, 170, 40));
+        getContentPane().add(BotonAgregarE, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 150, 130, 40));
 
         BotonBuscarE.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 BotonBuscarEMouseClicked(evt);
             }
         });
-        getContentPane().add(BotonBuscarE, new org.netbeans.lib.awtextra.AbsoluteConstraints(1280, 320, 40, 30));
+        getContentPane().add(BotonBuscarE, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 240, 40, 30));
 
         txtBuscarE.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
         txtBuscarE.setForeground(new java.awt.Color(153, 153, 153));
@@ -159,7 +172,7 @@ public class Empleados extends javax.swing.JFrame {
                 txtBuscarEKeyTyped(evt);
             }
         });
-        getContentPane().add(txtBuscarE, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 315, 340, 40));
+        getContentPane().add(txtBuscarE, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 240, 230, 30));
         txtBuscarE.getAccessibleContext().setAccessibleDescription("");
 
         grupoBotonesEmpleados.add(BotonActivoE);
@@ -167,14 +180,24 @@ public class Empleados extends javax.swing.JFrame {
         BotonActivoE.setForeground(new java.awt.Color(255, 255, 255));
         BotonActivoE.setText("Activo");
         BotonActivoE.setOpaque(false);
-        getContentPane().add(BotonActivoE, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 330, -1, -1));
+        BotonActivoE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonActivoEActionPerformed(evt);
+            }
+        });
+        getContentPane().add(BotonActivoE, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 240, -1, -1));
 
         grupoBotonesEmpleados.add(BotonInactivoE);
         BotonInactivoE.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         BotonInactivoE.setForeground(new java.awt.Color(255, 255, 255));
         BotonInactivoE.setText("Inactivo");
         BotonInactivoE.setOpaque(false);
-        getContentPane().add(BotonInactivoE, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 330, -1, -1));
+        BotonInactivoE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonInactivoEActionPerformed(evt);
+            }
+        });
+        getContentPane().add(BotonInactivoE, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 240, -1, -1));
 
         BotonCancelarE.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BotonCancelarE.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -182,7 +205,7 @@ public class Empleados extends javax.swing.JFrame {
                 BotonCancelarEMouseClicked(evt);
             }
         });
-        getContentPane().add(BotonCancelarE, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 880, 130, 50));
+        getContentPane().add(BotonCancelarE, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 660, 100, 40));
 
         BotonGuardarE.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BotonGuardarE.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -190,7 +213,7 @@ public class Empleados extends javax.swing.JFrame {
                 BotonGuardarEMouseClicked(evt);
             }
         });
-        getContentPane().add(BotonGuardarE, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 880, 130, 50));
+        getContentPane().add(BotonGuardarE, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 660, 100, 40));
 
         ComboGeneroE.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
         ComboGeneroE.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Femenino" }));
@@ -198,7 +221,12 @@ public class Empleados extends javax.swing.JFrame {
         ComboGeneroE.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         ComboGeneroE.setEnabled(false);
         ComboGeneroE.setOpaque(false);
-        getContentPane().add(ComboGeneroE, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 703, 264, 40));
+        ComboGeneroE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComboGeneroEActionPerformed(evt);
+            }
+        });
+        getContentPane().add(ComboGeneroE, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 530, 180, -1));
 
         txtDocumentoE.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
         txtDocumentoE.setForeground(new java.awt.Color(153, 153, 153));
@@ -225,7 +253,7 @@ public class Empleados extends javax.swing.JFrame {
                 txtDocumentoEKeyTyped(evt);
             }
         });
-        getContentPane().add(txtDocumentoE, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 615, 262, 38));
+        getContentPane().add(txtDocumentoE, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 460, 190, 30));
 
         txtNombreE.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
         txtNombreE.setForeground(new java.awt.Color(153, 153, 153));
@@ -252,7 +280,7 @@ public class Empleados extends javax.swing.JFrame {
                 txtNombreEKeyTyped(evt);
             }
         });
-        getContentPane().add(txtNombreE, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 435, 262, 38));
+        getContentPane().add(txtNombreE, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 320, 210, 30));
         txtNombreE.getAccessibleContext().setAccessibleName("");
 
         botonRegresarE.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -261,13 +289,13 @@ public class Empleados extends javax.swing.JFrame {
                 botonRegresarEMouseClicked(evt);
             }
         });
-        getContentPane().add(botonRegresarE, new org.netbeans.lib.awtextra.AbsoluteConstraints(61, 70, 160, 30));
+        getContentPane().add(botonRegresarE, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 130, 40));
 
         errorNumDocumento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/componentes/iconoX.png"))); // NOI18N
-        getContentPane().add(errorNumDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(365, 620, -1, -1));
+        getContentPane().add(errorNumDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 470, -1, -1));
 
         errorNombre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/componentes/iconoX.png"))); // NOI18N
-        getContentPane().add(errorNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(365, 440, -1, -1));
+        getContentPane().add(errorNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 330, -1, -1));
 
         txtIdE.setEnabled(false);
         getContentPane().add(txtIdE, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 140, 30));
@@ -308,16 +336,16 @@ public class Empleados extends javax.swing.JFrame {
         });
         barraEmpleado.setViewportView(TablaEmpleado);
 
-        getContentPane().add(barraEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 390, 890, 460));
+        getContentPane().add(barraEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 290, 670, 420));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/componentes/Pantalla Empleados.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/componentes/Pantalla Empleados_1.png"))); // NOI18N
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel1MouseClicked(evt);
             }
         });
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 1350, 970));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 730));
 
         pack();
         setLocationRelativeTo(null);
@@ -358,7 +386,7 @@ public class Empleados extends javax.swing.JFrame {
     }//GEN-LAST:event_botonRegresarEMouseClicked
 
     private void BotonGuardarEMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonGuardarEMouseClicked
-        if (txtNombreE.getText().equals("Ingrese Nombre y Apellido") || txtDocumentoE.getText().equals("Ingrese Número de Documento")) {
+        if (txtNombreE.getText().equals("Ingrese Nombre y Apellido") || txtDocumentoE.getText().equals("Ingrese Número de Documento")|| ComboSucursalE.equals("Seleccione Sucursal...") || ComboDocumento.equals("Seleccione Tipo Documento...") || ComboGeneroE.equals("Seleccione Genero...") ) {
             JOptionPane.showMessageDialog(null, "No se puede Guardar datos vacios");
         } else {
             String Nombre = txtNombreE.getText();
@@ -585,6 +613,7 @@ public class Empleados extends javax.swing.JFrame {
 
             BotonActivoE.setVisible(Boolean.TRUE);
             BotonInactivoE.setVisible(Boolean.TRUE);
+            Id_emp=txtIdE.getText();
             Habillitar();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex.toString());
@@ -642,6 +671,70 @@ public class Empleados extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtBuscarEFocusLost
 
+    private void BotonCargoHistoricoEMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonCargoHistoricoEMouseClicked
+        CargoHistorico CH = new CargoHistorico();
+        {
+            CH.setVisible(true);
+            dispose();
+        }
+    }//GEN-LAST:event_BotonCargoHistoricoEMouseClicked
+
+    private void BotonSueldoHistoricoEMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonSueldoHistoricoEMouseClicked
+        SueldoHistorico SH = new SueldoHistorico();
+        {
+            SH.setVisible(true);
+            dispose();
+        }
+
+    }//GEN-LAST:event_BotonSueldoHistoricoEMouseClicked
+
+    private void BotonInactivoEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonInactivoEActionPerformed
+         int IdEmpleado = Integer.parseInt(txtIdE.getText());
+        String Estado = "Inactivo";
+        try {
+            Connection con = Conexion.getConexion();
+            PreparedStatement ps = con.prepareStatement("Update Empleados set Estado=? Where Id_Empleado=?");
+            ps.setString(1, Estado);
+            ps.setInt(2, IdEmpleado);
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Registro Inhabilitado");
+            cargartabla();
+            BotonActivoE.setVisible(Boolean.FALSE);
+            BotonInactivoE.setVisible(Boolean.FALSE);
+            Limpiar();
+            Inhabillitar();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.toString());
+        }
+
+    }//GEN-LAST:event_BotonInactivoEActionPerformed
+
+    private void BotonActivoEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonActivoEActionPerformed
+       int IdEmpleado = Integer.parseInt(txtIdE.getText());
+        String Estado = "Activo";
+        try {
+            Connection con = Conexion.getConexion();
+            PreparedStatement ps = con.prepareStatement("Update Empleados set Estado=? Where Id_Empleado=?");
+            ps.setString(1, Estado);
+            ps.setInt(2, IdEmpleado);
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Registro Habilitado");
+            cargartabla();
+            BotonActivoE.setVisible(Boolean.FALSE);
+            BotonInactivoE.setVisible(Boolean.FALSE);
+            Limpiar();
+            Inhabillitar();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.toString());
+        }
+    }//GEN-LAST:event_BotonActivoEActionPerformed
+
+    private void ComboGeneroEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboGeneroEActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ComboGeneroEActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -656,16 +749,24 @@ public class Empleados extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Empleados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Empleados.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Empleados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Empleados.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Empleados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Empleados.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Empleados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Empleados.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -787,6 +888,7 @@ public class Empleados extends javax.swing.JFrame {
                 String sql = "select Genero from Genero";
                 Statement st = con.createStatement();
                 ResultSet rs = st.executeQuery(sql);
+                 modelo.addElement("Seleccione Genero...");
                 while (rs.next()) {
                     modelo.addElement(rs.getString(1));
                 }
@@ -809,6 +911,7 @@ public class Empleados extends javax.swing.JFrame {
                 String sql = "select Nombre from sucursal";
                 Statement st = con.createStatement();
                 ResultSet rs = st.executeQuery(sql);
+                 modelo.addElement("Seleccione Sucursal...");
                 while (rs.next()) {
                     modelo.addElement(rs.getString(1));
                 }
@@ -831,6 +934,7 @@ public class Empleados extends javax.swing.JFrame {
                 String sql = "select Tipo_Documento from Tipo_Documento";
                 Statement st = con.createStatement();
                 ResultSet rs = st.executeQuery(sql);
+                 modelo.addElement("Seleccione Tipo Documento...");
                 while (rs.next()) {
                     modelo.addElement(rs.getString(1));
                 }

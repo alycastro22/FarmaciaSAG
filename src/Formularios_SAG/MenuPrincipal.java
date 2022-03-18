@@ -40,6 +40,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         Menu = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         BotonSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));

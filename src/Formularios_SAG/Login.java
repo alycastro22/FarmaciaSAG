@@ -17,9 +17,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import sun.security.util.Password;
+
+
 
 /**
  *
@@ -30,10 +33,24 @@ public class Login extends javax.swing.JFrame {
     /**
      * Creates new form Login2
      */
+    
+
+    
     public Login() {
         initComponents();
-
+       
+    
     }
+    
+   
+
+ 
+
+    
+    
+    
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -50,6 +67,7 @@ public class Login extends javax.swing.JFrame {
         cover = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -115,41 +133,63 @@ public class Login extends javax.swing.JFrame {
     private void botonInicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonInicioMouseClicked
         String Usuario = txtUsuario.getText();
         String Contrasena = String.valueOf(txtContrasena.getPassword());
+        String estado = null;
         int resultado = 0;
-        int intento;
+        int intento=0;
         Connection con = Conexion.getConexion();
 
         String Pass = new String(txtContrasena.getPassword());
-        try {
-            PreparedStatement ps;
-            ResultSet rs;
-            ps = con.prepareStatement("Select NombreU, ContrasenaU, Intentos from UsuarioN where  NombreU='" + Usuario + "'");
-            rs = ps.executeQuery();
+        
+        if(txtUsuario.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Debe ingresar Usuario");
+        }if(txtContrasena.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Debe ingresar Contraseña");
+        }else{
+               try {
+               PreparedStatement ps;
+               ResultSet rs;
+               ps = con.prepareStatement("Select NombreU, ContrasenaU, Intentos,estado from Usuario where  NombreU='" + Usuario + "'");
+               rs = ps.executeQuery();
 
-            if (rs.next()) {
-                intento = Integer.parseInt(rs.getString("Intentos"));
-                System.out.println(intento);
-
+                if (rs.next()) {
+                   intento = Integer.parseInt(rs.getString("Intentos"));
+                   System.out.println(intento);
+                   estado= rs.getString("estado");
+                    System.out.println(estado);
+                   if(estado.equals("Inactivo")){
+                     JOptionPane.showMessageDialog(null, "Este usuarioSe encuentra inhabilitado, comuniquese con un Administrador");
+                   }
+                 }    
                 if (rs.getString("ContrasenaU").equals(Contrasena)) {
-                    MenuPrincipal MP = new MenuPrincipal();
-                    MP.setVisible(true);
-                    dispose();
-                } else {
-                    intento--;
-                    ps = con.prepareStatement("Update UsuarioN set Intentos ='" + intento + "' where NombreU ='" + Usuario + "' ");
-                    rs = ps.executeQuery();
-                    System.out.println(intento);
-                    JOptionPane.showMessageDialog(this, "Usuario/contraseña es incorrecto");
-                }
-            } else {
-                JOptionPane.showMessageDialog(null, "Este usuario no existe");
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                       MenuPrincipal MP = new MenuPrincipal();
+                       MP.setVisible(true);
+                       dispose();
+                   } else {
+                       intento=intento-1;
+                       ps = con.prepareStatement("Update Usuario set Intentos ='" + intento + "'where NombreU ='" + Usuario + "' ");
+                       rs = ps.executeQuery();
+                       System.out.println(intento);
+                       JOptionPane.showMessageDialog(this, "Contraseña es incorrecto, Intentos Disponibles="+intento+".");
+                       if(intento==0){
+                          ps = con.prepareStatement("Update Usuario set estado ='Inactivo' where NombreU ='" + Usuario + "' ");
+                         rs = ps.executeQuery();
+                         JOptionPane.showMessageDialog(this, "Contraseña es incorrecto");
+                       }
+                           
+                      
+                   }
+                
+               } catch (SQLException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                        }
         }
 
-
+                 
+        
+       
+       /* MenuPrincipal MP = new MenuPrincipal();
+        MP.setVisible(true);
+        dispose();*/
     }//GEN-LAST:event_botonInicioMouseClicked
 
     public boolean validarContrasena(String cadena) {
@@ -180,7 +220,30 @@ public class Login extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+ /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Clientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Clientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Clientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Clientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
 
+        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Login().setVisible(true);
