@@ -7,6 +7,8 @@ package Formularios_SAG;
 
 import Conexion.Conexion;
 import java.awt.Color;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -33,6 +35,16 @@ public class SueldoHistorico extends javax.swing.JFrame {
     /**
      * Creates new form SueldoHistorico
      */
+    
+    
+       
+    @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("componentes/LOGOSAG(2).png"));
+        return retValue;
+    }
+ 
+
     public SueldoHistorico() {
         initComponents();
         cargarnombre();
@@ -68,6 +80,8 @@ public class SueldoHistorico extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImage(getIconImage());
+        setMinimumSize(new java.awt.Dimension(1000, 710));
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -175,9 +189,9 @@ public class SueldoHistorico extends javax.swing.JFrame {
                 txtSueldoSHKeyTyped(evt);
             }
         });
-        getContentPane().add(txtSueldoSH, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 548, 180, 30));
-        getContentPane().add(txtFechaInicioSH, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 430, 190, 30));
-        getContentPane().add(txtFechaFinalSH, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 490, 190, 30));
+        getContentPane().add(txtSueldoSH, new org.netbeans.lib.awtextra.AbsoluteConstraints(89, 540, 200, 30));
+        getContentPane().add(txtFechaInicioSH, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 425, 200, 30));
+        getContentPane().add(txtFechaFinalSH, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 485, 200, 30));
 
         txtEmpleadoSH.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         txtEmpleadoSH.setForeground(new java.awt.Color(153, 153, 153));
@@ -203,7 +217,7 @@ public class SueldoHistorico extends javax.swing.JFrame {
                 txtEmpleadoSHActionPerformed(evt);
             }
         });
-        getContentPane().add(txtEmpleadoSH, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 374, 180, 30));
+        getContentPane().add(txtEmpleadoSH, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 368, 200, 30));
 
         txtBuscarSH.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         txtBuscarSH.setForeground(new java.awt.Color(153, 153, 153));
@@ -226,7 +240,7 @@ public class SueldoHistorico extends javax.swing.JFrame {
                 txtBuscarSHKeyTyped(evt);
             }
         });
-        getContentPane().add(txtBuscarSH, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 230, 250, 30));
+        getContentPane().add(txtBuscarSH, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 225, 250, 30));
 
         txtCargarEmpleado.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         txtCargarEmpleado.setForeground(new java.awt.Color(153, 153, 153));
@@ -248,9 +262,10 @@ public class SueldoHistorico extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/componentes/Pantalla Sueldo Historico(5).png"))); // NOI18N
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, 1000, 750));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 990, 700));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtEmpleadoSHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmpleadoSHActionPerformed

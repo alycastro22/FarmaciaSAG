@@ -7,6 +7,8 @@ package Formularios_SAG;
 
 import Conexion.Conexion;
 import java.awt.Color;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -32,6 +34,12 @@ public class Clientes extends javax.swing.JFrame {
     /**
      * Creates new form Clientes
      */
+    @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("componentes/LOGOSAG(2).png"));
+        return retValue;
+    }
+
     public Clientes() {
         initComponents();
         Cargarg ch = new Cargarg();
@@ -87,6 +95,7 @@ public class Clientes extends javax.swing.JFrame {
         jMenuBar1.add(jMenu2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImage(getIconImage());
         setUndecorated(true);
         setPreferredSize(new java.awt.Dimension(1000, 720));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -116,7 +125,7 @@ public class Clientes extends javax.swing.JFrame {
                 txtRTNKeyTyped(evt);
             }
         });
-        getContentPane().add(txtRTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 282, 190, 30));
+        getContentPane().add(txtRTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 282, 200, 30));
 
         txtNombreC.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         txtNombreC.setForeground(new java.awt.Color(153, 153, 153));
@@ -148,7 +157,7 @@ public class Clientes extends javax.swing.JFrame {
                 txtNombreCKeyTyped(evt);
             }
         });
-        getContentPane().add(txtNombreC, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 330, 190, 30));
+        getContentPane().add(txtNombreC, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 330, 200, 30));
 
         txtApellidoC.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         txtApellidoC.setForeground(new java.awt.Color(153, 153, 153));
@@ -175,7 +184,7 @@ public class Clientes extends javax.swing.JFrame {
                 txtApellidoCKeyTyped(evt);
             }
         });
-        getContentPane().add(txtApellidoC, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, 190, 30));
+        getContentPane().add(txtApellidoC, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, 200, 30));
 
         comboGenero.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         comboGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione género..." }));
@@ -189,7 +198,7 @@ public class Clientes extends javax.swing.JFrame {
                 comboGeneroActionPerformed(evt);
             }
         });
-        getContentPane().add(comboGenero, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 430, 190, 30));
+        getContentPane().add(comboGenero, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 430, 200, 30));
 
         txtDireccionC.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         txtDireccionC.setForeground(new java.awt.Color(153, 153, 153));
@@ -216,7 +225,7 @@ public class Clientes extends javax.swing.JFrame {
                 txtDireccionCKeyTyped(evt);
             }
         });
-        getContentPane().add(txtDireccionC, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 530, 190, 30));
+        getContentPane().add(txtDireccionC, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 530, 200, 30));
 
         txtTelefonoC.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         txtTelefonoC.setForeground(new java.awt.Color(153, 153, 153));
@@ -243,7 +252,7 @@ public class Clientes extends javax.swing.JFrame {
                 txtTelefonoCKeyTyped(evt);
             }
         });
-        getContentPane().add(txtTelefonoC, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 575, 190, 30));
+        getContentPane().add(txtTelefonoC, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 575, 200, 30));
 
         txtEmail.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         txtEmail.setForeground(new java.awt.Color(153, 153, 153));
@@ -265,7 +274,7 @@ public class Clientes extends javax.swing.JFrame {
                 txtEmailKeyTyped(evt);
             }
         });
-        getContentPane().add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 620, 190, 30));
+        getContentPane().add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 620, 200, 30));
 
         txtBuscarC.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         txtBuscarC.setForeground(new java.awt.Color(153, 153, 153));
@@ -394,7 +403,7 @@ public class Clientes extends javax.swing.JFrame {
         getContentPane().add(BotonInactivoC, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 250, -1, -1));
 
         txtFechaNac.setOpaque(false);
-        getContentPane().add(txtFechaNac, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 480, 190, 30));
+        getContentPane().add(txtFechaNac, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 480, 200, 30));
 
         grupoBotonClientes.add(BotonActivoC);
         BotonActivoC.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
@@ -413,7 +422,7 @@ public class Clientes extends javax.swing.JFrame {
         getContentPane().add(txtGeneroC, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 290, 120, 30));
 
         txtFechaRegistro.setOpaque(false);
-        getContentPane().add(txtFechaRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 665, 190, 30));
+        getContentPane().add(txtFechaRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 665, 200, 30));
 
         txtIdC.setEnabled(false);
         getContentPane().add(txtIdC, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 260, 30, 20));
@@ -503,10 +512,10 @@ public class Clientes extends javax.swing.JFrame {
        private void botonGuardarCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGuardarCMouseClicked
 
            if (txtNombreC.getText().equals("Ingrese Nombre") || txtTelefonoC.getText().equals("Ingrese Teléfono") || txtDireccionC.getText().equals("Ingrese Dirección") || txtEmail.getText().equals("Ingrese E-mail")
-                   || txtApellidoC.getText().equals("Ingrese Apellido") || txtRTN.getText().equals("Ingrese RTN") || comboGenero.getSelectedItem().equals("Seleccione Género...")){
+                   || txtApellidoC.getText().equals("Ingrese Apellido") || txtRTN.getText().equals("Ingrese RTN") || comboGenero.getSelectedItem().equals("Seleccione Género...")) {
                if (txtRTN.getText().equals("Ingrese RTN")) {
                    JOptionPane.showMessageDialog(null, "Debe ingresar un RTN");
-               }else if (txtNombreC.getText().equals("Ingrese Nombre")) { 
+               } else if (txtNombreC.getText().equals("Ingrese Nombre")) {
                    JOptionPane.showMessageDialog(null, "Debe ingresar un Nombre");
                } else if (txtApellidoC.getText().equals("Ingrese Apellido")) {
                    JOptionPane.showMessageDialog(null, "Debe ingresar Apellido");
@@ -515,7 +524,7 @@ public class Clientes extends javax.swing.JFrame {
                } else if (txtFechaNac.getDateFormatString().equals("")) {
                    JOptionPane.showMessageDialog(null, "Debe ingresar Fecha Nacimiento");
                } else if (txtDireccionC.getText().equals("Ingrese Dirección")) {
-                   JOptionPane.showMessageDialog(null, "Debe ingresar una Dirección");      
+                   JOptionPane.showMessageDialog(null, "Debe ingresar una Dirección");
                } else if (txtTelefonoC.getText().equals("Ingrese Teléfono")) {
                    JOptionPane.showMessageDialog(null, "Debe ingresar un Teléfono");
                } else if (txtEmail.getText().equals("Ingrese E-mail")) {
@@ -870,7 +879,7 @@ public class Clientes extends javax.swing.JFrame {
             evt.consume();
         } else if (txtNombreC.getText().length() > 0) {
             if (!txtNombreC.getText().matches("^(?!.*([A-Za-zñÑáéíóúÁÉÍÓÚ\\s])\\1{2})[A-Za-zñÑáéíóúÁÉÍÓÚ\\s0-9]+$")) {
-                JOptionPane.showMessageDialog(null, "No repitas caracteres de forma incorrecta", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "No repitas caracteres de forma incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
                 evt.consume();
             }
         }
@@ -882,7 +891,7 @@ public class Clientes extends javax.swing.JFrame {
             evt.consume();
         } else if (txtNombreC.getText().length() > 0) {
             if (!txtNombreC.getText().matches("^(?!.*([A-Za-zñÑáéíóúÁÉÍÓÚ\\s])\\1{2})[A-Za-zñÑáéíóúÁÉÍÓÚ\\s0-9]+$")) {
-                JOptionPane.showMessageDialog(null, "No repitas caracteres de forma incorrecta", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "No repitas caracteres de forma incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
                 evt.consume();
             }
         }
@@ -894,16 +903,21 @@ public class Clientes extends javax.swing.JFrame {
             evt.consume();
         } else if (txtDireccionC.getText().length() > 0) {
             if (!txtDireccionC.getText().matches("^(?!.*([A-Za-zñÑáéíóúÁÉÍÓÚ\\s])\\1{2})[A-Za-zñÑáéíóúÁÉÍÓÚ\\s0-9]+$")) {
-                JOptionPane.showMessageDialog(null, "No repitas caracteres de forma incorrecta", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "No repitas caracteres de forma incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
                 evt.consume();
             }
         }
     }//GEN-LAST:event_txtDireccionCKeyTyped
 
     private void txtEmailKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailKeyTyped
-        if (txtDireccionC.getText().length() > 30) {
+        if (txtEmail.getText().length() > 30) {
             JOptionPane.showMessageDialog(null, "Alcanzaste el máximo de caracteres para este campo", "Advertencia", JOptionPane.WARNING_MESSAGE);
             evt.consume();
+             } else if (txtEmail.getText().length() > 0) {
+            if (!txtEmail.getText().matches("^([a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\\\.[a-zA-Z0-9-]+)*)")) {
+                JOptionPane.showMessageDialog(null, "No repitas caracteres de forma incorrecta", "Error ", JOptionPane.ERROR_MESSAGE);
+                evt.consume();
+            }
         }
     }//GEN-LAST:event_txtEmailKeyTyped
 

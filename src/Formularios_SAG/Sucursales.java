@@ -8,6 +8,8 @@ package Formularios_SAG;
 import Conexion.Conexion;
 import com.sun.corba.se.impl.orbutil.CorbaResourceUtil;
 import java.awt.Color;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -32,6 +34,16 @@ public class Sucursales extends javax.swing.JFrame {
     /**
      * Creates new form Sucursales
      */
+    
+    
+       
+    @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("componentes/LOGOSAG(2).png"));
+        return retValue;
+    }
+ 
+
     public Sucursales() {
         initComponents();
         cargartabla();
@@ -73,7 +85,10 @@ public class Sucursales extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImage(getIconImage());
+        setMinimumSize(new java.awt.Dimension(1000, 720));
         setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(1000, 720));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         grupoBotonSucursal.add(BotonInactivoS);
@@ -203,7 +218,7 @@ public class Sucursales extends javax.swing.JFrame {
                 txtNombreSKeyTyped(evt);
             }
         });
-        getContentPane().add(txtNombreS, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 357, 190, 30));
+        getContentPane().add(txtNombreS, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 357, 200, 30));
 
         txtDireccionS.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         txtDireccionS.setForeground(new java.awt.Color(153, 153, 153));
@@ -237,7 +252,7 @@ public class Sucursales extends javax.swing.JFrame {
                 txtDireccionSKeyTyped(evt);
             }
         });
-        getContentPane().add(txtDireccionS, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 490, 190, 30));
+        getContentPane().add(txtDireccionS, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 490, 200, 30));
 
         botonCiudadS.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         botonCiudadS.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ciudad", "Tegucigalpa", "San Pedro Sula" }));
@@ -254,7 +269,7 @@ public class Sucursales extends javax.swing.JFrame {
                 botonCiudadSActionPerformed(evt);
             }
         });
-        getContentPane().add(botonCiudadS, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 422, 190, 31));
+        getContentPane().add(botonCiudadS, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 422, 200, 31));
         botonCiudadS.getAccessibleContext().setAccessibleName("");
 
         txtTelefonoS.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
@@ -286,7 +301,7 @@ public class Sucursales extends javax.swing.JFrame {
                 txtTelefonoSKeyTyped(evt);
             }
         });
-        getContentPane().add(txtTelefonoS, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 556, 190, 30));
+        getContentPane().add(txtTelefonoS, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 556, 200, 30));
         getContentPane().add(botonSalirS, new org.netbeans.lib.awtextra.AbsoluteConstraints(1290, 530, 90, 40));
 
         txtIdS.setEnabled(false);

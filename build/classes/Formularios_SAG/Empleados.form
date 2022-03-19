@@ -58,7 +58,7 @@
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="60" y="615" width="190" height="30"/>
+          <AbsoluteConstraints x="60" y="615" width="200" height="30"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -91,7 +91,7 @@
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="60" y="327" width="190" height="30"/>
+          <AbsoluteConstraints x="60" y="326" width="200" height="30"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -106,7 +106,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="650" y="140" width="140" height="50"/>
+          <AbsoluteConstraints x="470" y="220" width="140" height="50"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -121,7 +121,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="820" y="140" width="140" height="50"/>
+          <AbsoluteConstraints x="300" y="220" width="150" height="50"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -203,7 +203,7 @@
           <ComponentRef name="grupoBotonesEmpleados"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Georgia" size="14" style="1"/>
+          <Font name="Georgia" size="18" style="1"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -226,7 +226,7 @@
           <ComponentRef name="grupoBotonesEmpleados"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Georgia" size="14" style="1"/>
+          <Font name="Georgia" size="18" style="1"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -254,7 +254,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="160" y="660" width="100" height="40"/>
+          <AbsoluteConstraints x="820" y="140" width="130" height="50"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -269,7 +269,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="30" y="660" width="100" height="40"/>
+          <AbsoluteConstraints x="650" y="140" width="140" height="50"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -301,7 +301,7 @@
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="60" y="477" width="190" height="30"/>
+          <AbsoluteConstraints x="60" y="477" width="200" height="30"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -364,7 +364,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="60" y="278" width="190" height="30"/>
+          <AbsoluteConstraints x="60" y="278" width="200" height="30"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -412,32 +412,22 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Georgia" size="14" style="0"/>
         </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="99" green="99" red="99" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Cargo"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="null"/>
         </Property>
         <Property name="opaque" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtCargoEFocusGained"/>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtCargoEFocusLost"/>
+      </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="60" y="524" width="190" height="30"/>
-        </Constraint>
-      </Constraints>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtSueldoE">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Georgia" size="14" style="0"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Sueldo"/>
-        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="null"/>
-        </Property>
-        <Property name="opaque" type="boolean" value="false"/>
-      </Properties>
-      <Constraints>
-        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="60" y="570" width="190" height="30"/>
+          <AbsoluteConstraints x="60" y="525" width="200" height="30"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -447,14 +437,38 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="140" y="320" width="140" height="30"/>
+          <AbsoluteConstraints x="110" y="250" width="20" height="20"/>
+        </Constraint>
+      </Constraints>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtSueldoE">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Georgia" size="14" style="0"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="99" green="99" red="99" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Sueldo"/>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="null"/>
+        </Property>
+        <Property name="opaque" type="boolean" value="false"/>
+      </Properties>
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtSueldoEFocusGained"/>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtSueldoEFocusLost"/>
+      </Events>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="60" y="570" width="200" height="30"/>
         </Constraint>
       </Constraints>
     </Component>
     <Component class="com.toedter.calendar.JDateChooser" name="FechaNacimientoE">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="60" y="423" width="190" height="30"/>
+          <AbsoluteConstraints x="60" y="425" width="200" height="30"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -481,9 +495,9 @@
                 <Column editable="false" title="Nombre Completo" type="java.lang.String"/>
                 <Column editable="false" title="Tipo de Documento" type="java.lang.String"/>
                 <Column editable="false" title="Documento" type="java.lang.String"/>
-                <Column editable="false" title="Fecha  Nacimiento" type="java.lang.String"/>
+                <Column editable="false" title="Fecha Nacimiento" type="java.lang.String"/>
                 <Column editable="false" title="G&#xe9;nero" type="java.lang.String"/>
-                <Column editable="false" title="Cargo  " type="java.lang.String"/>
+                <Column editable="false" title="Cargo" type="java.lang.String"/>
                 <Column editable="false" title="Sueldo" type="java.lang.Float"/>
                 <Column editable="false" title="Sucursal" type="java.lang.String"/>
               </Table>

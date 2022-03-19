@@ -7,6 +7,8 @@ package Formularios_SAG;
 
 import Conexion.Conexion;
 import java.awt.Color;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -28,8 +30,14 @@ public class Empleados extends javax.swing.JFrame {
     /**
      * Creates new form Empleados
      */
-    public static String Id_emp="0";
-    
+    @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("componentes/LOGOSAG(2).png"));
+        return retValue;
+    }
+
+    public static String Id_emp = "0";
+
     public Empleados() {
         initComponents();
 
@@ -75,8 +83,8 @@ public class Empleados extends javax.swing.JFrame {
         errorNumDocumento = new javax.swing.JLabel();
         errorNombre = new javax.swing.JLabel();
         txtCargoE = new javax.swing.JTextField();
-        txtSueldoE = new javax.swing.JTextField();
         txtIdE = new javax.swing.JLabel();
+        txtSueldoE = new javax.swing.JTextField();
         FechaNacimientoE = new com.toedter.calendar.JDateChooser();
         barraEmpleado = new javax.swing.JScrollPane();
         TablaEmpleado = new javax.swing.JTable();
@@ -96,7 +104,7 @@ public class Empleados extends javax.swing.JFrame {
                 ComboSucursalEActionPerformed(evt);
             }
         });
-        getContentPane().add(ComboSucursalE, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 615, 190, 30));
+        getContentPane().add(ComboSucursalE, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 615, 200, 30));
         ComboSucursalE.getAccessibleContext().setAccessibleDescription("");
 
         ComboDocumento.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
@@ -110,7 +118,7 @@ public class Empleados extends javax.swing.JFrame {
                 ComboDocumentoActionPerformed(evt);
             }
         });
-        getContentPane().add(ComboDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 327, 190, 30));
+        getContentPane().add(ComboDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 326, 200, 30));
 
         BotonCargoHistoricoE.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BotonCargoHistoricoE.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -118,7 +126,7 @@ public class Empleados extends javax.swing.JFrame {
                 BotonCargoHistoricoEMouseClicked(evt);
             }
         });
-        getContentPane().add(BotonCargoHistoricoE, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 140, 140, 50));
+        getContentPane().add(BotonCargoHistoricoE, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 220, 140, 50));
 
         BotonSueldoHistoricoE.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BotonSueldoHistoricoE.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -126,7 +134,7 @@ public class Empleados extends javax.swing.JFrame {
                 BotonSueldoHistoricoEMouseClicked(evt);
             }
         });
-        getContentPane().add(BotonSueldoHistoricoE, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 140, 140, 50));
+        getContentPane().add(BotonSueldoHistoricoE, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 220, 150, 50));
 
         BotonEditarE.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BotonEditarE.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -179,7 +187,7 @@ public class Empleados extends javax.swing.JFrame {
         txtBuscarE.getAccessibleContext().setAccessibleDescription("");
 
         grupoBotonesEmpleados.add(BotonActivoE);
-        BotonActivoE.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        BotonActivoE.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         BotonActivoE.setForeground(new java.awt.Color(255, 255, 255));
         BotonActivoE.setText("Activo");
         BotonActivoE.setOpaque(false);
@@ -191,7 +199,7 @@ public class Empleados extends javax.swing.JFrame {
         getContentPane().add(BotonActivoE, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 670, -1, -1));
 
         grupoBotonesEmpleados.add(BotonInactivoE);
-        BotonInactivoE.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        BotonInactivoE.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         BotonInactivoE.setForeground(new java.awt.Color(255, 255, 255));
         BotonInactivoE.setText("Inactivo");
         BotonInactivoE.setOpaque(false);
@@ -208,7 +216,7 @@ public class Empleados extends javax.swing.JFrame {
                 BotonCancelarEMouseClicked(evt);
             }
         });
-        getContentPane().add(BotonCancelarE, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 660, 100, 40));
+        getContentPane().add(BotonCancelarE, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 140, 130, 50));
 
         BotonGuardarE.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BotonGuardarE.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -216,7 +224,7 @@ public class Empleados extends javax.swing.JFrame {
                 BotonGuardarEMouseClicked(evt);
             }
         });
-        getContentPane().add(BotonGuardarE, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 660, 100, 40));
+        getContentPane().add(BotonGuardarE, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 140, 140, 50));
 
         ComboGeneroE.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         ComboGeneroE.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Femenino" }));
@@ -229,7 +237,7 @@ public class Empleados extends javax.swing.JFrame {
                 ComboGeneroEActionPerformed(evt);
             }
         });
-        getContentPane().add(ComboGeneroE, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 477, 190, 30));
+        getContentPane().add(ComboGeneroE, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 477, 200, 30));
 
         txtDocumentoE.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         txtDocumentoE.setForeground(new java.awt.Color(153, 153, 153));
@@ -283,7 +291,7 @@ public class Empleados extends javax.swing.JFrame {
                 txtNombreEKeyTyped(evt);
             }
         });
-        getContentPane().add(txtNombreE, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 278, 190, 30));
+        getContentPane().add(txtNombreE, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 278, 200, 30));
         txtNombreE.getAccessibleContext().setAccessibleName("");
 
         botonRegresarE.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -301,20 +309,38 @@ public class Empleados extends javax.swing.JFrame {
         getContentPane().add(errorNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 330, -1, -1));
 
         txtCargoE.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        txtCargoE.setForeground(new java.awt.Color(153, 153, 153));
         txtCargoE.setText("Cargo");
         txtCargoE.setBorder(null);
         txtCargoE.setOpaque(false);
-        getContentPane().add(txtCargoE, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 524, 190, 30));
+        txtCargoE.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtCargoEFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCargoEFocusLost(evt);
+            }
+        });
+        getContentPane().add(txtCargoE, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 525, 200, 30));
+
+        txtIdE.setEnabled(false);
+        getContentPane().add(txtIdE, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, 20, 20));
 
         txtSueldoE.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        txtSueldoE.setForeground(new java.awt.Color(153, 153, 153));
         txtSueldoE.setText("Sueldo");
         txtSueldoE.setBorder(null);
         txtSueldoE.setOpaque(false);
-        getContentPane().add(txtSueldoE, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 570, 190, 30));
-
-        txtIdE.setEnabled(false);
-        getContentPane().add(txtIdE, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 140, 30));
-        getContentPane().add(FechaNacimientoE, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 423, 190, 30));
+        txtSueldoE.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtSueldoEFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtSueldoEFocusLost(evt);
+            }
+        });
+        getContentPane().add(txtSueldoE, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 570, 200, 30));
+        getContentPane().add(FechaNacimientoE, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 425, 200, 30));
 
         TablaEmpleado.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
         TablaEmpleado.setModel(new javax.swing.table.DefaultTableModel(
@@ -325,7 +351,7 @@ public class Empleados extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Id", "Nombre Completo", "Tipo de Documento", "Documento", "Fecha  Nacimiento", "Género", "Cargo  ", "Sueldo", "Sucursal"
+                "Id", "Nombre Completo", "Tipo de Documento", "Documento", "Fecha Nacimiento", "Género", "Cargo", "Sueldo", "Sucursal"
             }
         ) {
             Class[] types = new Class [] {
@@ -402,7 +428,7 @@ public class Empleados extends javax.swing.JFrame {
     }//GEN-LAST:event_botonRegresarEMouseClicked
 
     private void BotonGuardarEMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonGuardarEMouseClicked
-        if (txtNombreE.getText().equals("Ingrese Nombre y Apellido") || txtDocumentoE.getText().equals("Ingrese Número de Documento")|| ComboSucursalE.equals("Seleccione Sucursal...") || ComboDocumento.equals("Seleccione Tipo Documento...") || ComboGeneroE.equals("Seleccione Genero...") ) {
+        if (txtNombreE.getText().equals("Ingrese Nombre y Apellido") || txtDocumentoE.getText().equals("Ingrese Número de Documento") || ComboSucursalE.equals("Seleccione Sucursal...") || ComboDocumento.equals("Seleccione Tipo Documento...") || ComboGeneroE.equals("Seleccione Genero...")) {
             JOptionPane.showMessageDialog(null, "No se puede Guardar datos vacios");
         } else {
             String Nombre = txtNombreE.getText();
@@ -480,9 +506,9 @@ public class Empleados extends javax.swing.JFrame {
         if (txtNombreE.getText().equals("")) {
             txtNombreE.setText("Ingrese Nombre y Apellido");
             txtNombreE.setForeground(new Color(153, 153, 153));
-        } else if (!txtNombreE.getText().isEmpty()) {
-            if (!txtNombreE.getText().matches("([A-Z-ÁÉÍÓÚÑ]{1}[a-z-áéíóúñ]+[ ]*){2,4}$")) {
-                JOptionPane.showMessageDialog(null, "Debes escribir un nombre y un apellido comenzándolos con mayúsculas", "Error", JOptionPane.ERROR_MESSAGE);
+       } else if (!txtNombreE.getText().isEmpty()) {
+            if (!txtNombreE.getText().matches("^[A-Z-ÁÉÍÓÚÑ]{1}[a-z-áéíóúñ]+$")) {
+                JOptionPane.showMessageDialog(null, "Debes escribir un nombre comenzando en mayúscula. No utilice espacios", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_txtNombreEFocusLost
@@ -629,7 +655,7 @@ public class Empleados extends javax.swing.JFrame {
 
             BotonActivoE.setVisible(Boolean.TRUE);
             BotonInactivoE.setVisible(Boolean.TRUE);
-            Id_emp=txtIdE.getText();
+            Id_emp = txtIdE.getText();
             Habillitar();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex.toString());
@@ -705,7 +731,7 @@ public class Empleados extends javax.swing.JFrame {
     }//GEN-LAST:event_BotonSueldoHistoricoEMouseClicked
 
     private void BotonInactivoEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonInactivoEActionPerformed
-         int IdEmpleado = Integer.parseInt(txtIdE.getText());
+        int IdEmpleado = Integer.parseInt(txtIdE.getText());
         String Estado = "Inactivo";
         try {
             Connection con = Conexion.getConexion();
@@ -727,7 +753,7 @@ public class Empleados extends javax.swing.JFrame {
     }//GEN-LAST:event_BotonInactivoEActionPerformed
 
     private void BotonActivoEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonActivoEActionPerformed
-       int IdEmpleado = Integer.parseInt(txtIdE.getText());
+        int IdEmpleado = Integer.parseInt(txtIdE.getText());
         String Estado = "Activo";
         try {
             Connection con = Conexion.getConexion();
@@ -750,6 +776,34 @@ public class Empleados extends javax.swing.JFrame {
     private void ComboGeneroEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboGeneroEActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ComboGeneroEActionPerformed
+
+    private void txtCargoEFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCargoEFocusGained
+        if (txtCargoE.getText().equals("Cargo")) {
+            txtCargoE.setText("");
+            txtCargoE.setForeground(new Color(0, 0, 0));
+        }
+    }//GEN-LAST:event_txtCargoEFocusGained
+
+    private void txtCargoEFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCargoEFocusLost
+        if (txtCargoE.getText().equals("")) {
+            txtCargoE.setText("Cargo");
+            txtCargoE.setForeground(new Color(153, 153, 153));
+        }
+    }//GEN-LAST:event_txtCargoEFocusLost
+
+    private void txtSueldoEFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSueldoEFocusGained
+       if (txtSueldoE.getText().equals("Sueldo")) {
+            txtSueldoE.setText("");
+            txtSueldoE.setForeground(new Color(0, 0, 0));
+        }
+    }//GEN-LAST:event_txtSueldoEFocusGained
+
+    private void txtSueldoEFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSueldoEFocusLost
+        if (txtCargoE.getText().equals("")) {
+            txtCargoE.setText("Sueldo");
+            txtCargoE.setForeground(new Color(153, 153, 153));
+        }
+    }//GEN-LAST:event_txtSueldoEFocusLost
 
     /**
      * @param args the command line arguments
@@ -907,7 +961,7 @@ public class Empleados extends javax.swing.JFrame {
                 String sql = "select Genero from Genero";
                 Statement st = con.createStatement();
                 ResultSet rs = st.executeQuery(sql);
-                 modelo.addElement("Seleccione Genero...");
+                modelo.addElement("Seleccione Genero...");
                 while (rs.next()) {
                     modelo.addElement(rs.getString(1));
                 }
@@ -930,7 +984,7 @@ public class Empleados extends javax.swing.JFrame {
                 String sql = "select Nombre from sucursal";
                 Statement st = con.createStatement();
                 ResultSet rs = st.executeQuery(sql);
-                 modelo.addElement("Seleccione Sucursal...");
+                modelo.addElement("Seleccione Sucursal...");
                 while (rs.next()) {
                     modelo.addElement(rs.getString(1));
                 }
@@ -953,7 +1007,7 @@ public class Empleados extends javax.swing.JFrame {
                 String sql = "select Tipo_Documento from Tipo_Documento";
                 Statement st = con.createStatement();
                 ResultSet rs = st.executeQuery(sql);
-                 modelo.addElement("Seleccione Tipo Documento...");
+                modelo.addElement("Seleccione Tipo Documento...");
                 while (rs.next()) {
                     modelo.addElement(rs.getString(1));
                 }

@@ -78,7 +78,7 @@ public class Productos extends javax.swing.JFrame {
         ComboPresentacionP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         ComboPresentacionP.setBorder(null);
         ComboPresentacionP.setOpaque(false);
-        getContentPane().add(ComboPresentacionP, new org.netbeans.lib.awtextra.AbsoluteConstraints(55, 400, 190, 33));
+        getContentPane().add(ComboPresentacionP, new org.netbeans.lib.awtextra.AbsoluteConstraints(55, 403, 190, 30));
 
         txtxTamañosP.setBorder(null);
         getContentPane().add(txtxTamañosP, new org.netbeans.lib.awtextra.AbsoluteConstraints(55, 494, 190, 30));

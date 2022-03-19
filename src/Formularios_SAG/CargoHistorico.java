@@ -7,6 +7,8 @@ package Formularios_SAG;
 
 import Conexion.Conexion;
 import java.awt.Color;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -29,6 +31,16 @@ public class CargoHistorico extends javax.swing.JFrame {
     /**
      * Creates new form CargoHistorico
      */
+    
+    
+       
+    @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("componentes/LOGOSAG(2).png"));
+        return retValue;
+    }
+ 
+
     public CargoHistorico() {
         initComponents();
         cargarnombre();
@@ -67,6 +79,7 @@ public class CargoHistorico extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImage(getIconImage());
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -129,7 +142,7 @@ public class CargoHistorico extends javax.swing.JFrame {
                 txtBuscarCHKeyTyped(evt);
             }
         });
-        getContentPane().add(txtBuscarCH, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 235, 240, 30));
+        getContentPane().add(txtBuscarCH, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 225, 240, 30));
         txtBuscarCH.getAccessibleContext().setAccessibleDescription("");
 
         txtCargoCH.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
@@ -157,16 +170,16 @@ public class CargoHistorico extends javax.swing.JFrame {
                 txtCargoCHKeyTyped(evt);
             }
         });
-        getContentPane().add(txtCargoCH, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 557, 190, 30));
+        getContentPane().add(txtCargoCH, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 540, 190, 30));
 
         txtFechaIncioCH.setToolTipText("");
         txtFechaIncioCH.setEnabled(false);
         txtFechaIncioCH.setOpaque(false);
-        getContentPane().add(txtFechaIncioCH, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 425, 200, 30));
+        getContentPane().add(txtFechaIncioCH, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 410, 190, 30));
 
         txtFechaFinalCH.setEnabled(false);
         txtFechaFinalCH.setOpaque(false);
-        getContentPane().add(txtFechaFinalCH, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 490, 200, 30));
+        getContentPane().add(txtFechaFinalCH, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 478, 190, 28));
 
         txtNombreCH.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         txtNombreCH.setForeground(new java.awt.Color(153, 153, 153));
@@ -193,8 +206,8 @@ public class CargoHistorico extends javax.swing.JFrame {
                 txtNombreCHKeyTyped(evt);
             }
         });
-        getContentPane().add(txtNombreCH, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 358, 190, 30));
-        getContentPane().add(txtIdE, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 440, 110, 30));
+        getContentPane().add(txtNombreCH, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 340, 190, 40));
+        getContentPane().add(txtIdE, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, 20, 20));
 
         comboCargarEmpleado.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         comboCargarEmpleado.setForeground(new java.awt.Color(153, 153, 153));
@@ -211,7 +224,7 @@ public class CargoHistorico extends javax.swing.JFrame {
             }
         });
         getContentPane().add(comboCargarEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 230, 230, 30));
-        getContentPane().add(txtIdCargoCH, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 320, 30, 20));
+        getContentPane().add(txtIdCargoCH, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, 20, 20));
 
         TablaCH.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -221,7 +234,7 @@ public class CargoHistorico extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Id_Cargo", "Nombre Empleado", "Fecha Inicio", "Fecha Final", "Cargo"
+                "Id Cargo", "Nombre Empleado", "Fecha Inicio", "Fecha Final", "Cargo"
             }
         ) {
             Class[] types = new Class [] {
@@ -246,12 +259,13 @@ public class CargoHistorico extends javax.swing.JFrame {
         });
         Table.setViewportView(TablaCH);
 
-        getContentPane().add(Table, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 290, 650, 310));
+        getContentPane().add(Table, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 270, 710, 310));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/componentes/Pantalla Cargo Historico(1)_1.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1030, 610));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/componentes/Pantalla Cargo Historico_1.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 1000, 610));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtCargoCHFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCargoCHFocusGained
@@ -307,7 +321,15 @@ public class CargoHistorico extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNombreCHActionPerformed
 
     private void txtNombreCHKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreCHKeyTyped
-        // TODO add your handling code here:
+     if (txtNombreCH.getText().length() > 20) {
+            JOptionPane.showMessageDialog(null, "Alcanzaste el máximo de caracteres para este campo", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            evt.consume();
+        } else if (txtNombreCH.getText().length() > 0) {
+            if (!txtNombreCH.getText().matches("^(?!.*([A-Za-zñÑáéíóúÁÉÍÓÚ\\s])\\1{2})[A-Za-zñÑáéíóúÁÉÍÓÚ\\s0-9]+$")) {
+                JOptionPane.showMessageDialog(null, "No repitas caracteres de forma incorrecta", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                evt.consume();
+            }
+        }
     }//GEN-LAST:event_txtNombreCHKeyTyped
 
     private void BotonRegresarCHMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonRegresarCHMouseClicked

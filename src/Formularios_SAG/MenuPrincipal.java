@@ -5,6 +5,9 @@
  */
 package Formularios_SAG;
 
+import java.awt.Image;
+import java.awt.Toolkit;
+
 /**
  *
  * @author Allisson Castro
@@ -14,6 +17,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form Menu_Principal
      */
+    @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("componentes/LOGOSAG(2).png"));
+        return retValue;
+    }
+
     public MenuPrincipal() {
         initComponents();
     }
@@ -40,6 +49,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         Menu = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImage(getIconImage());
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -132,21 +142,21 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BotonClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonClienteMouseClicked
-          Clientes  CL = new Clientes ();{
-          CL.setVisible(true);
-          dispose ();
-          
-          
-       }
+        Clientes CL = new Clientes();
+        {
+            CL.setVisible(true);
+            dispose();
+
+        }
     }//GEN-LAST:event_BotonClienteMouseClicked
 
     private void BotonEmpleadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonEmpleadoMouseClicked
-          Empleados  EM = new Empleados ();{
-          EM.setVisible(true);
-          dispose ();
-          
-          
-       }
+        Empleados EM = new Empleados();
+        {
+            EM.setVisible(true);
+            dispose();
+
+        }
     }//GEN-LAST:event_BotonEmpleadoMouseClicked
 
     private void BotonProveedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonProveedoresMouseClicked
@@ -158,12 +168,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_BotonMedicamentosMouseClicked
 
     private void BotonSucursalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonSucursalMouseClicked
-         Sucursales SC = new Sucursales ();{
-          SC.setVisible(true);
-          dispose ();
-          
-          
-       }
+        Sucursales SC = new Sucursales();
+        {
+            SC.setVisible(true);
+            dispose();
+
+        }
     }//GEN-LAST:event_BotonSucursalMouseClicked
 
     private void BotonAlmacenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonAlmacenMouseClicked
