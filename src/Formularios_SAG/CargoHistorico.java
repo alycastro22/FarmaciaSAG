@@ -106,7 +106,7 @@ public class CargoHistorico extends javax.swing.JFrame {
         });
         getContentPane().add(BotonCancelarCH, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 150, 140, 40));
 
-        txtBuscarCH.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        txtBuscarCH.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         txtBuscarCH.setForeground(new java.awt.Color(153, 153, 153));
         txtBuscarCH.setText("Buscar por ID y Nombre");
         txtBuscarCH.setBorder(null);
@@ -132,7 +132,7 @@ public class CargoHistorico extends javax.swing.JFrame {
         getContentPane().add(txtBuscarCH, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 235, 240, 30));
         txtBuscarCH.getAccessibleContext().setAccessibleDescription("");
 
-        txtCargoCH.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        txtCargoCH.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         txtCargoCH.setForeground(new java.awt.Color(153, 153, 153));
         txtCargoCH.setText("Ingrese Cargo");
         txtCargoCH.setBorder(null);
@@ -162,13 +162,13 @@ public class CargoHistorico extends javax.swing.JFrame {
         txtFechaIncioCH.setToolTipText("");
         txtFechaIncioCH.setEnabled(false);
         txtFechaIncioCH.setOpaque(false);
-        getContentPane().add(txtFechaIncioCH, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 425, 190, 30));
+        getContentPane().add(txtFechaIncioCH, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 425, 200, 30));
 
         txtFechaFinalCH.setEnabled(false);
         txtFechaFinalCH.setOpaque(false);
-        getContentPane().add(txtFechaFinalCH, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 490, 190, 30));
+        getContentPane().add(txtFechaFinalCH, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 490, 200, 30));
 
-        txtNombreCH.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        txtNombreCH.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         txtNombreCH.setForeground(new java.awt.Color(153, 153, 153));
         txtNombreCH.setText("Ingrese Nombre Empleado");
         txtNombreCH.setBorder(null);
@@ -196,7 +196,7 @@ public class CargoHistorico extends javax.swing.JFrame {
         getContentPane().add(txtNombreCH, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 358, 190, 30));
         getContentPane().add(txtIdE, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 440, 110, 30));
 
-        comboCargarEmpleado.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        comboCargarEmpleado.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         comboCargarEmpleado.setForeground(new java.awt.Color(153, 153, 153));
         comboCargarEmpleado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione Empleado..." }));
         comboCargarEmpleado.setOpaque(false);
@@ -210,7 +210,7 @@ public class CargoHistorico extends javax.swing.JFrame {
                 comboCargarEmpleadoActionPerformed(evt);
             }
         });
-        getContentPane().add(comboCargarEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 240, 230, 30));
+        getContentPane().add(comboCargarEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 230, 230, 30));
         getContentPane().add(txtIdCargoCH, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 320, 30, 20));
 
         TablaCH.setModel(new javax.swing.table.DefaultTableModel(

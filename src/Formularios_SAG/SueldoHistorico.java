@@ -104,7 +104,7 @@ public class SueldoHistorico extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(TablaSueldoHistorico);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 370, 840, -1));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 310, 600, 290));
 
         BotonGuardarSH.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BotonGuardarSH.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -112,7 +112,7 @@ public class SueldoHistorico extends javax.swing.JFrame {
                 BotonGuardarSHMouseClicked(evt);
             }
         });
-        getContentPane().add(BotonGuardarSH, new org.netbeans.lib.awtextra.AbsoluteConstraints(881, 170, 170, 50));
+        getContentPane().add(BotonGuardarSH, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 140, 140, 50));
 
         BotonEditarSH.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BotonEditarSH.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -120,7 +120,7 @@ public class SueldoHistorico extends javax.swing.JFrame {
                 BotonEditarSHMouseClicked(evt);
             }
         });
-        getContentPane().add(BotonEditarSH, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 180, 170, 40));
+        getContentPane().add(BotonEditarSH, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 140, 130, 50));
 
         BotonAgregarSH.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BotonAgregarSH.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -128,7 +128,7 @@ public class SueldoHistorico extends javax.swing.JFrame {
                 BotonAgregarSHMouseClicked(evt);
             }
         });
-        getContentPane().add(BotonAgregarSH, new org.netbeans.lib.awtextra.AbsoluteConstraints(421, 176, 170, 40));
+        getContentPane().add(BotonAgregarSH, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 140, 140, 50));
 
         BotonCancelarSH.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BotonCancelarSH.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -136,7 +136,7 @@ public class SueldoHistorico extends javax.swing.JFrame {
                 BotonCancelarSHMouseClicked(evt);
             }
         });
-        getContentPane().add(BotonCancelarSH, new org.netbeans.lib.awtextra.AbsoluteConstraints(1111, 176, 170, 40));
+        getContentPane().add(BotonCancelarSH, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 140, 130, 50));
 
         BotonRegresarSH.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BotonRegresarSH.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -144,9 +144,9 @@ public class SueldoHistorico extends javax.swing.JFrame {
                 BotonRegresarSHMouseClicked(evt);
             }
         });
-        getContentPane().add(BotonRegresarSH, new org.netbeans.lib.awtextra.AbsoluteConstraints(41, 36, 190, 50));
+        getContentPane().add(BotonRegresarSH, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 130, 50));
 
-        txtSueldoSH.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        txtSueldoSH.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         txtSueldoSH.setForeground(new java.awt.Color(153, 153, 153));
         txtSueldoSH.setText("Ingrese Sueldo");
         txtSueldoSH.setBorder(null);
@@ -175,11 +175,11 @@ public class SueldoHistorico extends javax.swing.JFrame {
                 txtSueldoSHKeyTyped(evt);
             }
         });
-        getContentPane().add(txtSueldoSH, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 725, 255, 40));
-        getContentPane().add(txtFechaInicioSH, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 565, 260, 40));
-        getContentPane().add(txtFechaFinalSH, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 645, 260, 40));
+        getContentPane().add(txtSueldoSH, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 548, 180, 30));
+        getContentPane().add(txtFechaInicioSH, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 430, 190, 30));
+        getContentPane().add(txtFechaFinalSH, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 490, 190, 30));
 
-        txtEmpleadoSH.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        txtEmpleadoSH.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         txtEmpleadoSH.setForeground(new java.awt.Color(153, 153, 153));
         txtEmpleadoSH.setText("Ingrese Nombre Empleado");
         txtEmpleadoSH.setBorder(null);
@@ -203,9 +203,9 @@ public class SueldoHistorico extends javax.swing.JFrame {
                 txtEmpleadoSHActionPerformed(evt);
             }
         });
-        getContentPane().add(txtEmpleadoSH, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 485, 256, 40));
+        getContentPane().add(txtEmpleadoSH, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 374, 180, 30));
 
-        txtBuscarSH.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        txtBuscarSH.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         txtBuscarSH.setForeground(new java.awt.Color(153, 153, 153));
         txtBuscarSH.setText("Buscar por Nombre o Sueldo");
         txtBuscarSH.setBorder(null);
@@ -226,9 +226,9 @@ public class SueldoHistorico extends javax.swing.JFrame {
                 txtBuscarSHKeyTyped(evt);
             }
         });
-        getContentPane().add(txtBuscarSH, new org.netbeans.lib.awtextra.AbsoluteConstraints(943, 290, 326, 40));
+        getContentPane().add(txtBuscarSH, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 230, 250, 30));
 
-        txtCargarEmpleado.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        txtCargarEmpleado.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         txtCargarEmpleado.setForeground(new java.awt.Color(153, 153, 153));
         txtCargarEmpleado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione Empleado..." }));
         txtCargarEmpleado.setOpaque(false);
@@ -242,13 +242,13 @@ public class SueldoHistorico extends javax.swing.JFrame {
                 txtCargarEmpleadoActionPerformed(evt);
             }
         });
-        getContentPane().add(txtCargarEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 290, 270, 40));
-        getContentPane().add(txtIdSueldoH, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 440, 60, 20));
-        getContentPane().add(txtIdEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 440, 60, 20));
+        getContentPane().add(txtCargarEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 230, 270, 30));
+        getContentPane().add(txtIdSueldoH, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 280, 60, 20));
+        getContentPane().add(txtIdEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 280, 60, 20));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/componentes/Pantalla Sueldo Historico.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/componentes/Pantalla Sueldo Historico(5).png"))); // NOI18N
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1380, 920));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, 1000, 750));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

@@ -87,7 +87,7 @@ public class Proveedores extends javax.swing.JFrame {
                 txtBuscarProActionPerformed(evt);
             }
         });
-        getContentPane().add(txtBuscarPro, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 224, 240, 30));
+        getContentPane().add(txtBuscarPro, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 224, 230, 30));
 
         Proveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/componentes/Pantalla Proveedores.png"))); // NOI18N
         Proveedores.setText("jLabel1");

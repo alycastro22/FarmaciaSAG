@@ -88,9 +88,10 @@ public class Clientes extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(1000, 720));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txtRTN.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        txtRTN.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         txtRTN.setForeground(new java.awt.Color(153, 153, 153));
         txtRTN.setText("Ingrese RTN");
         txtRTN.setBorder(null);
@@ -117,7 +118,7 @@ public class Clientes extends javax.swing.JFrame {
         });
         getContentPane().add(txtRTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 282, 190, 30));
 
-        txtNombreC.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        txtNombreC.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         txtNombreC.setForeground(new java.awt.Color(153, 153, 153));
         txtNombreC.setText("Ingrese Nombre");
         txtNombreC.setBorder(null);
@@ -149,7 +150,7 @@ public class Clientes extends javax.swing.JFrame {
         });
         getContentPane().add(txtNombreC, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 330, 190, 30));
 
-        txtApellidoC.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        txtApellidoC.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         txtApellidoC.setForeground(new java.awt.Color(153, 153, 153));
         txtApellidoC.setText("Ingrese Apellido");
         txtApellidoC.setBorder(null);
@@ -176,7 +177,7 @@ public class Clientes extends javax.swing.JFrame {
         });
         getContentPane().add(txtApellidoC, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, 190, 30));
 
-        comboGenero.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        comboGenero.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         comboGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione género..." }));
         comboGenero.setToolTipText("");
         comboGenero.setBorder(null);
@@ -190,9 +191,10 @@ public class Clientes extends javax.swing.JFrame {
         });
         getContentPane().add(comboGenero, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 430, 190, 30));
 
-        txtDireccionC.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        txtDireccionC.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         txtDireccionC.setForeground(new java.awt.Color(153, 153, 153));
         txtDireccionC.setText("Ingrese Dirección");
+        txtDireccionC.setBorder(null);
         txtDireccionC.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         txtDireccionC.setEnabled(false);
         txtDireccionC.setOpaque(false);
@@ -216,9 +218,10 @@ public class Clientes extends javax.swing.JFrame {
         });
         getContentPane().add(txtDireccionC, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 530, 190, 30));
 
-        txtTelefonoC.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        txtTelefonoC.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         txtTelefonoC.setForeground(new java.awt.Color(153, 153, 153));
         txtTelefonoC.setText("Ingrese Teléfono");
+        txtTelefonoC.setBorder(null);
         txtTelefonoC.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         txtTelefonoC.setEnabled(false);
         txtTelefonoC.setOpaque(false);
@@ -242,9 +245,10 @@ public class Clientes extends javax.swing.JFrame {
         });
         getContentPane().add(txtTelefonoC, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 575, 190, 30));
 
-        txtEmail.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        txtEmail.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         txtEmail.setForeground(new java.awt.Color(153, 153, 153));
         txtEmail.setText("Ingrese E-mail");
+        txtEmail.setBorder(null);
         txtEmail.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         txtEmail.setEnabled(false);
         txtEmail.setOpaque(false);
@@ -263,7 +267,7 @@ public class Clientes extends javax.swing.JFrame {
         });
         getContentPane().add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 620, 190, 30));
 
-        txtBuscarC.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        txtBuscarC.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         txtBuscarC.setForeground(new java.awt.Color(153, 153, 153));
         txtBuscarC.setText("Buscar ID , Nombre o RTN");
         txtBuscarC.setBorder(null);
@@ -379,7 +383,7 @@ public class Clientes extends javax.swing.JFrame {
         getContentPane().add(tablaClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 300, 710, 400));
 
         grupoBotonClientes.add(BotonInactivoC);
-        BotonInactivoC.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
+        BotonInactivoC.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         BotonInactivoC.setText("Inactivo");
         BotonInactivoC.setOpaque(false);
         BotonInactivoC.addActionListener(new java.awt.event.ActionListener() {
@@ -393,7 +397,7 @@ public class Clientes extends javax.swing.JFrame {
         getContentPane().add(txtFechaNac, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 480, 190, 30));
 
         grupoBotonClientes.add(BotonActivoC);
-        BotonActivoC.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
+        BotonActivoC.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         BotonActivoC.setText("Activo");
         BotonActivoC.setOpaque(false);
         BotonActivoC.addActionListener(new java.awt.event.ActionListener() {
@@ -412,7 +416,7 @@ public class Clientes extends javax.swing.JFrame {
         getContentPane().add(txtFechaRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 665, 190, 30));
 
         txtIdC.setEnabled(false);
-        getContentPane().add(txtIdC, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 300, 100, 30));
+        getContentPane().add(txtIdC, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 260, 30, 20));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/componentes/Pantalla Clientes.png"))); // NOI18N
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));

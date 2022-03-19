@@ -77,7 +77,7 @@ public class Sucursales extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         grupoBotonSucursal.add(BotonInactivoS);
-        BotonInactivoS.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
+        BotonInactivoS.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         BotonInactivoS.setText("Inactivo");
         BotonInactivoS.setOpaque(false);
         BotonInactivoS.addActionListener(new java.awt.event.ActionListener() {
@@ -88,7 +88,7 @@ public class Sucursales extends javax.swing.JFrame {
         getContentPane().add(BotonInactivoS, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 250, -1, -1));
 
         grupoBotonSucursal.add(BotonActivoS);
-        BotonActivoS.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
+        BotonActivoS.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         BotonActivoS.setText("Activo");
         BotonActivoS.setOpaque(false);
         BotonActivoS.addActionListener(new java.awt.event.ActionListener() {
@@ -114,7 +114,7 @@ public class Sucursales extends javax.swing.JFrame {
                 botonEditarSMouseClicked(evt);
             }
         });
-        getContentPane().add(botonEditarS, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 170, 170, 50));
+        getContentPane().add(botonEditarS, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 150, 140, 50));
 
         botonGerenciaS.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonGerenciaS.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -122,9 +122,9 @@ public class Sucursales extends javax.swing.JFrame {
                 botonGerenciaSMouseClicked(evt);
             }
         });
-        getContentPane().add(botonGerenciaS, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 190, 120, 30));
+        getContentPane().add(botonGerenciaS, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 150, 140, 50));
 
-        txtBuscarS.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        txtBuscarS.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         txtBuscarS.setForeground(new java.awt.Color(153, 153, 153));
         txtBuscarS.setText("Buscar por ID o Nombre");
         txtBuscarS.setBorder(null);
@@ -150,7 +150,7 @@ public class Sucursales extends javax.swing.JFrame {
                 txtBuscarSKeyTyped(evt);
             }
         });
-        getContentPane().add(txtBuscarS, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 248, 250, 29));
+        getContentPane().add(txtBuscarS, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 235, 250, 29));
 
         botonGuardarS.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonGuardarS.setEnabled(false);
@@ -170,7 +170,7 @@ public class Sucursales extends javax.swing.JFrame {
         });
         getContentPane().add(botonCancelarS, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 650, 100, 40));
 
-        txtNombreS.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        txtNombreS.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         txtNombreS.setForeground(new java.awt.Color(153, 153, 153));
         txtNombreS.setText("Ingrese Nombre Sucursal");
         txtNombreS.setBorder(null);
@@ -203,9 +203,9 @@ public class Sucursales extends javax.swing.JFrame {
                 txtNombreSKeyTyped(evt);
             }
         });
-        getContentPane().add(txtNombreS, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 370, 210, 30));
+        getContentPane().add(txtNombreS, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 357, 190, 30));
 
-        txtDireccionS.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        txtDireccionS.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         txtDireccionS.setForeground(new java.awt.Color(153, 153, 153));
         txtDireccionS.setText("Ingrese Dirección");
         txtDireccionS.setBorder(null);
@@ -237,9 +237,9 @@ public class Sucursales extends javax.swing.JFrame {
                 txtDireccionSKeyTyped(evt);
             }
         });
-        getContentPane().add(txtDireccionS, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 508, 200, 30));
+        getContentPane().add(txtDireccionS, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 490, 190, 30));
 
-        botonCiudadS.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        botonCiudadS.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         botonCiudadS.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ciudad", "Tegucigalpa", "San Pedro Sula" }));
         botonCiudadS.setBorder(null);
         botonCiudadS.setEnabled(false);
@@ -254,10 +254,10 @@ public class Sucursales extends javax.swing.JFrame {
                 botonCiudadSActionPerformed(evt);
             }
         });
-        getContentPane().add(botonCiudadS, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 440, 190, 30));
+        getContentPane().add(botonCiudadS, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 422, 190, 31));
         botonCiudadS.getAccessibleContext().setAccessibleName("");
 
-        txtTelefonoS.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        txtTelefonoS.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         txtTelefonoS.setForeground(new java.awt.Color(153, 153, 153));
         txtTelefonoS.setText("Ingrese Teléfono");
         txtTelefonoS.setBorder(null);
@@ -286,7 +286,7 @@ public class Sucursales extends javax.swing.JFrame {
                 txtTelefonoSKeyTyped(evt);
             }
         });
-        getContentPane().add(txtTelefonoS, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 577, 200, 30));
+        getContentPane().add(txtTelefonoS, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 556, 190, 30));
         getContentPane().add(botonSalirS, new org.netbeans.lib.awtextra.AbsoluteConstraints(1290, 530, 90, 40));
 
         txtIdS.setEnabled(false);
@@ -298,7 +298,7 @@ public class Sucursales extends javax.swing.JFrame {
                 botonRegresarSMouseClicked(evt);
             }
         });
-        getContentPane().add(botonRegresarS, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 180, 50));
+        getContentPane().add(botonRegresarS, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 140, 50));
 
         txtEstadoS.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         txtEstadoS.setText("Estado");
@@ -340,11 +340,11 @@ public class Sucursales extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tablasucursal);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 340, 700, 370));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 300, 700, 370));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/componentes/Pantalla Sucursales(1).png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/componentes/Pantalla Sucursales(2).png"))); // NOI18N
         jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1030, 750));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 990, 720));
 
         pack();
         setLocationRelativeTo(null);
