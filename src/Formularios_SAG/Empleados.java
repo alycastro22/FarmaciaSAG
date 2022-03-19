@@ -74,7 +74,10 @@ public class Empleados extends javax.swing.JFrame {
         botonRegresarE = new javax.swing.JLabel();
         errorNumDocumento = new javax.swing.JLabel();
         errorNombre = new javax.swing.JLabel();
+        txtCargoE = new javax.swing.JTextField();
+        txtSueldoE = new javax.swing.JTextField();
         txtIdE = new javax.swing.JLabel();
+        FechaNacimientoE = new com.toedter.calendar.JDateChooser();
         barraEmpleado = new javax.swing.JScrollPane();
         TablaEmpleado = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
@@ -93,7 +96,7 @@ public class Empleados extends javax.swing.JFrame {
                 ComboSucursalEActionPerformed(evt);
             }
         });
-        getContentPane().add(ComboSucursalE, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 610, 200, 30));
+        getContentPane().add(ComboSucursalE, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 615, 190, 30));
         ComboSucursalE.getAccessibleContext().setAccessibleDescription("");
 
         ComboDocumento.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
@@ -107,7 +110,7 @@ public class Empleados extends javax.swing.JFrame {
                 ComboDocumentoActionPerformed(evt);
             }
         });
-        getContentPane().add(ComboDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 320, 190, 30));
+        getContentPane().add(ComboDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 327, 190, 30));
 
         BotonCargoHistoricoE.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BotonCargoHistoricoE.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -115,7 +118,7 @@ public class Empleados extends javax.swing.JFrame {
                 BotonCargoHistoricoEMouseClicked(evt);
             }
         });
-        getContentPane().add(BotonCargoHistoricoE, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 140, 140, 40));
+        getContentPane().add(BotonCargoHistoricoE, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 140, 140, 50));
 
         BotonSueldoHistoricoE.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BotonSueldoHistoricoE.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -123,7 +126,7 @@ public class Empleados extends javax.swing.JFrame {
                 BotonSueldoHistoricoEMouseClicked(evt);
             }
         });
-        getContentPane().add(BotonSueldoHistoricoE, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 140, 140, 40));
+        getContentPane().add(BotonSueldoHistoricoE, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 140, 140, 50));
 
         BotonEditarE.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BotonEditarE.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -131,7 +134,7 @@ public class Empleados extends javax.swing.JFrame {
                 BotonEditarEMouseClicked(evt);
             }
         });
-        getContentPane().add(BotonEditarE, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 140, 130, 40));
+        getContentPane().add(BotonEditarE, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 140, 130, 50));
 
         BotonAgregarE.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BotonAgregarE.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -139,7 +142,7 @@ public class Empleados extends javax.swing.JFrame {
                 BotonAgregarEMouseClicked(evt);
             }
         });
-        getContentPane().add(BotonAgregarE, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 140, 130, 40));
+        getContentPane().add(BotonAgregarE, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 140, 130, 50));
 
         BotonBuscarE.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -172,11 +175,11 @@ public class Empleados extends javax.swing.JFrame {
                 txtBuscarEKeyTyped(evt);
             }
         });
-        getContentPane().add(txtBuscarE, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 230, 250, 30));
+        getContentPane().add(txtBuscarE, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 233, 250, 30));
         txtBuscarE.getAccessibleContext().setAccessibleDescription("");
 
         grupoBotonesEmpleados.add(BotonActivoE);
-        BotonActivoE.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
+        BotonActivoE.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         BotonActivoE.setForeground(new java.awt.Color(255, 255, 255));
         BotonActivoE.setText("Activo");
         BotonActivoE.setOpaque(false);
@@ -188,7 +191,7 @@ public class Empleados extends javax.swing.JFrame {
         getContentPane().add(BotonActivoE, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 670, -1, -1));
 
         grupoBotonesEmpleados.add(BotonInactivoE);
-        BotonInactivoE.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
+        BotonInactivoE.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         BotonInactivoE.setForeground(new java.awt.Color(255, 255, 255));
         BotonInactivoE.setText("Inactivo");
         BotonInactivoE.setOpaque(false);
@@ -226,7 +229,7 @@ public class Empleados extends javax.swing.JFrame {
                 ComboGeneroEActionPerformed(evt);
             }
         });
-        getContentPane().add(ComboGeneroE, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 470, 200, 30));
+        getContentPane().add(ComboGeneroE, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 477, 190, 30));
 
         txtDocumentoE.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         txtDocumentoE.setForeground(new java.awt.Color(153, 153, 153));
@@ -253,7 +256,7 @@ public class Empleados extends javax.swing.JFrame {
                 txtDocumentoEKeyTyped(evt);
             }
         });
-        getContentPane().add(txtDocumentoE, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 370, 200, 30));
+        getContentPane().add(txtDocumentoE, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 374, 200, 30));
 
         txtNombreE.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         txtNombreE.setForeground(new java.awt.Color(153, 153, 153));
@@ -280,7 +283,7 @@ public class Empleados extends javax.swing.JFrame {
                 txtNombreEKeyTyped(evt);
             }
         });
-        getContentPane().add(txtNombreE, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, 200, 30));
+        getContentPane().add(txtNombreE, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 278, 190, 30));
         txtNombreE.getAccessibleContext().setAccessibleName("");
 
         botonRegresarE.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -297,26 +300,39 @@ public class Empleados extends javax.swing.JFrame {
         errorNombre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/componentes/iconoX.png"))); // NOI18N
         getContentPane().add(errorNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 330, -1, -1));
 
+        txtCargoE.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        txtCargoE.setText("Cargo");
+        txtCargoE.setBorder(null);
+        txtCargoE.setOpaque(false);
+        getContentPane().add(txtCargoE, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 524, 190, 30));
+
+        txtSueldoE.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        txtSueldoE.setText("Sueldo");
+        txtSueldoE.setBorder(null);
+        txtSueldoE.setOpaque(false);
+        getContentPane().add(txtSueldoE, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 570, 190, 30));
+
         txtIdE.setEnabled(false);
         getContentPane().add(txtIdE, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 140, 30));
+        getContentPane().add(FechaNacimientoE, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 423, 190, 30));
 
         TablaEmpleado.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
         TablaEmpleado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Id", "Nombre Completo", "Tipo de Documento", "Documento", "Género", "Sucursal", "Estado"
+                "Id", "Nombre Completo", "Tipo de Documento", "Documento", "Fecha  Nacimiento", "Género", "Cargo  ", "Sueldo", "Sucursal"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -338,14 +354,14 @@ public class Empleados extends javax.swing.JFrame {
 
         getContentPane().add(barraEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 280, 670, 380));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/componentes/Pantalla Empleados.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/componentes/Pantalla Empleados(3).png"))); // NOI18N
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel1MouseClicked(evt);
             }
         });
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -60, 1020, 830));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 1000, 740));
 
         pack();
         setLocationRelativeTo(null);
@@ -791,6 +807,7 @@ public class Empleados extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> ComboDocumento;
     private javax.swing.JComboBox<String> ComboGeneroE;
     private javax.swing.JComboBox<String> ComboSucursalE;
+    private com.toedter.calendar.JDateChooser FechaNacimientoE;
     private javax.swing.JTable TablaEmpleado;
     private javax.swing.JScrollPane barraEmpleado;
     private javax.swing.JLabel botonRegresarE;
@@ -799,9 +816,11 @@ public class Empleados extends javax.swing.JFrame {
     private javax.swing.ButtonGroup grupoBotonesEmpleados;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField txtBuscarE;
+    private javax.swing.JTextField txtCargoE;
     private javax.swing.JTextField txtDocumentoE;
     private javax.swing.JLabel txtIdE;
     private javax.swing.JTextField txtNombreE;
+    private javax.swing.JTextField txtSueldoE;
     // End of variables declaration//GEN-END:variables
 
     private void cargartabla() {
