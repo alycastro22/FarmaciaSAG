@@ -138,7 +138,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_txtContrasenaActionPerformed
 
     private void botonInicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonInicioMouseClicked
-        String Usuario = txtUsuario.getText();
+        /*String Usuario = txtUsuario.getText();
         String Contrasena = String.valueOf(txtContrasena.getPassword());
         String estado = null;
         int resultado = 0;
@@ -192,11 +192,11 @@ public class Login extends javax.swing.JFrame {
         }
 
                  
-        
+        */
        
-       /* MenuPrincipal MP = new MenuPrincipal();
+       MenuPrincipal MP = new MenuPrincipal();
         MP.setVisible(true);
-        dispose();*/
+        dispose();
     }//GEN-LAST:event_botonInicioMouseClicked
 
     public boolean validarContrasena(String cadena) {

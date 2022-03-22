@@ -92,7 +92,7 @@ public class Productos extends javax.swing.JFrame {
         getContentPane().add(txtLoteP, new org.netbeans.lib.awtextra.AbsoluteConstraints(55, 540, 190, 30));
 
         txtFechaVencimientoP.setOpaque(false);
-        getContentPane().add(txtFechaVencimientoP, new org.netbeans.lib.awtextra.AbsoluteConstraints(55, 580, 190, 32));
+        getContentPane().add(txtFechaVencimientoP, new org.netbeans.lib.awtextra.AbsoluteConstraints(55, 582, 190, 30));
 
         txtBuscarP.setBorder(null);
         txtBuscarP.setOpaque(false);
