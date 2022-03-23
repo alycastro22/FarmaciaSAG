@@ -6,7 +6,6 @@
 package Formularios_SAG;
 
 import Conexion.Conexion;
-import com.sun.corba.se.impl.orbutil.CorbaResourceUtil;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -34,15 +33,11 @@ public class Sucursales extends javax.swing.JFrame {
     /**
      * Creates new form Sucursales
      */
-    
-    
-       
     @Override
     public Image getIconImage() {
         Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("componentes/LOGOSAG(2).png"));
         return retValue;
     }
- 
 
     public Sucursales() {
         initComponents();
@@ -114,7 +109,7 @@ public class Sucursales extends javax.swing.JFrame {
         getContentPane().add(BotonActivoS, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 250, -1, -1));
         getContentPane().add(botonBuscarS, new org.netbeans.lib.awtextra.AbsoluteConstraints(1270, 280, 40, 40));
 
-        botonAgregarS.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonAgregarS.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         botonAgregarS.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botonAgregarSMouseClicked(evt);
@@ -122,7 +117,7 @@ public class Sucursales extends javax.swing.JFrame {
         });
         getContentPane().add(botonAgregarS, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 150, 130, 50));
 
-        botonEditarS.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonEditarS.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         botonEditarS.setEnabled(false);
         botonEditarS.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -131,7 +126,7 @@ public class Sucursales extends javax.swing.JFrame {
         });
         getContentPane().add(botonEditarS, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 150, 140, 50));
 
-        botonGerenciaS.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonGerenciaS.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         botonGerenciaS.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botonGerenciaSMouseClicked(evt);
@@ -167,7 +162,7 @@ public class Sucursales extends javax.swing.JFrame {
         });
         getContentPane().add(txtBuscarS, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 235, 250, 29));
 
-        botonGuardarS.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonGuardarS.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         botonGuardarS.setEnabled(false);
         botonGuardarS.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -176,7 +171,7 @@ public class Sucursales extends javax.swing.JFrame {
         });
         getContentPane().add(botonGuardarS, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 650, 100, 40));
 
-        botonCancelarS.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonCancelarS.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         botonCancelarS.setEnabled(false);
         botonCancelarS.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -307,7 +302,7 @@ public class Sucursales extends javax.swing.JFrame {
         txtIdS.setEnabled(false);
         getContentPane().add(txtIdS, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, 90, 20));
 
-        botonRegresarS.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonRegresarS.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         botonRegresarS.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botonRegresarSMouseClicked(evt);
@@ -403,7 +398,7 @@ public class Sucursales extends javax.swing.JFrame {
 
     private void botonEditarSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEditarSMouseClicked
 
-        if (txtNombreS.getText().equals("Ingrese Nombre Sucursal") || txtTelefonoS.getText().equals("Ingrese Teléfono") || txtDireccionS.getText().equals("Ingrese Dirección")) {
+         if (txtNombreS.getText().equals("Ingrese Nombre Sucursal") || txtTelefonoS.getText().equals("Ingrese Teléfono") || txtDireccionS.getText().equals("Ingrese Dirección")) {
             JOptionPane.showMessageDialog(null, "No se puede Actualizar datos vacios");
         } else {
             int Id = Integer.parseInt(txtIdS.getText());
@@ -411,22 +406,15 @@ public class Sucursales extends javax.swing.JFrame {
             String Ciudad = botonCiudadS.getSelectedItem().toString();
             String Direccion = txtDireccionS.getText();
             String Telefono = txtTelefonoS.getText();
-            String Estado = "";
 
-            if (BotonActivoS.isSelected() == true) {
-                Estado = "Activo";
-            } else if (BotonInactivoS.isSelected() == true) {
-                Estado = "Inactivo";
-            }
             try {
                 Connection con = Conexion.getConexion();
-                PreparedStatement ps = con.prepareStatement("Update Sucursal set Nombre=?, Ciudad=?, Direccion=?, Telefono=?, estado=? where Id_Sucursal =?");
+                PreparedStatement ps = con.prepareStatement("Update Sucursal set Nombre=?, Ciudad=?, Direccion=?, Telefono=? where Id_Sucursal =?");
                 ps.setString(1, Nombre);
                 ps.setString(2, Ciudad);
                 ps.setString(3, Direccion);
                 ps.setInt(4, Integer.valueOf(Telefono));
-                ps.setString(5, Estado);
-                ps.setInt(6, Id);
+                ps.setInt(5, Id);
                 ps.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Registro Actualizado");
                 cargartabla();
@@ -440,17 +428,20 @@ public class Sucursales extends javax.swing.JFrame {
     }//GEN-LAST:event_botonEditarSMouseClicked
 
     private void botonGerenciaSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGerenciaSMouseClicked
-        // TODO add your handling code here:
+     
+        GerenciaSucursal ad = new GerenciaSucursal();
+        ad.setVisible(true);
+        this.dispose();
+        
     }//GEN-LAST:event_botonGerenciaSMouseClicked
 
     private void BotonActivoSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonActivoSActionPerformed
-        String Estado = "Activo";
         int Id = Integer.parseInt(txtIdS.getText());
         try {
             Connection con = Conexion.getConexion();
-            PreparedStatement ps = con.prepareStatement("Update  Sucursal set estado=? where Id_Sucursal=?");
+            PreparedStatement ps = con.prepareStatement("Update  Sucursal set Id_Estado=? where Id_Sucursal=?");
 
-            ps.setString(1, Estado);
+            ps.setInt(1, 1);
             ps.setInt(2, Id);
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "Registro Habilitado");
@@ -464,13 +455,12 @@ public class Sucursales extends javax.swing.JFrame {
     }//GEN-LAST:event_BotonActivoSActionPerformed
 
     private void BotonInactivoSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonInactivoSActionPerformed
-        String Estado = "Inactivo";
         int Id = Integer.parseInt(txtIdS.getText());
         try {
             Connection con = Conexion.getConexion();
-            PreparedStatement ps = con.prepareStatement("Update  Sucursal set estado=? where Id_Sucursal=?");
+            PreparedStatement ps = con.prepareStatement("Update  Sucursal set Id_Estado=? where Id_Sucursal=?");
 
-            ps.setString(1, Estado);
+            ps.setInt(1, 2);
             ps.setInt(2, Id);
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "Registro inhabilitao");
@@ -485,7 +475,6 @@ public class Sucursales extends javax.swing.JFrame {
 
     private void botonGuardarSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGuardarSMouseClicked
         // TODO add your handling code here:
-
         String Nombre = txtNombreS.getText();
         String Ciudad = botonCiudadS.getSelectedItem().toString();
         String Direccion = txtDireccionS.getText();
@@ -495,12 +484,12 @@ public class Sucursales extends javax.swing.JFrame {
         } else {
             try {
                 Connection con = Conexion.getConexion();
-                PreparedStatement ps = con.prepareStatement("Insert into Sucursal (Nombre, Ciudad, Direccion, Telefono, estado) VALUES(?,?,?,?,?)");
+                PreparedStatement ps = con.prepareStatement("Insert into Sucursal (Nombre, Ciudad, Direccion, Telefono, Id_Estado) VALUES(?,?,?,?,?)");
                 ps.setString(1, Nombre);
                 ps.setString(2, Ciudad);
                 ps.setString(3, Direccion);
                 ps.setInt(4, Integer.valueOf(Telefono));
-                ps.setString(5, "Activo");
+                ps.setInt(5, 1);
                 ps.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Registro guardado");
                 cargartabla();
@@ -515,6 +504,7 @@ public class Sucursales extends javax.swing.JFrame {
         }
 
 
+
     }//GEN-LAST:event_botonGuardarSMouseClicked
 
     private void tablasucursalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablasucursalMouseClicked
@@ -525,7 +515,7 @@ public class Sucursales extends javax.swing.JFrame {
             PreparedStatement ps;
             ResultSet rs;
             Connection con = Conexion.getConexion();
-            ps = con.prepareStatement("SELECT  Nombre, Ciudad, Direccion, Telefono, estado FROM Sucursal WHERE Id_Sucursal=?");
+            ps = con.prepareStatement("SELECT  Nombre, Ciudad, Direccion, Telefono, Id_Estado FROM Sucursal WHERE Id_Sucursal=?");
             ps.setInt(1, id);
             rs = ps.executeQuery();
 
@@ -535,9 +525,9 @@ public class Sucursales extends javax.swing.JFrame {
                 botonCiudadS.setSelectedItem(rs.getString("Ciudad"));
                 txtDireccionS.setText(rs.getString("Direccion"));
                 txtTelefonoS.setText(rs.getString("Telefono"));
-                if (rs.getString("estado").equals("Activo")) {
+                if (rs.getString("Id_Estado").equals("1")) {
                     BotonActivoS.setSelected(true);
-                } else if (rs.getString("estado").equals("Inactivo")) {
+                } else if (rs.getString("Id_Estado").equals("2")) {
                     BotonInactivoS.setSelected(true);
                 }
             }
@@ -726,15 +716,17 @@ public class Sucursales extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "No repitas caracteres de forma incorrecta", "Advertencia", JOptionPane.WARNING_MESSAGE);
                 evt.consume();
             }
-           /**if (nuevo.isEmpty()) {
-                JOptionPane.showMessageDialog(null, "NO ESPACIOS EN BLANCO", "Advertencia", JOptionPane.WARNING_MESSAGE);
-           evt.consume(); */
-       
+            /**
+             * if (nuevo.isEmpty()) { JOptionPane.showMessageDialog(null, "NO
+             * ESPACIOS EN BLANCO", "Advertencia", JOptionPane.WARNING_MESSAGE);
+             * evt.consume();
+             */
+
         }
     }//GEN-LAST:event_txtNombreSKeyTyped
 
     private void txtNombreSKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreSKeyReleased
-
+     
     }//GEN-LAST:event_txtNombreSKeyReleased
 
     private void txtDireccionSKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionSKeyTyped
@@ -767,7 +759,10 @@ public class Sucursales extends javax.swing.JFrame {
 
         try {
             Connection con = Conexion.getConexion();
-            ps = con.prepareStatement("SELECT Id_Sucursal, Nombre, Ciudad, Direccion, Telefono, estado FROM Sucursal");
+            ps = con.prepareStatement("SELECT S.Id_Sucursal, S.Nombre, S.Ciudad, S.Direccion, S.Telefono, E.Estado\n"
+                    + "FROM Sucursal AS S\n"
+                    + "INNER JOIN Estado AS E ON S.Id_Estado = E.Id_Estado\n"
+                    + "ORDER BY S.Id_Sucursal");
             rs = ps.executeQuery();
             rsmd = rs.getMetaData();
             columnas = rsmd.getColumnCount();
@@ -876,7 +871,7 @@ public class Sucursales extends javax.swing.JFrame {
     void buscarData(String valor) {
         String[] titulos = {"ID", "Nombre", "Ciudad", "Direccion", "Telefono", "Estado"};
         String[] registros = new String[13];
-        String sql = "SELECT Id_Sucursal,Nombre,Ciudad,Direccion, Telefono,estado\n"
+        String sql = "SELECT Id_Sucursal,Nombre,Ciudad,Direccion, Telefono,Id_Estado\n"
                 + "FROM Sucursal \n"
                 + "WHERE CONCAT (Id_Sucursal, ' ', Nombre) LIKE '%" + valor + "%'\n"
                 + "ORDER BY Id_Sucursal";
@@ -895,7 +890,7 @@ public class Sucursales extends javax.swing.JFrame {
                 registros[2] = rs.getString("Ciudad");
                 registros[3] = rs.getString("Direccion");
                 registros[4] = rs.getString("Telefono");
-                registros[5] = rs.getString("estado");
+                registros[5] = rs.getString("Id_Estado");
 
                 model.addRow(registros);
             }
@@ -920,16 +915,6 @@ public class Sucursales extends javax.swing.JFrame {
         txtDireccionS.enable(Boolean.FALSE);
         txtTelefonoS.enable(Boolean.FALSE);
 
-    }
-
-    private static class nuevo {
-
-        private static boolean isEmpty() {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        }
-
-        public nuevo() {
-        }
     }
 
 }

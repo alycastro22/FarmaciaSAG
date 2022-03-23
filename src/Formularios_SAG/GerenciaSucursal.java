@@ -5,6 +5,24 @@
  */
 package Formularios_SAG;
 
+import Conexion.Conexion;
+import java.awt.Color;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Calendar;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Allisson Castro
@@ -14,8 +32,26 @@ public class GerenciaSucursal extends javax.swing.JFrame {
     /**
      * Creates new form GerenciaSucursal
      */
+    @Override
+
+    public Image getIconImage() {
+
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("componentes/LOGOSAG(2).png"));
+
+        return retValue;
+
+    }
+    
     public GerenciaSucursal() {
         initComponents();
+        cargartabla();
+        CargarCargo cc = new GerenciaSucursal.CargarCargo();
+        ComboNombreEmpleadoGS.setModel(cc.getvalues());
+        CargarSucursal cs = new GerenciaSucursal.CargarSucursal();
+        ComboNombreSurcursalGS.setModel(cs.getvalues());
+        txtIdGS.setVisible(Boolean.FALSE);
+        txtIdEmpleado.setVisible(Boolean.FALSE);
+        Inhabillitar();
     }
 
     /**
@@ -32,32 +68,129 @@ public class GerenciaSucursal extends javax.swing.JFrame {
         BotonEditarGS = new javax.swing.JLabel();
         BotonGuardarGS = new javax.swing.JLabel();
         BotonCancelarGS = new javax.swing.JLabel();
+        txtFechaInicioGS = new javax.swing.JTextField();
         ComboNombreSurcursalGS = new javax.swing.JComboBox<>();
         ComboNombreEmpleadoGS = new javax.swing.JComboBox<>();
-        FechaInicial = new com.toedter.calendar.JDateChooser();
-        FechaFinal = new com.toedter.calendar.JDateChooser();
+        txtIdEmpleado = new javax.swing.JLabel();
+        txtFechaFinalGS = new javax.swing.JTextField();
+        txtIdGS = new javax.swing.JLabel();
         txtBuscarPro = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaGerencia = new javax.swing.JTable();
         GerenciaSucursal = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        BotonRegresarGS.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BotonRegresarGSMouseClicked(evt);
+            }
+        });
         getContentPane().add(BotonRegresarGS, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 46, 120, 30));
+
+        BotonAgregarGS.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BotonAgregarGSMouseClicked(evt);
+            }
+        });
         getContentPane().add(BotonAgregarGS, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, 130, 30));
+
+        BotonEditarGS.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BotonEditarGSMouseClicked(evt);
+            }
+        });
         getContentPane().add(BotonEditarGS, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 140, 120, 30));
+
+        BotonGuardarGS.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BotonGuardarGSMouseClicked(evt);
+            }
+        });
         getContentPane().add(BotonGuardarGS, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 140, 120, 30));
         getContentPane().add(BotonCancelarGS, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 140, 120, 30));
 
-        ComboNombreSurcursalGS.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        txtFechaInicioGS.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        txtFechaInicioGS.setForeground(new java.awt.Color(153, 153, 153));
+        txtFechaInicioGS.setText("Ingrese Fecha Inicio");
+        txtFechaInicioGS.setBorder(null);
+        txtFechaInicioGS.setOpaque(false);
+        txtFechaInicioGS.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtFechaInicioGSFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtFechaInicioGSFocusLost(evt);
+            }
+        });
+        txtFechaInicioGS.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtFechaInicioGSMousePressed(evt);
+            }
+        });
+        txtFechaInicioGS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFechaInicioGSActionPerformed(evt);
+            }
+        });
+        txtFechaInicioGS.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtFechaInicioGSKeyTyped(evt);
+            }
+        });
+        getContentPane().add(txtFechaInicioGS, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 460, 200, 30));
+
+        ComboNombreSurcursalGS.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sucursal" }));
         ComboNombreSurcursalGS.setBorder(null);
         ComboNombreSurcursalGS.setOpaque(false);
+        ComboNombreSurcursalGS.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                ComboNombreSurcursalGSMousePressed(evt);
+            }
+        });
+        ComboNombreSurcursalGS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComboNombreSurcursalGSActionPerformed(evt);
+            }
+        });
         getContentPane().add(ComboNombreSurcursalGS, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 336, 180, 30));
 
-        ComboNombreEmpleadoGS.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        ComboNombreEmpleadoGS.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Empleado" }));
         ComboNombreEmpleadoGS.setBorder(null);
         ComboNombreEmpleadoGS.setOpaque(false);
         getContentPane().add(ComboNombreEmpleadoGS, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 400, 180, 30));
-        getContentPane().add(FechaInicial, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 460, 180, 35));
-        getContentPane().add(FechaFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 525, 180, 34));
+
+        txtIdEmpleado.setEnabled(false);
+        getContentPane().add(txtIdEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 240, 20, 20));
+
+        txtFechaFinalGS.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        txtFechaFinalGS.setForeground(new java.awt.Color(153, 153, 153));
+        txtFechaFinalGS.setText("Ingrese Fecha Finalización");
+        txtFechaFinalGS.setBorder(null);
+        txtFechaFinalGS.setOpaque(false);
+        txtFechaFinalGS.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtFechaFinalGSFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtFechaFinalGSFocusLost(evt);
+            }
+        });
+        txtFechaFinalGS.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtFechaFinalGSMousePressed(evt);
+            }
+        });
+        txtFechaFinalGS.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtFechaFinalGSKeyTyped(evt);
+            }
+        });
+        getContentPane().add(txtFechaFinalGS, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 530, 200, 30));
+
+        txtIdGS.setEnabled(false);
+        getContentPane().add(txtIdGS, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, 20, 20));
 
         txtBuscarPro.setBorder(null);
         txtBuscarPro.setOpaque(false);
@@ -67,6 +200,44 @@ public class GerenciaSucursal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txtBuscarPro, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 220, 240, 30));
+
+        tablaGerencia.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        tablaGerencia.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Sucursal", "Gerente", "Fecha  Inicio", "Fecha Final"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tablaGerencia.setRowHeight(30);
+        tablaGerencia.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaGerenciaMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tablaGerencia);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 290, 610, 370));
 
         GerenciaSucursal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/componentes/Pantalla Gerente-Sucursal.png"))); // NOI18N
         GerenciaSucursal.setText("jLabel1");
@@ -79,9 +250,193 @@ public class GerenciaSucursal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtBuscarProActionPerformed
 
+    private void txtFechaInicioGSFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFechaInicioGSFocusGained
+        if (txtFechaInicioGS.getText().equals("Ingrese Fecha Inicio")) {
+            txtFechaInicioGS.setText("");
+            txtFechaInicioGS.setForeground(new Color(0, 0, 0));
+        }
+    }//GEN-LAST:event_txtFechaInicioGSFocusGained
+
+    private void txtFechaInicioGSFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFechaInicioGSFocusLost
+        if (txtFechaInicioGS.getText().equals("")) {
+            txtFechaInicioGS.setText("Ingrese Fecha Inicio");
+            txtFechaInicioGS.setForeground(new Color(153, 153, 153));
+        } else if (!txtFechaInicioGS.getText().matches("^[0-9]{4}[-]{1}[0-9]{2}[-]{1}[0-9]{2}$")) {
+            JOptionPane.showMessageDialog(null, "Debes escribir el formato correcto para la fecha \n Formato correcto: AAAA-MM-DD", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_txtFechaInicioGSFocusLost
+
+    private void txtFechaInicioGSMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtFechaInicioGSMousePressed
+        if (txtFechaInicioGS.isEnabled() == false) {
+
+            JOptionPane.showMessageDialog(null, "Dar Click en Agregar o Editar para utilizar el campo", "Advertencia", JOptionPane.WARNING_MESSAGE);
+
+        }
+    }//GEN-LAST:event_txtFechaInicioGSMousePressed
+
+    private void txtFechaInicioGSKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFechaInicioGSKeyTyped
+        if (txtFechaInicioGS.getText().length() > 9) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtFechaInicioGSKeyTyped
+
+    private void txtFechaFinalGSFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFechaFinalGSFocusGained
+        if (txtFechaInicioGS.getText().equals("Ingrese Fecha Finalización")) {
+            txtFechaInicioGS.setText("");
+            txtFechaInicioGS.setForeground(new Color(0, 0, 0));
+        }
+    }//GEN-LAST:event_txtFechaFinalGSFocusGained
+
+    private void txtFechaFinalGSFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFechaFinalGSFocusLost
+        if (txtFechaInicioGS.getText().equals("")) {
+            txtFechaInicioGS.setText("Ingrese Fecha Finalización");
+            txtFechaInicioGS.setForeground(new Color(153, 153, 153));
+        } else if (!txtFechaInicioGS.getText().matches("^[0-9]{4}[-]{1}[0-9]{2}[-]{1}[0-9]{2}$")) {
+            JOptionPane.showMessageDialog(null, "Debes escribir el formato correcto para la fecha \n Formato correcto: AAAA-MM-DD", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_txtFechaFinalGSFocusLost
+
+    private void txtFechaFinalGSMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtFechaFinalGSMousePressed
+        if (txtFechaInicioGS.isEnabled() == false) {
+
+            JOptionPane.showMessageDialog(null, "Dar Click en Agregar el campo", "Advertencia", JOptionPane.WARNING_MESSAGE);
+
+        }
+    }//GEN-LAST:event_txtFechaFinalGSMousePressed
+
+    private void txtFechaFinalGSKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFechaFinalGSKeyTyped
+        if (txtFechaInicioGS.getText().length() > 9) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtFechaFinalGSKeyTyped
+
+    private void txtFechaInicioGSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaInicioGSActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFechaInicioGSActionPerformed
+
+    private void ComboNombreSurcursalGSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboNombreSurcursalGSActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ComboNombreSurcursalGSActionPerformed
+
+    private void BotonRegresarGSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonRegresarGSMouseClicked
+
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new MenuPrincipal().setVisible(true);
+            }
+        });
+
+        this.dispose();
+    }//GEN-LAST:event_BotonRegresarGSMouseClicked
+
+    private void tablaGerenciaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaGerenciaMouseClicked
+        // TODO add your handling code here:
+        try {
+            int fila = tablaGerencia.getSelectedRow();
+            int id = Integer.parseInt(tablaGerencia.getValueAt(fila, 0).toString());
+            PreparedStatement ps;
+            ResultSet rs;
+            Connection con = Conexion.getConexion();
+            ps = con.prepareStatement("Select S.Nombre, E.NombreE, GS.Fecha_Inicio, GS.Fecha_Final\n"
+                    + "From GerenteSucursal as GS\n"
+                    + "Inner Join Sucursal as S On GS.Id_Sucursal=S.Id_Sucursal\n"
+                    + "Inner Join Empleados AS E on GS.Id_Empleado=E.Id_Empleado\n"
+                    + "Where GS.Id_Gerente=?\n"
+                    + "Order By GS.Id_Gerente");
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                txtIdGS.setText(String.valueOf(id));
+                txtFechaInicioGS.setText(rs.getString("Fecha_Inicio"));
+                ComboNombreEmpleadoGS.setSelectedItem(rs.getString("NombreE"));
+                txtFechaFinalGS.setText(rs.getString("Fecha_Final"));
+                ComboNombreSurcursalGS.setSelectedItem(rs.getString("Nombre"));
+
+            }
+            txtFechaInicioGS.enable(Boolean.FALSE);
+            ComboNombreEmpleadoGS.enable(Boolean.FALSE);
+            ComboNombreSurcursalGS.enable(Boolean.FALSE);
+            txtFechaFinalGS.enable(Boolean.TRUE);
+
+            BotonEditarGS.isEnabled();
+            BotonCancelarGS.isEnabled();
+            BotonGuardarGS.enable(Boolean.FALSE);
+            //Habilitar();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.toString());
+        }
+    }//GEN-LAST:event_tablaGerenciaMouseClicked
+
+    private void BotonGuardarGSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonGuardarGSMouseClicked
+        ObtenerID();
+        String FechaI = txtFechaInicioGS.getText();
+        int Empleado = Integer.parseInt(txtIdEmpleado.getText());
+        int Sucursal = ComboNombreSurcursalGS.getSelectedIndex();
+        String FechaF = txtFechaFinalGS.getText();
+        if (txtFechaInicioGS.getText().equals("") || txtFechaFinalGS.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "No se puede Guardar datos vacios");
+        } else {
+            try {
+                Connection con = Conexion.getConexion();
+                PreparedStatement ps = con.prepareStatement("Insert into GerenteSucursal (Id_Sucursal, Id_Empleado, Fecha_Inicio, Fecha_Final) VALUES(?,?,?,?)");
+                ps.setInt(1, Sucursal);
+                ps.setInt(2, Empleado);
+                ps.setString(3, FechaI);
+                ps.setString(4, FechaF);
+                ps.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Registro guardado");
+                cargartabla();
+                Limpiar();
+                Inhabillitar();
+
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex.toString());
+            }
+        }
+    }//GEN-LAST:event_BotonGuardarGSMouseClicked
+
+    private void BotonEditarGSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonEditarGSMouseClicked
+        if (txtFechaFinalGS.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "No se puede Actualizar datos vacios");
+        } else {
+            int Id = Integer.parseInt(txtIdGS.getText());
+            String FechaF = txtFechaFinalGS.getText();
+            
+            try {
+                Connection con = Conexion.getConexion();
+                PreparedStatement ps = con.prepareStatement("Update GerenciaSucursal set Fecha_Final=? where Id_Gerente =?");
+                ps.setString(1, FechaF);
+                ps.setInt(2, Id);
+                ps.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Registro Actualizado");
+                cargartabla();
+                Limpiar();
+                Inhabillitar();
+
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex.toString());
+            }
+        }
+    }//GEN-LAST:event_BotonEditarGSMouseClicked
+
+    private void BotonAgregarGSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonAgregarGSMouseClicked
+        Habilitar();
+        String timeStamp = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
+        txtFechaFinalGS.setText(timeStamp);
+    }//GEN-LAST:event_BotonAgregarGSMouseClicked
+
+    private void ComboNombreSurcursalGSMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ComboNombreSurcursalGSMousePressed
+      if (ComboNombreSurcursalGS.isEnabled() == false) {
+
+            JOptionPane.showMessageDialog(null, "Dar Click en Agregar para utilizar el campo", "Advertencia", JOptionPane.WARNING_MESSAGE);
+
+        }
+    }//GEN-LAST:event_ComboNombreSurcursalGSMousePressed
+
     /**
-     * @param args the command line arguments
-     */
+         * @param args the command line arguments
+         */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -122,9 +477,145 @@ public class GerenciaSucursal extends javax.swing.JFrame {
     private javax.swing.JLabel BotonRegresarGS;
     private javax.swing.JComboBox<String> ComboNombreEmpleadoGS;
     private javax.swing.JComboBox<String> ComboNombreSurcursalGS;
-    private com.toedter.calendar.JDateChooser FechaFinal;
-    private com.toedter.calendar.JDateChooser FechaInicial;
     private javax.swing.JLabel GerenciaSucursal;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tablaGerencia;
     private javax.swing.JTextField txtBuscarPro;
+    private javax.swing.JTextField txtFechaFinalGS;
+    private javax.swing.JTextField txtFechaInicioGS;
+    private javax.swing.JLabel txtIdEmpleado;
+    private javax.swing.JLabel txtIdGS;
     // End of variables declaration//GEN-END:variables
+
+    private void cargartabla() {
+        DefaultTableModel modeloTabla = (DefaultTableModel) tablaGerencia.getModel();
+        modeloTabla.setRowCount(0);
+
+        PreparedStatement ps;
+        ResultSet rs;
+        ResultSetMetaData rsmd;
+        int columnas;
+
+        try {
+            Connection con = Conexion.getConexion();
+            ps = con.prepareStatement("Select GS.Id_Gerente, S.Nombre, E.NombreE, GS.Fecha_Inicio, GS.Fecha_Final\n"
+                    + "From GerenteSucursal as GS\n"
+                    + "Inner Join Sucursal as S On GS.Id_Sucursal=S.Id_Sucursal\n"
+                    + "Inner Join Empleados AS E on GS.Id_Empleado=E.Id_Empleado\n"
+                    + "Order By GS.Id_Gerente");
+            rs = ps.executeQuery();
+            rsmd = rs.getMetaData();
+            columnas = rsmd.getColumnCount();
+
+            while (rs.next()) {
+                Object[] fila = new Object[columnas];
+                for (int indice = 0; indice < columnas; indice++) {
+                    fila[indice] = rs.getObject(indice + 1);
+                }
+                modeloTabla.addRow(fila);
+            }
+
+            // JOptionPane.showMessageDialog(null, "Registro guardado");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.toString());
+        }
+    }
+
+    public class CargarSucursal {
+
+        public DefaultComboBoxModel getvalues() {
+
+            DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+            try {
+                Connection con = Conexion.getConexion();
+                String sql = "select Nombre from sucursal";
+                Statement st = con.createStatement();
+                ResultSet rs = st.executeQuery(sql);
+                modelo.addElement("Seleccione Sucursal...");
+                while (rs.next()) {
+                    modelo.addElement(rs.getString(1));
+                }
+                con.close();
+                rs.close();
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+            return modelo;
+        }
+    }
+
+    public class CargarCargo {
+
+        public DefaultComboBoxModel getvalues() {
+
+            DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+            try {
+                Connection con = Conexion.getConexion();
+                String sql = "select NombreE from Empleados where Id_Cargo=2";
+                Statement st = con.createStatement();
+                ResultSet rs = st.executeQuery(sql);
+                modelo.addElement("Seleccione Cargo...");
+                while (rs.next()) {
+                    modelo.addElement(rs.getString(1));
+                }
+                con.close();
+                rs.close();
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+            return modelo;
+        }
+    }
+    private void Habilitar() {
+        txtFechaInicioGS.enable(Boolean.TRUE);
+        ComboNombreSurcursalGS.enable(Boolean.TRUE);
+        txtFechaFinalGS.enable(Boolean.TRUE);
+        ComboNombreEmpleadoGS.enable(Boolean.TRUE);
+    }
+
+    private void Inhabillitar() {
+        txtFechaInicioGS.enable(Boolean.FALSE);
+        ComboNombreSurcursalGS.enable(Boolean.FALSE);
+        txtFechaFinalGS.enable(Boolean.FALSE);
+        ComboNombreEmpleadoGS.enable(Boolean.FALSE);
+
+    }
+    private void Limpiar() {
+        //row new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        txtIdGS.setText("");
+
+        txtFechaFinalGS.setText("");
+        if (txtFechaInicioGS.getText().equals("")) {
+            txtFechaInicioGS.setText("Ingrese Fecha Finalización");
+            txtFechaInicioGS.setForeground(new Color(153, 153, 153));
+        }
+        ComboNombreEmpleadoGS.setSelectedIndex(0);
+        ComboNombreSurcursalGS.setSelectedIndex(0);
+
+        txtFechaInicioGS.setText("");
+        if (txtFechaInicioGS.getText().equals("")) {
+            txtFechaInicioGS.setText("Ingrese Fecha Inicio");
+            txtFechaInicioGS.setForeground(new Color(153, 153, 153));
+        }
+
+    }
+    public void ObtenerID(){
+        String Nombre=ComboNombreEmpleadoGS.getSelectedItem().toString();
+        try {
+                ResultSet rs;
+                Connection con = Conexion.getConexion();
+                PreparedStatement ps = con.prepareStatement("Select Id_Empleado From Empleados Where NombreE=?");
+                ps.setString(1, Nombre);
+                rs = ps.executeQuery();
+                
+               while (rs.next()) {
+                txtIdEmpleado.setText(rs.getString("Id_Empleado"));
+               }
+                
+
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex.toString());
+            }
+    }
+
 }

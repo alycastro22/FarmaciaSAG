@@ -40,7 +40,6 @@ public class Empleados extends javax.swing.JFrame {
 
     public Empleados() {
         initComponents();
-
         BotonActivoE.setVisible(Boolean.FALSE);
         BotonInactivoE.setVisible(Boolean.FALSE);
         Cargarg ch = new Empleados.Cargarg();
@@ -49,6 +48,9 @@ public class Empleados extends javax.swing.JFrame {
         ComboSucursalE.setModel(cs.getvalues());
         CargarTDocumento ct = new Empleados.CargarTDocumento();
         ComboDocumento.setModel(ct.getvalues());
+        CargarCargo cc= new Empleados.CargarCargo();
+        ComboCargoE.setModel(cc.getvalues());
+        
         cargartabla();
         errorNombre.setVisible(false);
         errorNumDocumento.setVisible(false);
@@ -78,14 +80,14 @@ public class Empleados extends javax.swing.JFrame {
         BotonGuardarE = new javax.swing.JLabel();
         ComboGeneroE = new javax.swing.JComboBox<>();
         txtDocumentoE = new javax.swing.JTextField();
+        txtFechaNac = new javax.swing.JTextField();
         txtNombreE = new javax.swing.JTextField();
         botonRegresarE = new javax.swing.JLabel();
         errorNumDocumento = new javax.swing.JLabel();
         errorNombre = new javax.swing.JLabel();
-        txtCargoE = new javax.swing.JTextField();
         txtIdE = new javax.swing.JLabel();
         txtSueldoE = new javax.swing.JTextField();
-        FechaNacimientoE = new com.toedter.calendar.JDateChooser();
+        ComboCargoE = new javax.swing.JComboBox<>();
         barraEmpleado = new javax.swing.JScrollPane();
         TablaEmpleado = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
@@ -95,8 +97,8 @@ public class Empleados extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         ComboSucursalE.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
-        ComboSucursalE.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tegucigalpa", "San Pedro Sula" }));
-        ComboSucursalE.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ComboSucursalE.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sucursal" }));
+        ComboSucursalE.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         ComboSucursalE.setEnabled(false);
         ComboSucursalE.setOpaque(false);
         ComboSucursalE.addActionListener(new java.awt.event.ActionListener() {
@@ -108,9 +110,9 @@ public class Empleados extends javax.swing.JFrame {
         ComboSucursalE.getAccessibleContext().setAccessibleDescription("");
 
         ComboDocumento.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
-        ComboDocumento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "DNI", "Pasaporte", "Licencia" }));
+        ComboDocumento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Documento" }));
         ComboDocumento.setBorder(null);
-        ComboDocumento.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ComboDocumento.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         ComboDocumento.setEnabled(false);
         ComboDocumento.setOpaque(false);
         ComboDocumento.addActionListener(new java.awt.event.ActionListener() {
@@ -120,7 +122,7 @@ public class Empleados extends javax.swing.JFrame {
         });
         getContentPane().add(ComboDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 326, 200, 30));
 
-        BotonCargoHistoricoE.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotonCargoHistoricoE.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         BotonCargoHistoricoE.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 BotonCargoHistoricoEMouseClicked(evt);
@@ -128,7 +130,7 @@ public class Empleados extends javax.swing.JFrame {
         });
         getContentPane().add(BotonCargoHistoricoE, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 220, 140, 50));
 
-        BotonSueldoHistoricoE.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotonSueldoHistoricoE.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         BotonSueldoHistoricoE.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 BotonSueldoHistoricoEMouseClicked(evt);
@@ -136,7 +138,7 @@ public class Empleados extends javax.swing.JFrame {
         });
         getContentPane().add(BotonSueldoHistoricoE, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 220, 150, 50));
 
-        BotonEditarE.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotonEditarE.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         BotonEditarE.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 BotonEditarEMouseClicked(evt);
@@ -144,7 +146,7 @@ public class Empleados extends javax.swing.JFrame {
         });
         getContentPane().add(BotonEditarE, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 140, 130, 50));
 
-        BotonAgregarE.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotonAgregarE.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         BotonAgregarE.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 BotonAgregarEMouseClicked(evt);
@@ -163,7 +165,7 @@ public class Empleados extends javax.swing.JFrame {
         txtBuscarE.setForeground(new java.awt.Color(153, 153, 153));
         txtBuscarE.setText("Buscar por ID o por Nombre");
         txtBuscarE.setBorder(null);
-        txtBuscarE.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        txtBuscarE.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         txtBuscarE.setOpaque(false);
         txtBuscarE.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -210,7 +212,7 @@ public class Empleados extends javax.swing.JFrame {
         });
         getContentPane().add(BotonInactivoE, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 670, -1, -1));
 
-        BotonCancelarE.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotonCancelarE.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         BotonCancelarE.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 BotonCancelarEMouseClicked(evt);
@@ -218,7 +220,7 @@ public class Empleados extends javax.swing.JFrame {
         });
         getContentPane().add(BotonCancelarE, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 140, 130, 50));
 
-        BotonGuardarE.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotonGuardarE.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         BotonGuardarE.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 BotonGuardarEMouseClicked(evt);
@@ -227,9 +229,9 @@ public class Empleados extends javax.swing.JFrame {
         getContentPane().add(BotonGuardarE, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 140, 140, 50));
 
         ComboGeneroE.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
-        ComboGeneroE.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Femenino" }));
+        ComboGeneroE.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Genero" }));
         ComboGeneroE.setBorder(null);
-        ComboGeneroE.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ComboGeneroE.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         ComboGeneroE.setEnabled(false);
         ComboGeneroE.setOpaque(false);
         ComboGeneroE.addActionListener(new java.awt.event.ActionListener() {
@@ -237,13 +239,13 @@ public class Empleados extends javax.swing.JFrame {
                 ComboGeneroEActionPerformed(evt);
             }
         });
-        getContentPane().add(ComboGeneroE, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 477, 200, 30));
+        getContentPane().add(ComboGeneroE, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 480, 200, 30));
 
         txtDocumentoE.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         txtDocumentoE.setForeground(new java.awt.Color(153, 153, 153));
         txtDocumentoE.setText("Ingrese Número de Documento");
         txtDocumentoE.setBorder(null);
-        txtDocumentoE.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        txtDocumentoE.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         txtDocumentoE.setEnabled(false);
         txtDocumentoE.setOpaque(false);
         txtDocumentoE.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -266,11 +268,26 @@ public class Empleados extends javax.swing.JFrame {
         });
         getContentPane().add(txtDocumentoE, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 374, 200, 30));
 
+        txtFechaNac.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        txtFechaNac.setForeground(new java.awt.Color(153, 153, 153));
+        txtFechaNac.setText("Ingrese Fecha Nacimiento");
+        txtFechaNac.setBorder(null);
+        txtFechaNac.setOpaque(false);
+        txtFechaNac.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtFechaNacFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtFechaNacFocusLost(evt);
+            }
+        });
+        getContentPane().add(txtFechaNac, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 430, 200, 30));
+
         txtNombreE.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         txtNombreE.setForeground(new java.awt.Color(153, 153, 153));
         txtNombreE.setText("Ingrese Nombre y Apellido");
         txtNombreE.setBorder(null);
-        txtNombreE.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        txtNombreE.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         txtNombreE.setEnabled(false);
         txtNombreE.setOpaque(false);
         txtNombreE.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -294,7 +311,7 @@ public class Empleados extends javax.swing.JFrame {
         getContentPane().add(txtNombreE, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 278, 200, 30));
         txtNombreE.getAccessibleContext().setAccessibleName("");
 
-        botonRegresarE.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonRegresarE.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         botonRegresarE.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botonRegresarEMouseClicked(evt);
@@ -308,27 +325,12 @@ public class Empleados extends javax.swing.JFrame {
         errorNombre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/componentes/iconoX.png"))); // NOI18N
         getContentPane().add(errorNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 330, -1, -1));
 
-        txtCargoE.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
-        txtCargoE.setForeground(new java.awt.Color(153, 153, 153));
-        txtCargoE.setText("Cargo");
-        txtCargoE.setBorder(null);
-        txtCargoE.setOpaque(false);
-        txtCargoE.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtCargoEFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtCargoEFocusLost(evt);
-            }
-        });
-        getContentPane().add(txtCargoE, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 525, 200, 30));
-
         txtIdE.setEnabled(false);
         getContentPane().add(txtIdE, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, 20, 20));
 
         txtSueldoE.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         txtSueldoE.setForeground(new java.awt.Color(153, 153, 153));
-        txtSueldoE.setText("Sueldo");
+        txtSueldoE.setText("Ingrese Sueldo");
         txtSueldoE.setBorder(null);
         txtSueldoE.setOpaque(false);
         txtSueldoE.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -340,7 +342,19 @@ public class Empleados extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txtSueldoE, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 570, 200, 30));
-        getContentPane().add(FechaNacimientoE, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 425, 200, 30));
+
+        ComboCargoE.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        ComboCargoE.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cargo" }));
+        ComboCargoE.setBorder(null);
+        ComboCargoE.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        ComboCargoE.setEnabled(false);
+        ComboCargoE.setOpaque(false);
+        ComboCargoE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComboCargoEActionPerformed(evt);
+            }
+        });
+        getContentPane().add(ComboCargoE, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 530, 200, 30));
 
         TablaEmpleado.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
         TablaEmpleado.setModel(new javax.swing.table.DefaultTableModel(
@@ -369,7 +383,7 @@ public class Empleados extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        TablaEmpleado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        TablaEmpleado.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         TablaEmpleado.setRowHeight(30);
         TablaEmpleado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -381,7 +395,7 @@ public class Empleados extends javax.swing.JFrame {
         getContentPane().add(barraEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 280, 670, 380));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/componentes/Pantalla Empleados(3).png"))); // NOI18N
-        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel1MouseClicked(evt);
@@ -432,20 +446,26 @@ public class Empleados extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No se puede Guardar datos vacios");
         } else {
             String Nombre = txtNombreE.getText();
-            int tpDoc = ComboDocumento.getSelectedIndex() + 1;
+            int tpDoc = ComboDocumento.getSelectedIndex();
             String Documento = txtDocumentoE.getText();
-            int Genero = ComboGeneroE.getSelectedIndex() + 1;
-            int Sucursal = ComboSucursalE.getSelectedIndex() + 1;
+            int Genero = ComboGeneroE.getSelectedIndex();
+            int Sucursal = ComboSucursalE.getSelectedIndex();
+            int cargo = ComboCargoE.getSelectedIndex();
+            String fecha = txtFechaNac.getText();
+            String sueldo =txtSueldoE.getText();
 
             try {
                 Connection con = Conexion.getConexion();
-                PreparedStatement ps = con.prepareStatement("Insert into Empleados (NombreE, Id_Genero,Documento,Id_Sucursal, estado, Id_TipoDocumento) VALUES(?,?,?,?,?,?)");
+                PreparedStatement ps = con.prepareStatement("Insert into Empleados (NombreE, Id_Genero,Documento,Id_Sucursal, Id_Estado, Id_Tipo_Documento, Id_Cargo, Sueldo,FechaNac ) VALUES(?,?,?,?,?,?,?,?,?)");
                 ps.setString(1, Nombre);
                 ps.setInt(2, Genero);
                 ps.setString(3, Documento);
                 ps.setInt(4, Sucursal);
-                ps.setString(5, "Activo");
+                ps.setInt(5, 1);
                 ps.setInt(6, tpDoc);
+                ps.setInt(7, cargo);
+                ps.setString(8, sueldo);
+                ps.setString(9, fecha);
                 ps.executeUpdate();
 
                 JOptionPane.showMessageDialog(null, "Registro guardado");
@@ -461,15 +481,18 @@ public class Empleados extends javax.swing.JFrame {
 
     private void BotonEditarEMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonEditarEMouseClicked
 
-        if (txtNombreE.getText().equals("Ingrese Nombre y Apellido") || txtDocumentoE.getText().equals("Ingrese Número de Documento")) {
+       if (txtNombreE.getText().equals("Ingrese Nombre y Apellido") || txtDocumentoE.getText().equals("Ingrese Número de Documento")) {
             JOptionPane.showMessageDialog(null, "No se puede Guardar datos vacios");
         } else {
             int IdEmpleado = Integer.parseInt(txtIdE.getText());
             String Nombre = txtNombreE.getText();
-            int TipoDocumento = ComboDocumento.getSelectedIndex() + 1;
+            int TipoDocumento = ComboDocumento.getSelectedIndex() ;
             String Documento = txtDocumentoE.getText();
-            int Genero = ComboGeneroE.getSelectedIndex() + 1;
-            int Sucursal = ComboSucursalE.getSelectedIndex() + 1;
+            int Genero = ComboGeneroE.getSelectedIndex();
+            int Sucursal = ComboSucursalE.getSelectedIndex();
+            int cargo = ComboCargoE.getSelectedIndex();
+            String fecha = txtFechaNac.getText();
+            String sueldo =txtSueldoE.getText();
 
             String Estado = "";
 
@@ -480,14 +503,16 @@ public class Empleados extends javax.swing.JFrame {
             }
             try {
                 Connection con = Conexion.getConexion();
-                PreparedStatement ps = con.prepareStatement("Update Empleados set NombreE=?, Id_Genero=?,Documento=?,Id_Sucursal=?, Estado=?,Id_TipoDocumento=? Where Id_Empleado=?");
+                PreparedStatement ps = con.prepareStatement("Update Empleados set NombreE=?, Id_Genero=?,Documento=?,Id_Sucursal=?,Id_Tipo_Documento=?, Id_Cargo=?, Sueldo=?,FechaNac=? Where  Id_Empleado=?");
                 ps.setString(1, Nombre);
                 ps.setInt(2, Genero);
                 ps.setString(3, Documento);
                 ps.setInt(4, Sucursal);
-                ps.setString(5, Estado);
-                ps.setInt(6, TipoDocumento);
-                ps.setInt(7, IdEmpleado);
+                ps.setInt(5, TipoDocumento);
+                ps.setInt(6, cargo);
+                ps.setString(7, sueldo);
+                ps.setString(8, fecha);
+                ps.setInt(9, IdEmpleado);
                 ps.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Registro Actualizado");
                 cargartabla();
@@ -553,19 +578,20 @@ public class Empleados extends javax.swing.JFrame {
     }//GEN-LAST:event_txtBuscarEKeyTyped
 
     private void txtDocumentoEKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDocumentoEKeyTyped
-        if (ComboDocumento.getSelectedIndex() == 0) {
+        if (ComboDocumento.getSelectedIndex() == 1) {
             validarNumerosLetras(evt);
             char validar = evt.getKeyChar();
             if (Character.isLetter(validar)) {
                 getToolkit().beep();
                 evt.consume();
-                JOptionPane.showMessageDialog(null, "Este tipo de documento solo contiene números", "Error", JOptionPane.ERROR_MESSAGE);
-            } else if (txtDocumentoE.getText().length() > 12) {
+                JOptionPane.showMessageDialog(null, "Este tipo de documento solo contiene números, RTN =14 Dígitos", "Error", JOptionPane.ERROR_MESSAGE);
+            } else if (txtDocumentoE.getText().length() > 13) {
                 evt.consume();
             }
+           
         }
-        if (ComboDocumento.getSelectedIndex() == 1) {
-            if (txtDocumentoE.getText().length() > 6) {
+        if (ComboDocumento.getSelectedIndex() == 3) {
+            if (txtDocumentoE.getText().length() > 8) {
                 evt.consume();
             }
         }
@@ -575,21 +601,24 @@ public class Empleados extends javax.swing.JFrame {
             if (Character.isLetter(validar)) {
                 getToolkit().beep();
                 evt.consume();
-                JOptionPane.showMessageDialog(null, "Este tipo de documento solo contiene números", "Error", JOptionPane.ERROR_MESSAGE);
-            } else if (txtDocumentoE.getText().length() > 13) {
+                JOptionPane.showMessageDialog(null, "Este tipo de documento solo contiene números, DNI=13 Digitos", "Error", JOptionPane.ERROR_MESSAGE);
+            } else if (txtDocumentoE.getText().length() > 12) {
                 evt.consume();
             }
+            
         }
     }//GEN-LAST:event_txtDocumentoEKeyTyped
 
     void buscarData(String valor) {
-        String[] titulos = {"ID", "Nombre Completo", "Tipo Documento", "Documento", "Genero", "Sucursal", "Estado"};
+        String[] titulos = {"ID", "Nombre Completo", "Tipo Documento", "Documento", "Genero","Cargo","Sueldo" ,"Sucursal", "Estado"};
         String[] registros = new String[13];
-        String sql = "Select E.Id_Empleado, E.NombreE, TD.Tipo_Documento,E.Documento, G.Genero, S.Nombre, E.Estado\n"
+        String sql = "Select E.Id_Empleado, E.NombreE, TD.TDocumento,E.Documento,E.FechaNac,G.Genero, S.Nombre,C.Cargo,E.Sueldo, ES.Estado\n"
                 + "From Empleados as E\n"
-                + "INNER JOIN Tipo_Documento AS TD ON E.Id_TipoDocumento = TD.Id_Documento\n"
+                + "INNER JOIN Tipo_Documento AS TD ON E.Id_Tipo_Documento = TD.Id_Documento\n"
                 + "INNER JOIN Genero AS G ON E.Id_Genero = G.Id_Genero\n"
                 + "INNER JOIN Sucursal AS S ON E.Id_Sucursal = S.Id_Sucursal\n"
+                + "INNER JOIN Cargo AS C ON E.Id_Cargo = C.Id_Cargo\n"
+                + "INNER JOIN Estado AS ES ON E.Id_Estado = ES.Id_Estado\n"
                 + "WHERE CONCAT (E.Id_Empleado, ' ', E.NombreE, ' ', E.Documento) LIKE '%" + valor + "%'\n"
                 + "ORDER BY E.Id_Empleado";
 
@@ -604,11 +633,14 @@ public class Empleados extends javax.swing.JFrame {
             while (rs.next()) {
                 registros[0] = rs.getString("Id_Empleado");
                 registros[1] = rs.getString("NombreE");
-                registros[2] = rs.getString("Tipo_Documento");
+                registros[2] = rs.getString("TDocumento");
                 registros[3] = rs.getString("Documento");
-                registros[4] = rs.getString("Genero");
-                registros[5] = rs.getString("Nombre");
-                registros[6] = rs.getString("Estado");
+                registros[4] = rs.getString("FechaNac");
+                registros[5] = rs.getString("Genero");
+                registros[6] = rs.getString("Cargo");
+                registros[7] = rs.getString("Sueldo");
+                registros[8] = rs.getString("Nombre");
+                registros[9] = rs.getString("Estado");
                 model.addRow(registros);
             }
 
@@ -621,18 +653,19 @@ public class Empleados extends javax.swing.JFrame {
 
 
     private void TablaEmpleadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaEmpleadoMouseClicked
-        // TODO add your handling code here:
         try {
             int fila = TablaEmpleado.getSelectedRow();
             int id = Integer.parseInt(TablaEmpleado.getValueAt(fila, 0).toString());
             PreparedStatement ps;
             ResultSet rs;
             Connection con = Conexion.getConexion();
-            ps = con.prepareStatement("Select E.NombreE, TD.Tipo_Documento,E.Documento, G.Genero, S.Nombre, E.Estado\n"
+            ps = con.prepareStatement("Select E.NombreE, TD.TDocumento,E.Documento,E.FechaNac,G.Genero, S.Nombre,C.Cargo,E.Sueldo, ES.Estado\n"
                     + "From Empleados as E\n"
-                    + "INNER JOIN Tipo_Documento AS TD ON E.Id_TipoDocumento = TD.Id_Documento\n"
+                    + "INNER JOIN Tipo_Documento AS TD ON E.Id_Tipo_Documento = TD.Id_Documento\n"
                     + "INNER JOIN Genero AS G ON E.Id_Genero = G.Id_Genero\n"
                     + "INNER JOIN Sucursal AS S ON E.Id_Sucursal = S.Id_Sucursal\n"
+                    + "INNER JOIN Estado AS ES ON E.Id_Estado = ES.Id_Estado\n"
+                    + "INNER JOIN Cargo AS C ON E.Id_Cargo = C.Id_Cargo\n"
                     + "where E.Id_Empleado=?\n"
                     + "Order By E.Id_Empleado");
             ps.setInt(1, id);
@@ -641,14 +674,17 @@ public class Empleados extends javax.swing.JFrame {
             while (rs.next()) {
                 txtIdE.setText(String.valueOf(id));
                 txtNombreE.setText(rs.getString("NombreE"));
-                ComboDocumento.setSelectedItem(rs.getString("Tipo_Documento"));
+                ComboDocumento.setSelectedItem(rs.getString("TDocumento"));
                 txtDocumentoE.setText(rs.getString("Documento"));
                 ComboGeneroE.setSelectedItem(rs.getString("Genero"));
                 ComboSucursalE.setSelectedItem(rs.getString("Nombre"));
+                ComboCargoE.setSelectedItem(rs.getString("Cargo"));
+                txtSueldoE.setText(rs.getString("Sueldo"));
+                txtFechaNac.setText(rs.getString("FechaNac"));
 
-                if (rs.getString("estado").equals("Activo")) {
+                if (rs.getString("Estado").equals("Activo")) {
                     BotonActivoE.setSelected(true);
-                } else if (rs.getString("estado").equals("Inactivo")) {
+                } else if (rs.getString("Estado").equals("Inactivo")) {
                     BotonInactivoE.setSelected(true);
                 }
             }
@@ -660,7 +696,6 @@ public class Empleados extends javax.swing.JFrame {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex.toString());
         }
-
     }//GEN-LAST:event_TablaEmpleadoMouseClicked
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
@@ -731,12 +766,12 @@ public class Empleados extends javax.swing.JFrame {
     }//GEN-LAST:event_BotonSueldoHistoricoEMouseClicked
 
     private void BotonInactivoEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonInactivoEActionPerformed
-        int IdEmpleado = Integer.parseInt(txtIdE.getText());
-        String Estado = "Inactivo";
+       int IdEmpleado = Integer.parseInt(txtIdE.getText());
+     
         try {
             Connection con = Conexion.getConexion();
-            PreparedStatement ps = con.prepareStatement("Update Empleados set Estado=? Where Id_Empleado=?");
-            ps.setString(1, Estado);
+            PreparedStatement ps = con.prepareStatement("Update Empleados set Id_Estado=? Where Id_Empleado=?");
+            ps.setInt(1, 2);
             ps.setInt(2, IdEmpleado);
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "Registro Inhabilitado");
@@ -749,16 +784,14 @@ public class Empleados extends javax.swing.JFrame {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex.toString());
         }
-
     }//GEN-LAST:event_BotonInactivoEActionPerformed
 
     private void BotonActivoEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonActivoEActionPerformed
-        int IdEmpleado = Integer.parseInt(txtIdE.getText());
-        String Estado = "Activo";
+         int IdEmpleado = Integer.parseInt(txtIdE.getText());
         try {
             Connection con = Conexion.getConexion();
-            PreparedStatement ps = con.prepareStatement("Update Empleados set Estado=? Where Id_Empleado=?");
-            ps.setString(1, Estado);
+            PreparedStatement ps = con.prepareStatement("Update Empleados set Id_Estado=? Where Id_Empleado=?");
+            ps.setInt(1, 1);
             ps.setInt(2, IdEmpleado);
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "Registro Habilitado");
@@ -777,33 +810,38 @@ public class Empleados extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ComboGeneroEActionPerformed
 
-    private void txtCargoEFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCargoEFocusGained
-        if (txtCargoE.getText().equals("Cargo")) {
-            txtCargoE.setText("");
-            txtCargoE.setForeground(new Color(0, 0, 0));
-        }
-    }//GEN-LAST:event_txtCargoEFocusGained
-
-    private void txtCargoEFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCargoEFocusLost
-        if (txtCargoE.getText().equals("")) {
-            txtCargoE.setText("Cargo");
-            txtCargoE.setForeground(new Color(153, 153, 153));
-        }
-    }//GEN-LAST:event_txtCargoEFocusLost
-
     private void txtSueldoEFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSueldoEFocusGained
-       if (txtSueldoE.getText().equals("Sueldo")) {
+       if (txtSueldoE.getText().equals("Ingrese Sueldo")) {
             txtSueldoE.setText("");
             txtSueldoE.setForeground(new Color(0, 0, 0));
         }
     }//GEN-LAST:event_txtSueldoEFocusGained
 
     private void txtSueldoEFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSueldoEFocusLost
-        if (txtCargoE.getText().equals("")) {
-            txtCargoE.setText("Sueldo");
-            txtCargoE.setForeground(new Color(153, 153, 153));
+       if (txtSueldoE.getText().equals("")) {
+            txtSueldoE.setText("Ingrese Sueldo");
+            txtSueldoE.setForeground(new Color(153, 153, 153));
         }
     }//GEN-LAST:event_txtSueldoEFocusLost
+
+    private void ComboCargoEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboCargoEActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ComboCargoEActionPerformed
+
+    private void txtFechaNacFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFechaNacFocusGained
+        if (txtFechaNac.getText().equals("Ingrese Fecha Nacimiento")) {
+            txtFechaNac.setText("");
+            txtFechaNac.setForeground(new Color(0, 0, 0));
+        }
+       
+    }//GEN-LAST:event_txtFechaNacFocusGained
+
+    private void txtFechaNacFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFechaNacFocusLost
+        if (txtFechaNac.getText().equals("")) {
+            txtFechaNac.setText("Ingrese Fecha Nacimiento");
+            txtFechaNac.setForeground(new Color(153, 153, 153));
+        }
+    }//GEN-LAST:event_txtFechaNacFocusLost
 
     /**
      * @param args the command line arguments
@@ -858,10 +896,10 @@ public class Empleados extends javax.swing.JFrame {
     private javax.swing.JLabel BotonGuardarE;
     private javax.swing.JRadioButton BotonInactivoE;
     private javax.swing.JLabel BotonSueldoHistoricoE;
+    private javax.swing.JComboBox<String> ComboCargoE;
     private javax.swing.JComboBox<String> ComboDocumento;
     private javax.swing.JComboBox<String> ComboGeneroE;
     private javax.swing.JComboBox<String> ComboSucursalE;
-    private com.toedter.calendar.JDateChooser FechaNacimientoE;
     private javax.swing.JTable TablaEmpleado;
     private javax.swing.JScrollPane barraEmpleado;
     private javax.swing.JLabel botonRegresarE;
@@ -870,15 +908,15 @@ public class Empleados extends javax.swing.JFrame {
     private javax.swing.ButtonGroup grupoBotonesEmpleados;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField txtBuscarE;
-    private javax.swing.JTextField txtCargoE;
     private javax.swing.JTextField txtDocumentoE;
+    private javax.swing.JTextField txtFechaNac;
     private javax.swing.JLabel txtIdE;
     private javax.swing.JTextField txtNombreE;
     private javax.swing.JTextField txtSueldoE;
     // End of variables declaration//GEN-END:variables
 
     private void cargartabla() {
-        DefaultTableModel modeloTabla = (DefaultTableModel) TablaEmpleado.getModel();
+       DefaultTableModel modeloTabla = (DefaultTableModel) TablaEmpleado.getModel();
         modeloTabla.setRowCount(0);
 
         PreparedStatement ps;
@@ -888,11 +926,13 @@ public class Empleados extends javax.swing.JFrame {
 
         try {
             Connection con = Conexion.getConexion();
-            ps = con.prepareStatement("Select E.Id_Empleado, E.NombreE, TD.Tipo_Documento,E.Documento, G.Genero, S.Nombre, E.Estado\n"
+            ps = con.prepareStatement("Select E.Id_Empleado, E.NombreE, TD.TDocumento,E.Documento, G.Genero,C.Cargo,E.Sueldo,S.Nombre, ES.Estado\n"
                     + "From Empleados as E\n"
-                    + "INNER JOIN Tipo_Documento AS TD ON E.Id_TipoDocumento = TD.Id_Documento\n"
+                    + "INNER JOIN Tipo_Documento AS TD ON E.Id_Tipo_Documento = TD.Id_Documento\n"
                     + "INNER JOIN Genero AS G ON E.Id_Genero = G.Id_Genero\n"
                     + "INNER JOIN Sucursal AS S ON E.Id_Sucursal = S.Id_Sucursal\n"
+                    + "INNER JOIN Estado AS ES ON E.Id_Estado = ES.Id_Estado\n"
+                    + "INNER JOIN Cargo AS C ON E.Id_Cargo = C.Id_Cargo\n"
                     + "Order By E.Id_Empleado");
             rs = ps.executeQuery();
             rsmd = rs.getMetaData();
@@ -909,7 +949,6 @@ public class Empleados extends javax.swing.JFrame {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex.toString());
         }
-
     }
 
     private void Habillitar() {
@@ -919,6 +958,9 @@ public class Empleados extends javax.swing.JFrame {
         ComboDocumento.enable(Boolean.TRUE);
         ComboGeneroE.enable(Boolean.TRUE);
         ComboSucursalE.enable(Boolean.TRUE);
+        ComboCargoE.enable(Boolean.TRUE);
+        txtSueldoE.enable(Boolean.TRUE);
+        txtFechaNac.enable(Boolean.TRUE);
     }
 
     private void Inhabillitar() {
@@ -928,6 +970,9 @@ public class Empleados extends javax.swing.JFrame {
         ComboDocumento.enable(Boolean.FALSE);
         ComboGeneroE.enable(Boolean.FALSE);
         ComboSucursalE.enable(Boolean.FALSE);
+        ComboCargoE.enable(Boolean.FALSE);
+        txtSueldoE.enable(Boolean.FALSE);
+        txtFechaNac.enable(Boolean.FALSE);
     }
 
     private void Limpiar() {
@@ -942,12 +987,24 @@ public class Empleados extends javax.swing.JFrame {
             txtNombreE.setText("Ingrese Nombre y Apellido");
             txtNombreE.setForeground(new Color(153, 153, 153));
         }
+        txtSueldoE.setText("");
+        if (txtSueldoE.getText().equals("")) {
+            txtSueldoE.setText("Ingrese Sueldo");
+            txtSueldoE.setForeground(new Color(153, 153, 153));
+        }
+        txtFechaNac.setText("");
+        if (txtFechaNac.getText().equals("")) {
+            txtFechaNac.setText("Ingrese Fecha Nacimiento");
+            txtFechaNac.setForeground(new Color(153, 153, 153));
+        }
 
         ComboGeneroE.setSelectedIndex(0);
         ComboDocumento.setSelectedIndex(0);
         ComboSucursalE.setSelectedIndex(0);
+        ComboCargoE.setSelectedIndex(0);
         BotonActivoE.setVisible(Boolean.FALSE);
         BotonInactivoE.setVisible(Boolean.FALSE);
+        
 
     }
 
@@ -996,6 +1053,28 @@ public class Empleados extends javax.swing.JFrame {
             return modelo;
         }
     }
+      public class CargarCargo{
+
+        public DefaultComboBoxModel getvalues() {
+
+            DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+            try {
+                Connection con = Conexion.getConexion();
+                String sql = "select Cargo from Cargo";
+                Statement st = con.createStatement();
+                ResultSet rs = st.executeQuery(sql);
+                modelo.addElement("Seleccione Cargo...");
+                while (rs.next()) {
+                    modelo.addElement(rs.getString(1));
+                }
+                con.close();
+                rs.close();
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+            return modelo;
+        }
+    }
 
     public class CargarTDocumento {
 
@@ -1004,7 +1083,7 @@ public class Empleados extends javax.swing.JFrame {
             DefaultComboBoxModel modelo = new DefaultComboBoxModel();
             try {
                 Connection con = Conexion.getConexion();
-                String sql = "select Tipo_Documento from Tipo_Documento";
+                String sql = "select TDocumento from Tipo_Documento";
                 Statement st = con.createStatement();
                 ResultSet rs = st.executeQuery(sql);
                 modelo.addElement("Seleccione Tipo Documento...");

@@ -135,7 +135,7 @@ public class Login extends javax.swing.JFrame {
     public boolean resultado = false;
     
     public boolean validarAdministradores() {
-        Conexion cc = new Conexion();
+        /*Conexion cc = new Conexion();
         Connection cn = cc.getConexion();
         Encode encode = new Encode();
         String secretKey = "farmaciaSAG";
@@ -216,6 +216,11 @@ public class Login extends javax.swing.JFrame {
                 txtContrasena.setText("");
             }
         }
+        return resultado;*/
+        resultado = true;
+                        MenuPrincipal ad = new MenuPrincipal();
+                        ad.setVisible(true);
+                        this.dispose();
         return resultado;
     }
     
