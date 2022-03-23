@@ -68,12 +68,12 @@ public class CargoHistorico extends javax.swing.JFrame {
         BotonCancelarCH = new javax.swing.JLabel();
         txtBuscarCH = new javax.swing.JTextField();
         txtCargoCH = new javax.swing.JTextField();
-        txtFechaIncioCH = new com.toedter.calendar.JDateChooser();
-        txtFechaFinalCH = new com.toedter.calendar.JDateChooser();
         txtNombreCH = new javax.swing.JTextField();
         txtIdE = new javax.swing.JLabel();
         comboCargarEmpleado = new javax.swing.JComboBox<>();
         txtIdCargoCH = new javax.swing.JLabel();
+        txtFechaInicioCH = new javax.swing.JTextField();
+        txtFechaFinalCH = new javax.swing.JTextField();
         Table = new javax.swing.JScrollPane();
         TablaCH = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
@@ -172,15 +172,6 @@ public class CargoHistorico extends javax.swing.JFrame {
         });
         getContentPane().add(txtCargoCH, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 540, 190, 30));
 
-        txtFechaIncioCH.setToolTipText("");
-        txtFechaIncioCH.setEnabled(false);
-        txtFechaIncioCH.setOpaque(false);
-        getContentPane().add(txtFechaIncioCH, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 410, 190, 30));
-
-        txtFechaFinalCH.setEnabled(false);
-        txtFechaFinalCH.setOpaque(false);
-        getContentPane().add(txtFechaFinalCH, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 478, 190, 28));
-
         txtNombreCH.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         txtNombreCH.setForeground(new java.awt.Color(153, 153, 153));
         txtNombreCH.setText("Ingrese Nombre Empleado");
@@ -225,6 +216,41 @@ public class CargoHistorico extends javax.swing.JFrame {
         });
         getContentPane().add(comboCargarEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 230, 230, 30));
         getContentPane().add(txtIdCargoCH, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, 20, 20));
+
+        txtFechaInicioCH.setBackground(new java.awt.Color(240, 240, 240));
+        txtFechaInicioCH.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        txtFechaInicioCH.setForeground(new java.awt.Color(153, 153, 153));
+        txtFechaInicioCH.setText("Ingrese Fecha Inicio");
+        txtFechaInicioCH.setToolTipText("");
+        txtFechaInicioCH.setBorder(null);
+        txtFechaInicioCH.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        txtFechaInicioCH.setOpaque(false);
+        txtFechaInicioCH.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtFechaInicioCHFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtFechaInicioCHFocusLost(evt);
+            }
+        });
+        getContentPane().add(txtFechaInicioCH, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 410, 190, 30));
+
+        txtFechaFinalCH.setBackground(new java.awt.Color(240, 240, 240));
+        txtFechaFinalCH.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        txtFechaFinalCH.setForeground(new java.awt.Color(153, 153, 153));
+        txtFechaFinalCH.setText("Ingrese Fecha Final");
+        txtFechaFinalCH.setBorder(null);
+        txtFechaFinalCH.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        txtFechaFinalCH.setOpaque(false);
+        txtFechaFinalCH.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtFechaFinalCHFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtFechaFinalCHFocusLost(evt);
+            }
+        });
+        getContentPane().add(txtFechaFinalCH, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 477, 190, 30));
 
         TablaCH.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -352,7 +378,7 @@ public class CargoHistorico extends javax.swing.JFrame {
     }//GEN-LAST:event_BotonAgregarCHMouseClicked
 
     private void BotonGuardarCHMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonGuardarCHMouseClicked
-        if (txtNombreCH.getText().equals("Ingrese Nombre Empleado") || txtFechaIncioCH.getDate().equals("") || txtFechaFinalCH.getDate().equals("")
+        if (txtNombreCH.getText().equals("Ingrese Nombre Empleado") || txtFechaInicioCH.getText().equals("") || txtFechaFinalCH.getText().equals("")
                 || txtCargoCH.getText().equals("Ingrese Cargo")) {
             JOptionPane.showMessageDialog(null, "No se puede Guardar datos vacios");
 
@@ -360,8 +386,8 @@ public class CargoHistorico extends javax.swing.JFrame {
             String Id_Empleado = txtIdE.getText();
             String NombreE = txtNombreCH.getText();
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            String FechaInicio = sdf.format(txtFechaIncioCH.getDate());
-            String FechaFinal = sdf.format(txtFechaFinalCH.getDate());
+            String FechaInicio = sdf.format(txtFechaInicioCH.getText());
+            String FechaFinal = sdf.format(txtFechaFinalCH.getText());
             String Cargo = txtCargoCH.getText();
 
             try {
@@ -389,8 +415,8 @@ public class CargoHistorico extends javax.swing.JFrame {
             int IdCargo = Integer.parseInt(txtIdCargoCH.getText());
 
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-            String FechaI = sdf.format(txtFechaIncioCH.getDate());
-            String FechaF = sdf.format(txtFechaFinalCH.getDate());
+            String FechaI = sdf.format(txtFechaInicioCH.getText());
+            String FechaF = sdf.format(txtFechaFinalCH.getText());
             String Cargo = txtCargoCH.getText();
 
             try {
@@ -435,8 +461,8 @@ public class CargoHistorico extends javax.swing.JFrame {
                 txtIdCargoCH.setText(String.valueOf(id));
                 txtIdE.setText(rs.getString("Id_Empleado"));
                 txtNombreCH.setText(rs.getString("NombreE"));
-                txtFechaIncioCH.setDate(rs.getDate("Fecha_Inicio"));
-                txtFechaFinalCH.setDate(rs.getDate("Fecha_Finalizacion"));
+                txtFechaInicioCH.setText(rs.getString("Fecha_Inicio"));
+                txtFechaFinalCH.setText(rs.getString("Fecha_Finalizacion"));
                 txtCargoCH.setText(rs.getString("Cargo"));
 
             }
@@ -515,6 +541,34 @@ public class CargoHistorico extends javax.swing.JFrame {
     private void txtBuscarCHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarCHActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtBuscarCHActionPerformed
+
+    private void txtFechaInicioCHFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFechaInicioCHFocusGained
+       if (txtFechaInicioCH.getText().equals("Ingrese Fecha Inicio")) {
+            txtFechaInicioCH.setText("");
+            txtFechaInicioCH.setForeground(new Color(0, 0, 0));
+        }
+    }//GEN-LAST:event_txtFechaInicioCHFocusGained
+
+    private void txtFechaInicioCHFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFechaInicioCHFocusLost
+        if (txtFechaInicioCH.getText().equals("")) {
+            txtFechaInicioCH.setText("Ingrese Fecha Inicio");
+            txtFechaInicioCH.setForeground(new Color(153, 153, 153));
+        }
+    }//GEN-LAST:event_txtFechaInicioCHFocusLost
+
+    private void txtFechaFinalCHFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFechaFinalCHFocusGained
+        if (txtFechaFinalCH.getText().equals("Ingrese Fecha Final")) {
+            txtFechaFinalCH.setText("");
+            txtFechaFinalCH.setForeground(new Color(0, 0, 0));
+        }
+    }//GEN-LAST:event_txtFechaFinalCHFocusGained
+
+    private void txtFechaFinalCHFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFechaFinalCHFocusLost
+        if (txtFechaFinalCH.getText().equals("")) {
+            txtFechaFinalCH.setText("Ingrese Fecha Final");
+            txtFechaFinalCH.setForeground(new Color(153, 153, 153));
+        }
+    }//GEN-LAST:event_txtFechaFinalCHFocusLost
 
     /**
      * @param args the command line arguments
@@ -597,8 +651,8 @@ public class CargoHistorico extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField txtBuscarCH;
     private javax.swing.JTextField txtCargoCH;
-    private com.toedter.calendar.JDateChooser txtFechaFinalCH;
-    private com.toedter.calendar.JDateChooser txtFechaIncioCH;
+    private javax.swing.JTextField txtFechaFinalCH;
+    private javax.swing.JTextField txtFechaInicioCH;
     private javax.swing.JLabel txtIdCargoCH;
     private javax.swing.JLabel txtIdE;
     private javax.swing.JTextField txtNombreCH;
@@ -620,7 +674,7 @@ public class CargoHistorico extends javax.swing.JFrame {
 
     private void Habillitar() {
         txtCargoCH.enable(Boolean.TRUE);
-        txtFechaIncioCH.setEnabled(Boolean.TRUE);
+        txtFechaInicioCH.setEnabled(Boolean.TRUE);
         txtFechaFinalCH.setEnabled(Boolean.TRUE);
         // txtNombreCH.enable(Boolean.TRUE);
 

@@ -80,12 +80,12 @@ public class Clientes extends javax.swing.JFrame {
         tablaClientes = new javax.swing.JScrollPane();
         tablaCliente = new javax.swing.JTable();
         BotonInactivoC = new javax.swing.JRadioButton();
-        txtFechaNac = new com.toedter.calendar.JDateChooser();
         BotonActivoC = new javax.swing.JRadioButton();
         txtEstadoC = new javax.swing.JLabel();
         txtGeneroC = new javax.swing.JLabel();
-        txtFechaRegistro = new com.toedter.calendar.JDateChooser();
+        txtFechaNac = new javax.swing.JTextField();
         txtIdC = new javax.swing.JLabel();
+        txtFechaRegistro = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
         jMenu1.setText("File");
@@ -402,9 +402,6 @@ public class Clientes extends javax.swing.JFrame {
         });
         getContentPane().add(BotonInactivoC, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 250, -1, -1));
 
-        txtFechaNac.setOpaque(false);
-        getContentPane().add(txtFechaNac, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 480, 200, 30));
-
         grupoBotonClientes.add(BotonActivoC);
         BotonActivoC.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         BotonActivoC.setText("Activo");
@@ -421,11 +418,48 @@ public class Clientes extends javax.swing.JFrame {
         getContentPane().add(txtEstadoC, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 250, 70, 20));
         getContentPane().add(txtGeneroC, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 290, 120, 30));
 
-        txtFechaRegistro.setOpaque(false);
-        getContentPane().add(txtFechaRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 665, 200, 30));
+        txtFechaNac.setBackground(new java.awt.Color(240, 240, 240));
+        txtFechaNac.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        txtFechaNac.setForeground(new java.awt.Color(153, 153, 153));
+        txtFechaNac.setText("Ingrese Fecha Nacimiento");
+        txtFechaNac.setToolTipText("");
+        txtFechaNac.setBorder(null);
+        txtFechaNac.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        txtFechaNac.setOpaque(false);
+        txtFechaNac.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtFechaNacFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtFechaNacFocusLost(evt);
+            }
+        });
+        txtFechaNac.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFechaNacActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtFechaNac, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 480, 200, 30));
 
         txtIdC.setEnabled(false);
         getContentPane().add(txtIdC, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 260, 30, 20));
+
+        txtFechaRegistro.setBackground(new java.awt.Color(240, 240, 240));
+        txtFechaRegistro.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        txtFechaRegistro.setForeground(new java.awt.Color(153, 153, 153));
+        txtFechaRegistro.setText("Ingrese Fecha Registro");
+        txtFechaRegistro.setBorder(null);
+        txtFechaRegistro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        txtFechaRegistro.setOpaque(false);
+        txtFechaRegistro.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtFechaRegistroFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtFechaRegistroFocusLost(evt);
+            }
+        });
+        getContentPane().add(txtFechaRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 670, 200, 20));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/componentes/Pantalla Clientes.png"))); // NOI18N
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -470,11 +504,11 @@ public class Clientes extends javax.swing.JFrame {
         String Apellido = txtApellidoC.getText();
         int Genero = comboGenero.getSelectedIndex() + 1;
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-        String FechaNac = sdf.format(txtFechaNac.getDate());
+        String FechaNac = sdf.format(txtFechaNac.getText());
         String Direccion = txtDireccionC.getText();
         String Telefono = txtTelefonoC.getText();
         String Email = txtEmail.getText();
-        String FechaRegistro = sdf.format(txtFechaRegistro.getDate());
+        String FechaRegistro = sdf.format(txtFechaRegistro.getText());
         String Estado = "";
 
         if (BotonActivoC.isSelected() == true) {
@@ -521,7 +555,7 @@ public class Clientes extends javax.swing.JFrame {
                    JOptionPane.showMessageDialog(null, "Debe ingresar Apellido");
                } else if (comboGenero.getSelectedItem().equals("Seleccione Género...")) {
                    JOptionPane.showMessageDialog(null, "Seleccione Femenino o Masculino");
-               } else if (txtFechaNac.getDateFormatString().equals("")) {
+               } else if (txtFechaNac.getText().equals("")) {
                    JOptionPane.showMessageDialog(null, "Debe ingresar Fecha Nacimiento");
                } else if (txtDireccionC.getText().equals("Ingrese Dirección")) {
                    JOptionPane.showMessageDialog(null, "Debe ingresar una Dirección");
@@ -529,7 +563,7 @@ public class Clientes extends javax.swing.JFrame {
                    JOptionPane.showMessageDialog(null, "Debe ingresar un Teléfono");
                } else if (txtEmail.getText().equals("Ingrese E-mail")) {
                    JOptionPane.showMessageDialog(null, "Debe ingresar E-mail");
-               } else if (txtFechaRegistro.getDateFormatString().equals("")) {
+               } else if (txtFechaRegistro.getText().equals("")) {
                    JOptionPane.showMessageDialog(null, "Debe ingresar Fecha Registro");
                }
            } else {
@@ -538,11 +572,11 @@ public class Clientes extends javax.swing.JFrame {
                String Apellido = txtApellidoC.getText();
                int Genero = comboGenero.getSelectedIndex() + 1;
                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-               String FechaNac = sdf.format(txtFechaNac.getDate());
+               String FechaNac = sdf.format(txtFechaNac.getText());
                String Direccion = txtDireccionC.getText();
                String Telefono = txtTelefonoC.getText();
                String Email = txtEmail.getText();
-               String FechaRegistro = sdf.format(txtFechaRegistro.getDate());
+               String FechaRegistro = sdf.format(txtFechaRegistro.getText());
                try {
                    Connection con = Conexion.getConexion();
                    PreparedStatement ps = con.prepareStatement("Insert into Cliente(Nombre_Cliente, Apellido_Cliente, RTN,Telefono,Id_Genero,Direccion,Fecha_Nacimiento,[E-mail],Fecha_Registro,estado) VALUES(?,?,?,?,?,?,?,?,?,?)");
@@ -610,10 +644,10 @@ public class Clientes extends javax.swing.JFrame {
                 txtRTN.setText(rs.getString("RTN"));
                 txtTelefonoC.setText(rs.getString("Telefono"));
                 comboGenero.setSelectedItem(rs.getString("Genero"));
-                txtFechaNac.setDate(rs.getDate("Fecha_Nacimiento"));
+                txtFechaNac.setText(rs.getString("Fecha_Nacimiento"));
                 txtDireccionC.setText(rs.getString("Direccion"));
                 txtEmail.setText(rs.getString("E-mail"));
-                txtFechaRegistro.setDate(rs.getDate("Fecha_Registro"));
+                txtFechaRegistro.setText(rs.getString("Fecha_Registro"));
 
                 if (rs.getString("estado").equals("Activo")) {
                     BotonActivoC.setSelected(true);
@@ -921,6 +955,38 @@ public class Clientes extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtEmailKeyTyped
 
+    private void txtFechaNacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaNacActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFechaNacActionPerformed
+
+    private void txtFechaNacFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFechaNacFocusGained
+       if (txtFechaNac.getText().equals("Ingrese Fecha Nacimiento")) {
+            txtFechaNac.setText("");
+            txtFechaNac.setForeground(new Color(0, 0, 0));
+        }
+    }//GEN-LAST:event_txtFechaNacFocusGained
+
+    private void txtFechaNacFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFechaNacFocusLost
+       if (txtFechaNac.getText().equals("")) {
+            txtFechaNac.setText("Ingrese Fecha Final");
+            txtFechaNac.setForeground(new Color(153, 153, 153));
+        }
+    }//GEN-LAST:event_txtFechaNacFocusLost
+
+    private void txtFechaRegistroFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFechaRegistroFocusGained
+        if (txtFechaRegistro.getText().equals("Ingrese Fecha Registro")) {
+            txtFechaRegistro.setText("");
+            txtFechaRegistro.setForeground(new Color(0, 0, 0));
+        }
+    }//GEN-LAST:event_txtFechaRegistroFocusGained
+
+    private void txtFechaRegistroFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFechaRegistroFocusLost
+        if (txtFechaRegistro.getText().equals("")) {
+            txtFechaRegistro.setText("Ingrese Fecha Registro");
+            txtFechaRegistro.setForeground(new Color(153, 153, 153));
+        }
+    }//GEN-LAST:event_txtFechaRegistroFocusLost
+
     /**
      * @param args the command line arguments
      */
@@ -979,8 +1045,8 @@ public class Clientes extends javax.swing.JFrame {
     private javax.swing.JTextField txtDireccionC;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JLabel txtEstadoC;
-    private com.toedter.calendar.JDateChooser txtFechaNac;
-    private com.toedter.calendar.JDateChooser txtFechaRegistro;
+    private javax.swing.JTextField txtFechaNac;
+    private javax.swing.JTextField txtFechaRegistro;
     private javax.swing.JLabel txtGeneroC;
     private javax.swing.JLabel txtIdC;
     private javax.swing.JTextField txtNombreC;

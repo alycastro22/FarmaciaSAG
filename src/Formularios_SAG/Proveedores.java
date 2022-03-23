@@ -8,6 +8,8 @@ package Formularios_SAG;
 import Conexion.Conexion;
 import static Formularios_SAG.Empleados.Id_emp;
 import java.awt.Color;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -36,7 +38,15 @@ public class Proveedores extends javax.swing.JFrame {
         cargartabla();
         Inhabillitar();
         txtId_Proveedor.setVisible(Boolean.FALSE);
+        
     }
+      @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("componentes/LOGOSAG(2).png"));
+        return retValue;
+    }
+
+  
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -69,6 +79,8 @@ public class Proveedores extends javax.swing.JFrame {
         Proveedores = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImage(getIconImage());
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         BotonRegresarPro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -129,6 +141,11 @@ public class Proveedores extends javax.swing.JFrame {
                 txtNombreEmpresaProFocusLost(evt);
             }
         });
+        txtNombreEmpresaPro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtNombreEmpresaProMousePressed(evt);
+            }
+        });
         txtNombreEmpresaPro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNombreEmpresaProActionPerformed(evt);
@@ -157,6 +174,11 @@ public class Proveedores extends javax.swing.JFrame {
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtRTNProFocusLost(evt);
+            }
+        });
+        txtRTNPro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtRTNProMousePressed(evt);
             }
         });
         txtRTNPro.addActionListener(new java.awt.event.ActionListener() {
@@ -191,6 +213,11 @@ public class Proveedores extends javax.swing.JFrame {
                 txtDireccionProFocusLost(evt);
             }
         });
+        txtDireccionPro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtDireccionProMousePressed(evt);
+            }
+        });
         txtDireccionPro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDireccionProActionPerformed(evt);
@@ -215,6 +242,16 @@ public class Proveedores extends javax.swing.JFrame {
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtTelefonoProFocusLost(evt);
+            }
+        });
+        txtTelefonoPro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtTelefonoProMousePressed(evt);
+            }
+        });
+        txtTelefonoPro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTelefonoProActionPerformed(evt);
             }
         });
         txtTelefonoPro.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -290,7 +327,7 @@ public class Proveedores extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(TablaProveedor);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 270, 660, -1));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 270, 630, 400));
 
         btnGroupProveedor.add(BotonActivoPro);
         BotonActivoPro.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
@@ -325,6 +362,7 @@ public class Proveedores extends javax.swing.JFrame {
         getContentPane().add(Proveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 951, 689));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtNombreEmpresaProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreEmpresaProActionPerformed
@@ -357,22 +395,24 @@ public class Proveedores extends javax.swing.JFrame {
     }//GEN-LAST:event_BotonAgregarProMouseClicked
 
     private void BotonGuardarProMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonGuardarProMouseClicked
-       if (txtNombreEmpresaPro.getText().equals("Ingrese Nombre de la Empresa")|| txtRTNPro.getText().equals("Ingrese RTN") || ComboCiudadPro.equals("Seleccione Ciudad") || txtDireccionPro.getText().equals("Ingrese Dirección")  || txtTelefonoPro.getText().equals("Ingrese Teléfono")) {
-            JOptionPane.showMessageDialog(null, "No se puede Guardar datos vacios");
-            if (txtNombreEmpresaPro.getText().equals("Ingrese Nombre de la Empresa")) {
-                   JOptionPane.showMessageDialog(null, "Debe ingresar el nombre de la Empresa");
-               } else if (txtRTNPro.getText().equals("Ingrese RTN")) {
-                   JOptionPane.showMessageDialog(null, "Debe ingresar un RTN");
-            
-               } else if (ComboCiudadPro.getSelectedItem().equals("Seleccione Ciudad...")) {
-                   JOptionPane.showMessageDialog(null, "Seleccione Tegucigalpa o San Pedro Sula");
-               } else if (txtDireccionPro.getText().equals("Ingrese Dirección")) {
-                   JOptionPane.showMessageDialog(null, "Debe ingresar una Dirección");
-               } else if (txtTelefonoPro.getText().equals("Ingrese Teléfono")) {
-                   JOptionPane.showMessageDialog(null, "Debe ingresar un Teléfono");
-              
-               }
+        if (txtNombreEmpresaPro.getText().equals("Ingrese Nombre de la Empresa") && txtRTNPro.getText().equals("Ingrese RTN") && ComboCiudadPro.getSelectedIndex() == 0 
+                && txtDireccionPro.getText().equals("Ingrese Dirección") && txtTelefonoPro.getText().equals("Ingrese Teléfono"))  {
+            JOptionPane.showMessageDialog(null, "Debes llenar todos los campos", "Advertencia", JOptionPane.WARNING_MESSAGE);
         } else {
+            if (txtNombreEmpresaPro.getText().equals("Ingrese Nombre de la Empresa")) {
+                JOptionPane.showMessageDialog(null, "Debe ingresar un nombre de Empresa", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            } else if (txtRTNPro.getText().equals("Ingrese RTN")) {
+                JOptionPane.showMessageDialog(null, "Debe ingresar un RTN", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            } else if (ComboCiudadPro.getSelectedIndex() == 0) {
+                JOptionPane.showMessageDialog(null, "Seleccione una ciudad", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            
+            } else if (txtDireccionPro.getText().equals("Ingrese Dirección")) {
+                JOptionPane.showMessageDialog(null, "Debe ingresar una direccion", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            } else if (txtTelefonoPro.getText().equals("Ingrese Teléfono")) {
+                JOptionPane.showMessageDialog(null, "Debe ingresar un telefono", "Advertencia", JOptionPane.WARNING_MESSAGE);
+             
+                } else {
+       
             String NombreEm = txtNombreEmpresaPro.getText();
             String RTN = txtRTNPro.getText();
             String Ciudad = ComboCiudadPro.getSelectedItem().toString();
@@ -398,7 +438,7 @@ public class Proveedores extends javax.swing.JFrame {
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, ex.toString());
             }
-        }
+        } }
     }//GEN-LAST:event_BotonGuardarProMouseClicked
 
     private void TablaProveedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaProveedorMouseClicked
@@ -685,6 +725,42 @@ public class Proveedores extends javax.swing.JFrame {
             evt.consume();
         }
     }//GEN-LAST:event_txtTelefonoProKeyTyped
+
+    private void txtNombreEmpresaProMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNombreEmpresaProMousePressed
+        if (txtNombreEmpresaPro.isEnabled() == false) {
+
+            JOptionPane.showMessageDialog(null, "Dar Click en Agregar o Editar para utilizar el campo", "Advertencia", JOptionPane.WARNING_MESSAGE);
+
+        }
+    }//GEN-LAST:event_txtNombreEmpresaProMousePressed
+
+    private void txtRTNProMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtRTNProMousePressed
+         if (txtRTNPro.isEnabled() == false) {
+
+            JOptionPane.showMessageDialog(null, "Dar Click en Agregar o Editar para utilizar el campo", "Advertencia", JOptionPane.WARNING_MESSAGE);
+
+        }
+    }//GEN-LAST:event_txtRTNProMousePressed
+
+    private void txtDireccionProMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDireccionProMousePressed
+        if (txtDireccionPro.isEnabled() == false) {
+
+            JOptionPane.showMessageDialog(null, "Dar Click en Agregar o Editar para utilizar el campo", "Advertencia", JOptionPane.WARNING_MESSAGE);
+
+        }
+    }//GEN-LAST:event_txtDireccionProMousePressed
+
+    private void txtTelefonoProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoProActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTelefonoProActionPerformed
+
+    private void txtTelefonoProMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTelefonoProMousePressed
+         if (txtTelefonoPro.isEnabled() == false) {
+
+            JOptionPane.showMessageDialog(null, "Dar Click en Agregar o Editar para utilizar el campo", "Advertencia", JOptionPane.WARNING_MESSAGE);
+
+        }
+    }//GEN-LAST:event_txtTelefonoProMousePressed
 
     /**
      * @param args the command line arguments

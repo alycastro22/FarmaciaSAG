@@ -70,14 +70,14 @@ public class SueldoHistorico extends javax.swing.JFrame {
         BotonCancelarSH = new javax.swing.JLabel();
         BotonRegresarSH = new javax.swing.JLabel();
         txtSueldoSH = new javax.swing.JTextField();
-        txtFechaInicioSH = new com.toedter.calendar.JDateChooser();
-        txtFechaFinalSH = new com.toedter.calendar.JDateChooser();
         txtEmpleadoSH = new javax.swing.JTextField();
         txtBuscarSH = new javax.swing.JTextField();
         txtCargarEmpleado = new javax.swing.JComboBox<>();
         txtIdSueldoH = new javax.swing.JLabel();
+        txtFechaInicioSH = new javax.swing.JTextField();
+        txtFechaFinalSH = new javax.swing.JTextField();
         txtIdEmpleado = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        txt = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(getIconImage());
@@ -190,8 +190,6 @@ public class SueldoHistorico extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txtSueldoSH, new org.netbeans.lib.awtextra.AbsoluteConstraints(89, 540, 200, 30));
-        getContentPane().add(txtFechaInicioSH, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 425, 200, 30));
-        getContentPane().add(txtFechaFinalSH, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 485, 200, 30));
 
         txtEmpleadoSH.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         txtEmpleadoSH.setForeground(new java.awt.Color(153, 153, 153));
@@ -258,11 +256,45 @@ public class SueldoHistorico extends javax.swing.JFrame {
         });
         getContentPane().add(txtCargarEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 230, 270, 30));
         getContentPane().add(txtIdSueldoH, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 280, 60, 20));
+
+        txtFechaInicioSH.setBackground(new java.awt.Color(240, 240, 240));
+        txtFechaInicioSH.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        txtFechaInicioSH.setForeground(new java.awt.Color(153, 153, 153));
+        txtFechaInicioSH.setText("Ingrese Fecha Inicio");
+        txtFechaInicioSH.setBorder(null);
+        txtFechaInicioSH.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        txtFechaInicioSH.setOpaque(false);
+        txtFechaInicioSH.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtFechaInicioSHFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtFechaInicioSHFocusLost(evt);
+            }
+        });
+        getContentPane().add(txtFechaInicioSH, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 425, 200, 30));
+
+        txtFechaFinalSH.setBackground(new java.awt.Color(240, 240, 240));
+        txtFechaFinalSH.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        txtFechaFinalSH.setForeground(new java.awt.Color(153, 153, 153));
+        txtFechaFinalSH.setText("Ingrese Fecha Final");
+        txtFechaFinalSH.setBorder(null);
+        txtFechaFinalSH.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        txtFechaFinalSH.setOpaque(false);
+        txtFechaFinalSH.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtFechaFinalSHFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtFechaFinalSHFocusLost(evt);
+            }
+        });
+        getContentPane().add(txtFechaFinalSH, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 485, 200, 30));
         getContentPane().add(txtIdEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 280, 60, 20));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/componentes/Pantalla Sueldo Historico(5).png"))); // NOI18N
-        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 990, 700));
+        txt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/componentes/Pantalla Sueldo Historico(5).png"))); // NOI18N
+        txt.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        getContentPane().add(txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 990, 700));
 
         pack();
         setLocationRelativeTo(null);
@@ -365,8 +397,8 @@ public class SueldoHistorico extends javax.swing.JFrame {
                 txtIdSueldoH.setText(String.valueOf(id));
                 txtIdEmpleado.setText(rs.getString("Id_Empleado"));
                 txtEmpleadoSH.setText(rs.getString("NombreE"));
-                txtFechaInicioSH.setDate(rs.getDate("Fecha_Inicio"));
-                txtFechaFinalSH.setDate(rs.getDate("Fecha_Finalizacion"));
+                txtFechaInicioSH.setText(rs.getString("Fecha_Inicio"));
+                txtFechaFinalSH.setText(rs.getString("Fecha_Finalizacion"));
                 txtSueldoSH.setText(rs.getString("Sueldo"));
                 System.out.println(id);
 
@@ -386,8 +418,8 @@ public class SueldoHistorico extends javax.swing.JFrame {
             int IdSueldo = Integer.parseInt(txtIdSueldoH.getText());
 
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-            String FechaI = sdf.format(txtFechaInicioSH.getDate());
-            String FechaF = sdf.format(txtFechaFinalSH.getDate());
+            String FechaI = sdf.format(txtFechaInicioSH.getText());
+            String FechaF = sdf.format(txtFechaFinalSH.getText());
             String Sueldo = txtSueldoSH.getText();
 
             try {
@@ -414,7 +446,7 @@ public class SueldoHistorico extends javax.swing.JFrame {
     }//GEN-LAST:event_BotonEditarSHMouseClicked
 
     private void BotonGuardarSHMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonGuardarSHMouseClicked
-        if (txtEmpleadoSH.getText().equals("Ingrese Nombre Empleado") || txtFechaInicioSH.getDate().equals("") || txtFechaFinalSH.getDate().equals("")
+        if (txtEmpleadoSH.getText().equals("Ingrese Nombre Empleado") || txtFechaInicioSH.getText().equals("") || txtFechaFinalSH.getText().equals("")
                 || txtSueldoSH.getText().equals("Ingrese Sueldo")) {
             JOptionPane.showMessageDialog(null, "No se puede Guardar datos vacios");
 
@@ -422,8 +454,8 @@ public class SueldoHistorico extends javax.swing.JFrame {
             String Id_Empleado = txtIdEmpleado.getText();
             String NombreE = txtEmpleadoSH.getText();
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-            String FechaInicio = sdf.format(txtFechaInicioSH.getDate());
-            String FechaFinal = sdf.format(txtFechaFinalSH.getDate());
+            String FechaInicio = sdf.format(txtFechaInicioSH.getText());
+            String FechaFinal = sdf.format(txtFechaFinalSH.getText());
             String Sueldo = txtSueldoSH.getText();
 
             try {
@@ -516,6 +548,34 @@ public class SueldoHistorico extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtSueldoSHKeyTyped
 
+    private void txtFechaInicioSHFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFechaInicioSHFocusGained
+        if (txtFechaInicioSH.getText().equals("Ingrese Fecha Inicio")) {
+            txtFechaInicioSH.setText("");
+            txtFechaInicioSH.setForeground(new Color(0, 0, 0));
+        }
+    }//GEN-LAST:event_txtFechaInicioSHFocusGained
+
+    private void txtFechaInicioSHFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFechaInicioSHFocusLost
+         if (txtFechaInicioSH.getText().equals("")) {
+            txtFechaInicioSH.setText("Ingrese Fecha Inicio");
+            txtFechaInicioSH.setForeground(new Color(153, 153, 153));
+        }
+    }//GEN-LAST:event_txtFechaInicioSHFocusLost
+
+    private void txtFechaFinalSHFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFechaFinalSHFocusGained
+        if (txtFechaFinalSH.getText().equals("Ingrese Fecha Final")) {
+            txtFechaFinalSH.setText("");
+            txtFechaFinalSH.setForeground(new Color(0, 0, 0));
+        }
+    }//GEN-LAST:event_txtFechaFinalSHFocusGained
+
+    private void txtFechaFinalSHFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFechaFinalSHFocusLost
+        if (txtFechaFinalSH.getText().equals("")) {
+            txtFechaFinalSH.setText("Ingrese Fecha Final");
+            txtFechaFinalSH.setForeground(new Color(153, 153, 153));
+        }
+    }//GEN-LAST:event_txtFechaFinalSHFocusLost
+
    public void validarNumeros(java.awt.event.KeyEvent e) {
         if (e.getKeyChar() >= 33 && e.getKeyChar() <= 47
                 || e.getKeyChar() >= 58 && e.getKeyChar() <= 238) {
@@ -566,13 +626,13 @@ public class SueldoHistorico extends javax.swing.JFrame {
     private javax.swing.JLabel BotonGuardarSH;
     private javax.swing.JLabel BotonRegresarSH;
     private javax.swing.JTable TablaSueldoHistorico;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel txt;
     private javax.swing.JTextField txtBuscarSH;
     private javax.swing.JComboBox<String> txtCargarEmpleado;
     private javax.swing.JTextField txtEmpleadoSH;
-    private com.toedter.calendar.JDateChooser txtFechaFinalSH;
-    private com.toedter.calendar.JDateChooser txtFechaInicioSH;
+    private javax.swing.JTextField txtFechaFinalSH;
+    private javax.swing.JTextField txtFechaInicioSH;
     private javax.swing.JLabel txtIdEmpleado;
     private javax.swing.JLabel txtIdSueldoH;
     private javax.swing.JTextField txtSueldoSH;

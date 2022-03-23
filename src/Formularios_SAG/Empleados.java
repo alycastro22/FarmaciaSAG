@@ -85,7 +85,7 @@ public class Empleados extends javax.swing.JFrame {
         txtCargoE = new javax.swing.JTextField();
         txtIdE = new javax.swing.JLabel();
         txtSueldoE = new javax.swing.JTextField();
-        FechaNacimientoE = new com.toedter.calendar.JDateChooser();
+        txtFechaNacimientoE = new javax.swing.JTextField();
         barraEmpleado = new javax.swing.JScrollPane();
         TablaEmpleado = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
@@ -340,7 +340,23 @@ public class Empleados extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txtSueldoE, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 570, 200, 30));
-        getContentPane().add(FechaNacimientoE, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 425, 200, 30));
+
+        txtFechaNacimientoE.setBackground(new java.awt.Color(240, 240, 240));
+        txtFechaNacimientoE.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        txtFechaNacimientoE.setForeground(new java.awt.Color(153, 153, 153));
+        txtFechaNacimientoE.setText("Ingrese Fecha Nacimiento");
+        txtFechaNacimientoE.setToolTipText("");
+        txtFechaNacimientoE.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        txtFechaNacimientoE.setOpaque(false);
+        txtFechaNacimientoE.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtFechaNacimientoEFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtFechaNacimientoEFocusLost(evt);
+            }
+        });
+        getContentPane().add(txtFechaNacimientoE, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 425, 200, 30));
 
         TablaEmpleado.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
         TablaEmpleado.setModel(new javax.swing.table.DefaultTableModel(
@@ -805,6 +821,20 @@ public class Empleados extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtSueldoEFocusLost
 
+    private void txtFechaNacimientoEFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFechaNacimientoEFocusGained
+        if (txtFechaNacimientoE.getText().equals("Ingrese Fecha Nacimiento")) {
+            txtFechaNacimientoE.setText("");
+            txtFechaNacimientoE.setForeground(new Color(0, 0, 0));
+        }
+    }//GEN-LAST:event_txtFechaNacimientoEFocusGained
+
+    private void txtFechaNacimientoEFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFechaNacimientoEFocusLost
+        if (txtFechaNacimientoE.getText().equals("")) {
+            txtFechaNacimientoE.setText("Ingrese Fecha Nacimiento");
+            txtFechaNacimientoE.setForeground(new Color(153, 153, 153));
+        }
+    }//GEN-LAST:event_txtFechaNacimientoEFocusLost
+
     /**
      * @param args the command line arguments
      */
@@ -861,7 +891,6 @@ public class Empleados extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> ComboDocumento;
     private javax.swing.JComboBox<String> ComboGeneroE;
     private javax.swing.JComboBox<String> ComboSucursalE;
-    private com.toedter.calendar.JDateChooser FechaNacimientoE;
     private javax.swing.JTable TablaEmpleado;
     private javax.swing.JScrollPane barraEmpleado;
     private javax.swing.JLabel botonRegresarE;
@@ -872,6 +901,7 @@ public class Empleados extends javax.swing.JFrame {
     private javax.swing.JTextField txtBuscarE;
     private javax.swing.JTextField txtCargoE;
     private javax.swing.JTextField txtDocumentoE;
+    private javax.swing.JTextField txtFechaNacimientoE;
     private javax.swing.JLabel txtIdE;
     private javax.swing.JTextField txtNombreE;
     private javax.swing.JTextField txtSueldoE;
