@@ -519,7 +519,7 @@ public class Empleados extends javax.swing.JFrame {
             evt.consume();
         } else if (txtNombreE.getText().length() > 0) {
             if (!txtNombreE.getText().matches("^(?!.*([A-Za-zñÑáéíóúÁÉÍÓÚ\\s])\\1{2})[A-Za-zñÑáéíóúÁÉÍÓÚ\\s0-9]+$")) {
-                JOptionPane.showMessageDialog(null, "No repitas caracteres de forma incorrecta", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "No repitas caracteres de forma incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
                 evt.consume();
             }
         }
@@ -546,7 +546,7 @@ public class Empleados extends javax.swing.JFrame {
             evt.consume();
         } else if (txtBuscarE.getText().length() > 0) {
             if (!txtBuscarE.getText().matches("^(?!.*([A-Za-zñÑáéíóúÁÉÍÓÚ\\s])\\1{2})[A-Za-zñÑáéíóúÁÉÍÓÚ\\s0-9]+$")) {
-                JOptionPane.showMessageDialog(null, "No repitas caracteres de forma incorrecta", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "No repitas caracteres de forma incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
                 evt.consume();
             }
         }
