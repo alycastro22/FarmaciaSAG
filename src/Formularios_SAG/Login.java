@@ -1,29 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Formularios_SAG;
 
 import Conexion.Conexion;
 import encriptacion.Encode;
-import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-import sun.security.util.Password;
 
 
 
@@ -32,20 +18,11 @@ import sun.security.util.Password;
  * @author Allisson Castro
  */
 public class Login extends javax.swing.JFrame {
-
-    /**
-     * Creates new form Login2
-     */
-    
-
     
     public Login() {
         initComponents();
-       
-    
     }
     
-   
     @Override
     public Image getIconImage() {
         Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("componentes/LOGOSAG(2).png"));
@@ -108,6 +85,9 @@ public class Login extends javax.swing.JFrame {
             }
         });
         txtContrasena.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtContrasenaKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtContrasenaKeyTyped(evt);
             }
@@ -234,6 +214,12 @@ public class Login extends javax.swing.JFrame {
     private void txtContrasenaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContrasenaKeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_txtContrasenaKeyTyped
+
+    private void txtContrasenaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContrasenaKeyReleased
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            validarAdministradores();
+        }
+    }//GEN-LAST:event_txtContrasenaKeyReleased
 
     /**
      * @param args the command line arguments

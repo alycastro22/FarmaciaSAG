@@ -16,6 +16,9 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
@@ -31,22 +34,31 @@ public class CargoHistorico extends javax.swing.JFrame {
     /**
      * Creates new form CargoHistorico
      */
-    
-    
-       
     @Override
     public Image getIconImage() {
         Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("componentes/LOGOSAG(2).png"));
         return retValue;
     }
- 
 
     public CargoHistorico() {
         initComponents();
         cargarnombre();
         cargartabla();
-
-        CargaE CH = new CargoHistorico.CargaE();
+        String timeStamp = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DAY_OF_WEEK,-10);
+        Calendar cale = Calendar.getInstance();
+        cale.add(Calendar.YEAR,-3);
+        Calendar calen = Calendar.getInstance();
+        calen.add(Calendar.DAY_OF_WEEK,-1);
+        Date min = cal.getTime();
+        Date mini = cale.getTime();
+        Date max = new Date();
+        Date maxi= calen.getTime();
+                
+        txtFechaFinalCH.setSelectableDateRange( min,max);
+        txtFechaIncioCH.setSelectableDateRange(mini, maxi);
+         CargaE CH = new CargoHistorico.CargaE();
 
         comboCargarEmpleado.setModel(CH.getvalues());
         Habillitar();
@@ -321,7 +333,7 @@ public class CargoHistorico extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNombreCHActionPerformed
 
     private void txtNombreCHKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreCHKeyTyped
-     if (txtNombreCH.getText().length() > 20) {
+        if (txtNombreCH.getText().length() > 20) {
             JOptionPane.showMessageDialog(null, "Alcanzaste el máximo de caracteres para este campo", "Advertencia", JOptionPane.WARNING_MESSAGE);
             evt.consume();
         } else if (txtNombreCH.getText().length() > 0) {
