@@ -41,6 +41,7 @@ public class Productos extends javax.swing.JFrame {
         txtIDP.setVisible(Boolean.FALSE);
         BotonActivoP.setVisible(Boolean.FALSE);
         BotonInactivoP.setVisible(Boolean.FALSE);
+        Inhabillitar();
     }
 
     @Override
@@ -83,6 +84,7 @@ public class Productos extends javax.swing.JFrame {
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        botonRegresarP.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonRegresarP.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botonRegresarPMouseClicked(evt);
@@ -90,6 +92,7 @@ public class Productos extends javax.swing.JFrame {
         });
         getContentPane().add(botonRegresarP, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 150, 50));
 
+        botonAgregarP.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonAgregarP.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botonAgregarPMouseClicked(evt);
@@ -97,6 +100,7 @@ public class Productos extends javax.swing.JFrame {
         });
         getContentPane().add(botonAgregarP, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 150, 130, 30));
 
+        botonEditarP.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonEditarP.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botonEditarPMouseClicked(evt);
@@ -104,6 +108,7 @@ public class Productos extends javax.swing.JFrame {
         });
         getContentPane().add(botonEditarP, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 140, 150, 50));
 
+        botonGuardarP.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonGuardarP.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botonGuardarPMouseClicked(evt);
@@ -111,15 +116,19 @@ public class Productos extends javax.swing.JFrame {
         });
         getContentPane().add(botonGuardarP, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 140, 150, 50));
 
+        botonCancelarP.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonCancelarP.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botonCancelarPMouseClicked(evt);
             }
         });
         getContentPane().add(botonCancelarP, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 140, 140, 50));
+
+        botonRestringirP.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         getContentPane().add(botonRestringirP, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 230, 130, 40));
 
         txtNombreP.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        txtNombreP.setForeground(new java.awt.Color(153, 153, 153));
         txtNombreP.setText("Ingrese Nombre Producto");
         txtNombreP.setBorder(null);
         txtNombreP.setOpaque(false);
@@ -132,6 +141,9 @@ public class Productos extends javax.swing.JFrame {
             }
         });
         txtNombreP.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtNombrePMouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 txtNombrePMousePressed(evt);
             }
@@ -149,6 +161,7 @@ public class Productos extends javax.swing.JFrame {
         getContentPane().add(txtNombreP, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 285, 200, 30));
 
         txtDescripcionP.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        txtDescripcionP.setForeground(new java.awt.Color(153, 153, 153));
         txtDescripcionP.setText("Ingrese Descripción Producto");
         txtDescripcionP.setBorder(null);
         txtDescripcionP.setOpaque(false);
@@ -160,9 +173,15 @@ public class Productos extends javax.swing.JFrame {
                 txtDescripcionPFocusLost(evt);
             }
         });
+        txtDescripcionP.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtDescripcionPMousePressed(evt);
+            }
+        });
         getContentPane().add(txtDescripcionP, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 332, 200, 30));
 
         txtUnidadP.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        txtUnidadP.setForeground(new java.awt.Color(153, 153, 153));
         txtUnidadP.setText("Ingrese Unidades Producto");
         txtUnidadP.setBorder(null);
         txtUnidadP.setOpaque(false);
@@ -172,6 +191,11 @@ public class Productos extends javax.swing.JFrame {
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtUnidadPFocusLost(evt);
+            }
+        });
+        txtUnidadP.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtUnidadPMousePressed(evt);
             }
         });
         txtUnidadP.addActionListener(new java.awt.event.ActionListener() {
@@ -187,18 +211,21 @@ public class Productos extends javax.swing.JFrame {
         getContentPane().add(txtUnidadP, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 473, 200, 30));
 
         ComboCategoriaP.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        ComboCategoriaP.setForeground(new java.awt.Color(153, 153, 153));
         ComboCategoriaP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione Categoría...", "Analgesicos" }));
         ComboCategoriaP.setBorder(null);
         ComboCategoriaP.setOpaque(false);
         getContentPane().add(ComboCategoriaP, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, 200, 30));
 
         ComboPresentacionP.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        ComboPresentacionP.setForeground(new java.awt.Color(153, 153, 153));
         ComboPresentacionP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione Presentación...", "Inyectable", " " }));
         ComboPresentacionP.setBorder(null);
         ComboPresentacionP.setOpaque(false);
         getContentPane().add(ComboPresentacionP, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 429, 200, 30));
 
         txtTamañosP.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        txtTamañosP.setForeground(new java.awt.Color(153, 153, 153));
         txtTamañosP.setText("Ingrese Tamaño Producto");
         txtTamañosP.setBorder(null);
         txtTamañosP.setOpaque(false);
@@ -210,9 +237,15 @@ public class Productos extends javax.swing.JFrame {
                 txtTamañosPFocusLost(evt);
             }
         });
+        txtTamañosP.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtTamañosPMousePressed(evt);
+            }
+        });
         getContentPane().add(txtTamañosP, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 521, 200, 30));
 
         txtLoteP.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        txtLoteP.setForeground(new java.awt.Color(153, 153, 153));
         txtLoteP.setText("Ingrese Lote Producto");
         txtLoteP.setBorder(null);
         txtLoteP.setOpaque(false);
@@ -224,15 +257,23 @@ public class Productos extends javax.swing.JFrame {
                 txtLotePFocusLost(evt);
             }
         });
+        txtLoteP.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtLotePMousePressed(evt);
+            }
+        });
         txtLoteP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtLotePActionPerformed(evt);
             }
         });
         getContentPane().add(txtLoteP, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 570, 200, 30));
+
+        txtPrecioHistorico.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         getContentPane().add(txtPrecioHistorico, new org.netbeans.lib.awtextra.AbsoluteConstraints(471, 226, 140, 50));
 
         txtPrecioP.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        txtPrecioP.setForeground(new java.awt.Color(153, 153, 153));
         txtPrecioP.setText("Ingrese Precio Producto");
         txtPrecioP.setBorder(null);
         txtPrecioP.setOpaque(false);
@@ -242,6 +283,16 @@ public class Productos extends javax.swing.JFrame {
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtPrecioPFocusLost(evt);
+            }
+        });
+        txtPrecioP.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtPrecioPMousePressed(evt);
+            }
+        });
+        txtPrecioP.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPrecioPKeyTyped(evt);
             }
         });
         getContentPane().add(txtPrecioP, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 660, 200, 30));
@@ -324,6 +375,7 @@ public class Productos extends javax.swing.JFrame {
         getContentPane().add(TablaP, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 330, 700, 360));
 
         txtFechaVencimientoP.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        txtFechaVencimientoP.setForeground(new java.awt.Color(153, 153, 153));
         txtFechaVencimientoP.setText("Ingrese Fecha Vencimiento");
         txtFechaVencimientoP.setBorder(null);
         txtFechaVencimientoP.setOpaque(false);
@@ -333,6 +385,16 @@ public class Productos extends javax.swing.JFrame {
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtFechaVencimientoPFocusLost(evt);
+            }
+        });
+        txtFechaVencimientoP.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtFechaVencimientoPMousePressed(evt);
+            }
+        });
+        txtFechaVencimientoP.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtFechaVencimientoPKeyTyped(evt);
             }
         });
         getContentPane().add(txtFechaVencimientoP, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 612, 200, 30));
@@ -380,7 +442,6 @@ public class Productos extends javax.swing.JFrame {
         String FechaV = txtFechaVencimientoP.getText();
         String Precio = txtPrecioP.getText();
 
-     
         try {
             Connection con = Conexion.getConexion();
             PreparedStatement ps = con.prepareStatement("Update Productos set Nombre_Producto=?,Descripcion=?,Id_Categoria=?,Id_Presentacion=?, Lote=?,Fecha_Vencimiento=?,Unidades=?,Tamaño=?,Precio=? Where Id_Producto=?");
@@ -409,59 +470,61 @@ public class Productos extends javax.swing.JFrame {
     }//GEN-LAST:event_botonEditarPMouseClicked
 
     private void botonGuardarPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGuardarPMouseClicked
-        if (txtNombreP.getText().equals("Ingrese Nombre") || txtDescripcionP.getText().equals("Ingrese Teléfono") || ComboCategoriaP.getSelectedItem().equals("Seleccione Categoría Producto... ") || ComboPresentacionP.getSelectedItem().equals("Seleccione Presentación Producto... ")
-                || txtUnidadP.getText().equals("Ingrese Unidad Producto") || txtTamañosP.getText().equals("Ingrese Tamaño Producto") || txtLoteP.getText().equals("Ingrese Lote Producto") || txtPrecioP.getText().equals("Ingrese Precio Producto")) {
-            if (txtNombreP.getText().equals("Ingrese Nombre Producto")) {
-                JOptionPane.showMessageDialog(null, "Debe ingresar un nombre de producto");
-            } else if (txtDescripcionP.getText().equals("Ingrese Descripcion Producto")) {
-                JOptionPane.showMessageDialog(null, "Debe ingresar un descripción producto");
-            } else if (ComboCategoriaP.getSelectedItem().equals("Seleccione Categoría Producto")) {
-                JOptionPane.showMessageDialog(null, "Seleccione La Categoria Producto");
-            } else if (ComboPresentacionP.getSelectedItem().equals("Seleccione PresentaciónProducto")) {
-                JOptionPane.showMessageDialog(null, "Seleccione La Presentación Producto");
-            } else if (txtUnidadP.getText().equals("Ingrese Unidad ")) {
-                JOptionPane.showMessageDialog(null, "Debe ingresar una Unidad Producto");
-            } else if (txtTamañosP.getText().equals("Ingrese Tamaño")) {
-                JOptionPane.showMessageDialog(null, "Debe ingresar un Tamaño Producto");
-            } else if (txtLoteP.getText().equals("Ingrese Lote")) {
-                JOptionPane.showMessageDialog(null, "Debe ingresar un Lote Producto");
-            } else if (txtFechaVencimientoP.getText().equals("Ingrese Fecha")) {
-                JOptionPane.showMessageDialog(null, "Debe ingresar un Fecha Vencimiento");
-            } else if (txtPrecioP.getText().equals("Ingrese Precio")) {
-                JOptionPane.showMessageDialog(null, "Debe ingresar Precio Producto");
-            }
+        if (txtNombreP.getText().equals("Ingrese Nombre Producto") && txtDescripcionP.getText().equals("Ingrese Descripción Producto") && ComboCategoriaP.getSelectedIndex() == 0 && ComboPresentacionP.getSelectedIndex() == 0
+                && txtUnidadP.getText().equals("Ingrese Unidades Producto") && txtTamañosP.getText().equals("Ingrese Tamaño Producto") && txtLoteP.getText().equals("Ingrese Lote Producto") && txtFechaVencimientoP.getText().equals("Ingrese Fecha Vencimiento") && txtPrecioP.getText().equals("Ingrese Precio Producto")) {
+            JOptionPane.showMessageDialog(null, "Debes llenar todos los campos", "Advertencia", JOptionPane.WARNING_MESSAGE);
         } else {
-            String Nombre = txtNombreP.getText();
-            String Descripcion = txtDescripcionP.getText();
-            int Categoria = ComboCategoriaP.getSelectedIndex();
-            int Presentacion = ComboPresentacionP.getSelectedIndex();
-            String Unidades = txtUnidadP.getText();
-            String Tamaño = txtTamañosP.getText();
-            String Lote = txtLoteP.getText();
-            String FechaV = txtFechaVencimientoP.getText();
-            String Precio = txtPrecioP.getText();
+            if (txtNombreP.getText().equals("Ingrese Nombre Producto")) {
+                JOptionPane.showMessageDialog(null, "Debe ingresar un nombre al producto", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            } else if (txtDescripcionP.getText().equals("Ingrese Descripción Producto")) {
+                JOptionPane.showMessageDialog(null, "Debe ingresar una descripción", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            } else if (ComboCategoriaP.getSelectedIndex() == 0) {
+                JOptionPane.showMessageDialog(null, "Seleccione la categoria", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            } else if (ComboPresentacionP.getSelectedIndex() == 0) {
+                JOptionPane.showMessageDialog(null, "Seleccione la presentación", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            } else if (txtUnidadP.getText().equals("Ingrese Unidades Producto")) {
+                JOptionPane.showMessageDialog(null, "Debe ingresar una unidad", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            } else if (txtTamañosP.getText().equals("Ingrese Tamaño Producto")) {
+                JOptionPane.showMessageDialog(null, "Debe ingresar un tamaño", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            } else if (txtLoteP.getText().equals("Ingrese Lote Producto")) {
+                JOptionPane.showMessageDialog(null, "Debe ingresar un lote", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            } else if (txtFechaVencimientoP.getText().equals("Ingrese Fecha Vencimiento")) {
+                JOptionPane.showMessageDialog(null, "Debe ingresar la fecha de vencimiento", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            } else if (txtPrecioP.getText().equals("Ingrese Precio Producto")) {
+                JOptionPane.showMessageDialog(null, "Debe ingresar un precio", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            } else {
+                String Nombre = txtNombreP.getText();
+                String Descripcion = txtDescripcionP.getText();
+                int Categoria = ComboCategoriaP.getSelectedIndex();
+                int Presentacion = ComboPresentacionP.getSelectedIndex();
+                String Unidades = txtUnidadP.getText();
+                String Tamaño = txtTamañosP.getText();
+                String Lote = txtLoteP.getText();
+                String FechaV = txtFechaVencimientoP.getText();
+                String Precio = txtPrecioP.getText();
 
-            try {
-                Connection con = Conexion.getConexion();
-                PreparedStatement ps = con.prepareStatement("Insert into Productos (Nombre_Producto, Descripcion,Id_Categoria,Id_Presentacion,Lote,Fecha_Vencimiento,Id_Estado,Unidades,Tamaño,Precio) VALUES(?,?,?,?,?,?,?,?,?,?)");
-                ps.setString(1, Nombre);
-                ps.setString(2, Descripcion);
-                ps.setInt(3, Categoria);
-                ps.setInt(4, Presentacion);
-                ps.setString(5, Lote);
-                ps.setString(6, FechaV);
-                ps.setString(8, Unidades);
-                ps.setString(9, Tamaño);
-                ps.setString(10, Precio);
-                ps.setInt(7, 1);
-                ps.executeUpdate();
-                JOptionPane.showMessageDialog(null, "Registro guardado");
-                cargartabla();
-                Limpiar();
-                Inhabillitar();
+                try {
+                    Connection con = Conexion.getConexion();
+                    PreparedStatement ps = con.prepareStatement("Insert into Productos (Nombre_Producto, Descripcion,Id_Categoria,Id_Presentacion,Lote,Fecha_Vencimiento,Id_Estado,Unidades,Tamaño,Precio) VALUES(?,?,?,?,?,?,?,?,?,?)");
+                    ps.setString(1, Nombre);
+                    ps.setString(2, Descripcion);
+                    ps.setInt(3, Categoria);
+                    ps.setInt(4, Presentacion);
+                    ps.setString(5, Lote);
+                    ps.setString(6, FechaV);
+                    ps.setString(8, Unidades);
+                    ps.setString(9, Tamaño);
+                    ps.setString(10, Precio);
+                    ps.setInt(7, 1);
+                    ps.executeUpdate();
+                    JOptionPane.showMessageDialog(null, "Registro guardado");
+                    cargartabla();
+                    Limpiar();
+                    Inhabillitar();
 
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, ex.toString());
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, ex.toString());
+                }
             }
         }
     }
@@ -618,7 +681,7 @@ public class Productos extends javax.swing.JFrame {
             cargartabla();
             Limpiar();
             Inhabillitar();
-           // txt.setVisible(Boolean.FALSE);
+            // txt.setVisible(Boolean.FALSE);
             BotonActivoP.setVisible(Boolean.FALSE);
             BotonInactivoP.setVisible(Boolean.FALSE);
 
@@ -640,7 +703,7 @@ public class Productos extends javax.swing.JFrame {
             cargartabla();
             Limpiar();
             Inhabillitar();
-           // txtEstadoC.setVisible(Boolean.FALSE);
+            // txtEstadoC.setVisible(Boolean.FALSE);
             BotonActivoP.setVisible(Boolean.FALSE);
             BotonInactivoP.setVisible(Boolean.FALSE);
 
@@ -728,6 +791,8 @@ public class Productos extends javax.swing.JFrame {
         if (txtFechaVencimientoP.getText().equals("")) {
             txtFechaVencimientoP.setText("Ingrese Fecha Vencimiento");
             txtFechaVencimientoP.setForeground(new Color(153, 153, 153));
+        } else if (!txtFechaVencimientoP.getText().matches("^[0-9]{4}[-]{1}[0-9]{2}[-]{1}[0-9]{2}$")) {
+            JOptionPane.showMessageDialog(null, "Debes escribir el formato correcto para la fecha \n Formato correcto: AAAA-MM-DD", "Advertencia", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_txtFechaVencimientoPFocusLost
 
@@ -802,9 +867,87 @@ public class Productos extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtBuscarPKeyTyped
 
+    public void validarNumeros(java.awt.event.KeyEvent e) {
+        if (e.getKeyChar() >= 33 && e.getKeyChar() <= 47
+                || e.getKeyChar() >= 58 && e.getKeyChar() <= 238) {
+            e.consume();
+            JOptionPane.showMessageDialog(null, "Este campo solo admite números", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
     private void txtUnidadPKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUnidadPKeyTyped
-        // TODO add your handling code here:
+        validarNumeros(evt);
+        if (txtUnidadP.getText().length() > 2) {
+            evt.consume();
+
+        }
     }//GEN-LAST:event_txtUnidadPKeyTyped
+
+    private void txtNombrePMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNombrePMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombrePMouseClicked
+
+    private void txtDescripcionPMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDescripcionPMousePressed
+        if (txtDescripcionP.isEnabled() == false) {
+
+            JOptionPane.showMessageDialog(null, "Dar Click en Agregar o Editar para utilizar el campo", "Advertencia", JOptionPane.WARNING_MESSAGE);
+
+        }
+    }//GEN-LAST:event_txtDescripcionPMousePressed
+
+    private void txtUnidadPMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUnidadPMousePressed
+        if (txtUnidadP.isEnabled() == false) {
+
+            JOptionPane.showMessageDialog(null, "Dar Click en Agregar o Editar para utilizar el campo", "Advertencia", JOptionPane.WARNING_MESSAGE);
+
+        }
+    }//GEN-LAST:event_txtUnidadPMousePressed
+
+    private void txtTamañosPMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTamañosPMousePressed
+        if (txtTamañosP.isEnabled() == false) {
+
+            JOptionPane.showMessageDialog(null, "Dar Click en Agregar o Editar para utilizar el campo", "Advertencia", JOptionPane.WARNING_MESSAGE);
+
+        }
+    }//GEN-LAST:event_txtTamañosPMousePressed
+
+    private void txtLotePMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtLotePMousePressed
+        if (txtLoteP.isEnabled() == false) {
+
+            JOptionPane.showMessageDialog(null, "Dar Click en Agregar o Editar para utilizar el campo", "Advertencia", JOptionPane.WARNING_MESSAGE);
+
+        }
+    }//GEN-LAST:event_txtLotePMousePressed
+
+    private void txtFechaVencimientoPMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtFechaVencimientoPMousePressed
+        if (txtFechaVencimientoP.isEnabled() == false) {
+
+            JOptionPane.showMessageDialog(null, "Dar Click en Agregar o Editar para utilizar el campo", "Advertencia", JOptionPane.WARNING_MESSAGE);
+
+        }
+    }//GEN-LAST:event_txtFechaVencimientoPMousePressed
+
+    private void txtPrecioPMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPrecioPMousePressed
+        if (txtPrecioP.isEnabled() == false) {
+
+            JOptionPane.showMessageDialog(null, "Dar Click en Agregar o Editar para utilizar el campo", "Advertencia", JOptionPane.WARNING_MESSAGE);
+
+        }
+    }//GEN-LAST:event_txtPrecioPMousePressed
+
+    private void txtFechaVencimientoPKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFechaVencimientoPKeyTyped
+        if (txtFechaVencimientoP.getText().length() > 9) {
+            evt.consume();
+        }
+
+    }//GEN-LAST:event_txtFechaVencimientoPKeyTyped
+
+    private void txtPrecioPKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioPKeyTyped
+        validarNumeros(evt);
+        if (txtPrecioP.getText().length() > 3) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtPrecioPKeyTyped
 
     public void validarNumerosLetras(java.awt.event.KeyEvent e) {
         if (e.getKeyChar() >= 33 && e.getKeyChar() <= 47
