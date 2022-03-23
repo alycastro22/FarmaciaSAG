@@ -6,6 +6,7 @@
 package Formularios_SAG;
 
 import Conexion.Conexion;
+import encriptacion.Encode;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -50,13 +51,6 @@ public class Login extends javax.swing.JFrame {
         Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("componentes/LOGOSAG(2).png"));
         return retValue;
     }
- 
-
-    
-    
-    
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -137,80 +131,98 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtContrasenaActionPerformed
 
-    private void botonInicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonInicioMouseClicked
-        /*String Usuario = txtUsuario.getText();
-        String Contrasena = String.valueOf(txtContrasena.getPassword());
-        String estado = null;
-        int resultado = 0;
-        int intento=0;
-        Connection con = Conexion.getConexion();
+    public static String usuario;
+    public boolean resultado = false;
+    
+    public boolean validarAdministradores() {
+        Conexion cc = new Conexion();
+        Connection cn = cc.getConexion();
+        Encode encode = new Encode();
+        String secretKey = "farmaciaSAG";
+        String admin = txtUsuario.getText();
+        String pass = String.valueOf(txtContrasena.getPassword());
+        String sql = "SELECT * FROM Usuario WHERE Nombre = '" + admin + "'";
 
-        String Pass = new String(txtContrasena.getPassword());
-        
-        if(txtUsuario.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "Debe ingresar Usuario");
-        }if(txtContrasena.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "Debe ingresar Contraseña");
-        }else{
-               try {
-               PreparedStatement ps;
-               ResultSet rs;
-               ps = con.prepareStatement("Select NombreU, ContrasenaU, Intentos,estado from Usuario where  NombreU='" + Usuario + "'");
-               rs = ps.executeQuery();
+        if (txtUsuario.getText().isEmpty() && txtContrasena.getText().isEmpty() || txtUsuario.getText().isEmpty() || txtContrasena.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debes escribir un usuario y una contraseña", "Advertencia", JOptionPane.WARNING_MESSAGE);
+
+        } else {
+            try {
+                Statement st = cn.createStatement();
+                ResultSet rs = st.executeQuery(sql);
 
                 if (rs.next()) {
-                   intento = Integer.parseInt(rs.getString("Intentos"));
-                   System.out.println(intento);
-                   estado= rs.getString("estado");
-                    System.out.println(estado);
-                   if(estado.equals("Inactivo")){
-                     JOptionPane.showMessageDialog(null, "Este usuarioSe encuentra inhabilitado, comuniquese con un Administrador");
-                   }
-                 }    
-                if (rs.getString("ContrasenaU").equals(Contrasena)) {
-                       MenuPrincipal MP = new MenuPrincipal();
-                       MP.setVisible(true);
-                       dispose();
-                   } else {
-                       intento=intento-1;
-                       ps = con.prepareStatement("Update Usuario set Intentos ='" + intento + "'where NombreU ='" + Usuario + "' ");
-                       rs = ps.executeQuery();
-                       System.out.println(intento);
-                       JOptionPane.showMessageDialog(this, "Contraseña es incorrecto, Intentos Disponibles="+intento+".");
-                       if(intento==0){
-                          ps = con.prepareStatement("Update Usuario set estado ='Inactivo' where NombreU ='" + Usuario + "' ");
-                         rs = ps.executeQuery();
-                         JOptionPane.showMessageDialog(this, "Contraseña es incorrecto");
-                       }
-                           
-                      
-                   }
-                
-               } catch (SQLException ex) {
-                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                    usuario = rs.getString("Nombre");
+                    int intentos = Integer.parseInt(rs.getString("Intentos"));
+                    if (rs.getString("Intentos").equals("0")) {
+                        JOptionPane.showMessageDialog(null, "Usuario inactivo, comuniquese con el administrador del sistema para restablecer su usuario", "Acceso denegado", JOptionPane.ERROR_MESSAGE);
+                        txtContrasena.setText("");
+
+                    } else if (encode.deecnode(secretKey, rs.getString("Contraseña")).equals(pass)) {
+                        resultado = true;
+                        MenuPrincipal ad = new MenuPrincipal();
+                        ad.setVisible(true);
+                        this.dispose();
+                        try {
+                            String sqlRestar = "UPDATE Usuario SET Intentos = ? WHERE Usuario.Nombre = ? ";
+                            PreparedStatement pst = (PreparedStatement) cn.prepareStatement(sqlRestar);
+                            pst.setString(1, String.valueOf("3"));
+                            pst.setString(2, admin);
+                            pst.execute();
+
+                        } catch (Exception e) {
+                            System.out.println(e.getMessage());
                         }
-        }
+                    } else {
+                        --intentos;
+                        if (intentos == 0) {
+                            JOptionPane.showMessageDialog(null, "Ha excedido el número de intentos para ingresar \n" + "Su usuario ha sido deshabilitado", "Acceso denegado", JOptionPane.ERROR_MESSAGE);
+                            txtUsuario.setText("");
+                            txtContrasena.setText("");
+                            try {
+                                String sqlEstado = "UPDATE Usuario SET Intentos = ? WHERE Usuario.Nombre = ? ";
+                                PreparedStatement pst = (PreparedStatement) cn.prepareStatement(sqlEstado);
+                                pst.setString(1, String.valueOf(intentos));
+                                pst.setString(2, admin);
+                                pst.execute();
 
-                 
-        */
-       
-       MenuPrincipal MP = new MenuPrincipal();
-        MP.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_botonInicioMouseClicked
+                            } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                                
+                            }
+                        } else {
+                            try {
+                                String sqlEstado = "UPDATE Usuario SET Intentos = ? WHERE Usuario.Nombre = ? ";
+                                PreparedStatement pst = (PreparedStatement) cn.prepareStatement(sqlEstado);
+                                pst.setString(1, String.valueOf(intentos));
+                                pst.setString(2, admin);
+                                pst.execute();
 
-    public boolean validarContrasena(String cadena) {
-        String patron = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$";
-        Pattern patt = Pattern.compile(patron);
-        Matcher comparador = patt.matcher(cadena);
-        if (comparador.matches()) {
-            return true;
-        } else {
-            return false;
+                            } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                            }
+                            JOptionPane.showMessageDialog(null, "Usuario o clave incorrecta, te quedan " + intentos + " intentos", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                            txtContrasena.setText("");
+                        }
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Asegurate de usar un usuario y una contraseña correctos", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                }
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "No se pudo establecer la conexión", "Error", JOptionPane.ERROR_MESSAGE);
+                System.out.println(e.getMessage());
+                txtUsuario.setText("");
+                txtContrasena.setText("");
+            }
         }
+        return resultado;
     }
-
-
+    
+    private void botonInicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonInicioMouseClicked
+        validarAdministradores();
+    }//GEN-LAST:event_botonInicioMouseClicked
+  
     private void txtUsuarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsuarioFocusGained
 
     }//GEN-LAST:event_txtUsuarioFocusGained

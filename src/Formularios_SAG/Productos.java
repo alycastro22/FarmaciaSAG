@@ -465,8 +465,6 @@ public class Productos extends javax.swing.JFrame {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex.toString());
         }
-
-
     }//GEN-LAST:event_botonEditarPMouseClicked
 
     private void botonGuardarPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGuardarPMouseClicked
