@@ -169,7 +169,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_BotonProveedoresMouseClicked
 
     private void BotonMedicamentosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonMedicamentosMouseClicked
-        // TODO add your handling code here:
+        Productos P = new Productos();
+        {
+            P.setVisible(true);
+            dispose();
+
+        }
     }//GEN-LAST:event_BotonMedicamentosMouseClicked
 
     private void BotonSucursalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonSucursalMouseClicked
